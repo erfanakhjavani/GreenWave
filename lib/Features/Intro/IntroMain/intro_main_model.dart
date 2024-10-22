@@ -1,0 +1,3 @@
+class IntroMainModel{
+  IntroMainModel();
+}
