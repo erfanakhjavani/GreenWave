@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../Core/Gen/assets.gen.dart';
 import 'intro_welcome_model.dart';
 
 class IntroWelcomeViewmodel extends GetxController {
   final introPages = [
-    IntroWelcomeModel(title: 'This is a test title', description: "This is a test description", image: "assets/jpg/intro1.jpg"),
-    IntroWelcomeModel(title: 'This is a test title', description: "This is a test description", image: "assets/jpg/intro2.jpg"),
-    IntroWelcomeModel(title: 'This is a test title', description: "This is a test description", image: "assets/jpg/intro3.jpg"),
+    IntroWelcomeModel(
+        title: 'This is a test title',
+        description: "This is a test description",
+        image: Assets.jpg.intro1.path
+    ),
+    IntroWelcomeModel(
+        title: 'This is a test title',
+        description: "This is a test description",
+        image: Assets.jpg.intro2.path
+    ),
+    IntroWelcomeModel(
+        title: 'This is a test title',
+        description: "This is a test description",
+        image: Assets.jpg.intro3.path
+    ),
   ].obs;
 
   var showGetStart = false.obs;
 
-  // کنترل کننده صفحه
   PageController pageController = PageController();
 
   void onPageChanged(int index) {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../MainWrapper/MainWrapperHome/main_wrapper_home_view.dart';
+import '../../../Core/Gen/assets.gen.dart';
+import '../../Register/Login/register_login_view.dart';
+import '../../Register/RegisterSwitch/register_switch_view.dart';
 import 'Widgets/bottom_wave_clipper.dart';
 import 'Widgets/delayed_widget.dart';
 import 'intro_main_viewmodel.dart';
@@ -126,6 +128,7 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                       children: [
                         Obx(() => Checkbox(
                           value: controller.isTermsAccepted.value,
+                          activeColor: Colors.green,
                           shape: const CircleBorder(),
                           onChanged: (value) {
                             controller.isTermsAccepted.value = value!;
@@ -161,7 +164,7 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: controller.isTermsAccepted.value
-                            ? () => Get.offAll(const MainWrapperHomeView())
+                            ? () => Get.offAll(RegisterSwitchView())
                             : null,
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -183,7 +186,7 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                       width: size.width * 0.3,
                       height: size.width * 0.3,
                       child: SvgPicture.asset(
-                        'assets/svg/logowt.svg',
+                        Assets.svg.logowt,
                         color: const Color.fromRGBO(42, 101, 51, 1.0),
                       ),
                     ),
@@ -219,7 +222,6 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                 controller.changeLanguage('fa');
               },
             ),
-            // زبان‌های دیگر را اینجا می‌توان اضافه کرد
           ],
         );
       },

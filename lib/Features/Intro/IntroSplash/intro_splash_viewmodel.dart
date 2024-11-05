@@ -1,9 +1,10 @@
 
+import 'package:GreenWave/Features/Intro/IntroSplash/repositories/check_connectivity.dart';
 import 'package:GreenWave/Features/Intro/IntroWelcome/intro_welcome_view.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'model/intro_splash_model.dart';
 
-import '../../../Core/Repositories/check_connectivity.dart';
-import 'intro_splash_model.dart';
 
 //! SplashViewModel class handles splash logic, including checking internet connection and navigation
 class IntroSplashViewmodel extends GetxController {
@@ -12,14 +13,16 @@ class IntroSplashViewmodel extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
+    initialHive();
     checkConnection(); //! Check the connection status when the controller is initialized
+    super.onInit();
   }
 
   @override
   void dispose() {
-    super.dispose();
+    initialHive();
     checkConnection(); //* Check the connection again before disposing (though this is uncommon)
+    super.dispose();
   }
 
 
@@ -29,6 +32,11 @@ class IntroSplashViewmodel extends GetxController {
     Future.delayed(const Duration(seconds: 3), () async {
       bool isConnected = await splashRepository.checkConnectivity(); //* Check if connected
       if (isConnected == true) {
+        var dataBox = Hive.box<IntroSplashModel>('introRegisterBox').values.forEach((value){
+          if(value.isRegistered == false) {
+            splashRepository.postPlatformData();
+          }
+        });
         connectionStatus.value = ConnectionStatus.connected; //* Update status to connected
         Future.delayed(const Duration(seconds: 3),(){
           Get.offAll(const IntroWelcomeView()); //* Navigate to description screen if connected
@@ -38,4 +46,17 @@ class IntroSplashViewmodel extends GetxController {
       }
     });
   }
+  void initialHive() async{
+    Hive.registerAdapter(IntroSplashModelAdapter());
+    await Hive.openBox<IntroSplashModel>('introRegisterBox');
+  }
+
+}
+
+//! variables connection
+enum ConnectionStatus {
+  initial,
+  connected,
+  disconnected,
+
 }

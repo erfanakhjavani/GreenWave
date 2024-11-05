@@ -5,7 +5,7 @@ class GetStartBtn extends StatelessWidget {
   final String text;
   final Function onTap;
 
-  const GetStartBtn({Key? key, required this.text, required this.onTap}) : super(key: key);
+  const GetStartBtn({super.key, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class GetStartBtn extends StatelessWidget {
       width: width / 3,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
+          backgroundColor: AppColors.monopolyColor1,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

@@ -18,60 +18,58 @@ class IntroWelcomeView extends GetView<IntroWelcomeViewmodel> {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned(
-            bottom: height / 100,
-            top: 0,
-            child: SizedBox(
-              width: width,
-              height: height,
-              child: PageView.builder(
-                onPageChanged: controller.onPageChanged,
-                controller: controller.pageController,
-                itemCount: controller.introPages.length,
-                itemBuilder: (context, index) {
-                  var page = controller.introPages[index];
-                  return IntroPage(
-                    title: page.title,
-                    description: page.description,
-                    image: page.image,
-                  );
-                },
+          // PageView positioned in the full screen
+          Positioned.fill(
+            child: PageView.builder(
+              onPageChanged: controller.onPageChanged,
+              controller: controller.pageController,
+              itemCount: controller.introPages.length,
+              itemBuilder: (context, index) {
+                var page = controller.introPages[index];
+                return IntroPage(
+                  title: page.title,
+                  description: page.description,
+                  image: page.image,
+                );
+              },
+            ),
+          ),
+
+          // Animated Positioned for the button
+          Obx(
+                () => Align(
+              alignment: Alignment.bottomCenter,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                margin: EdgeInsets.only(bottom: height / 20),
+                child: GetStartBtn(
+                  text: controller.showGetStart.value ? "Let's go" : 'Next',
+                  onTap: () {
+                    if (controller.showGetStart.value) {
+                      Get.offAll(const IntroMainView());
+                    } else {
+                      controller.nextPage();
+                    }
+                  },
+                ),
               ),
             ),
           ),
-          Obx(
-            () => AnimatedPositioned(
-              bottom: height / 20,
-              left: controller.showGetStart.value ? width / 3.5 : width / 2.85,
-              right: controller.showGetStart.value ? width / 3.5 : width / 2.85,
-              
-              duration: const Duration(milliseconds: 250),
-              child: controller.showGetStart.value
-                  ? GetStartBtn(
-                      text: "Let's go",
-                      onTap: () {
-                        Get.offAll(const IntroMainView());
-                      },
-                    )
-                  : GetStartBtn(
-                      text: 'Next',
-                      onTap: () {
-                        controller.nextPage();
-                      },
-                    ),
-            ),
-          ),
-          Positioned(
-            bottom: height / 7,
-            left: width / 2.2,
-            child: SmoothPageIndicator(
-              controller: controller.pageController,
-              count: controller.introPages.length,
-              effect: const WormEffect(
-                dotWidth: 10,
-                dotHeight: 10,
-                spacing: 5,
-                activeDotColor: Colors.black,
+
+          // SmoothPageIndicator centered horizontally and positioned at the bottom
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: height / 7),
+              child: SmoothPageIndicator(
+                controller: controller.pageController,
+                count: controller.introPages.length,
+                effect: const WormEffect(
+                  dotWidth: 10,
+                  dotHeight: 10,
+                  spacing: 5,
+                  activeDotColor: Colors.black,
+                ),
               ),
             ),
           ),

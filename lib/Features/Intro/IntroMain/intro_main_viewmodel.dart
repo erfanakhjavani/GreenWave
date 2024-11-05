@@ -5,7 +5,6 @@ class IntroMainViewmodel extends GetxController {
   RxBool isTermsAccepted = false.obs;
 
   void changeLanguage(String languageCode) {
-    // مدیریت تغییر زبان
     if (languageCode == 'en') {
       Get.updateLocale(const Locale('en', 'US'));
     } else {
