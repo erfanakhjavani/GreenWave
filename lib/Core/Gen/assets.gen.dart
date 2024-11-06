@@ -50,6 +50,9 @@ class $AssetsJsonGen {
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/btc.png
+  AssetGenImage get btc => const AssetGenImage('assets/png/btc.png');
+
   /// File path: assets/png/google.png
   AssetGenImage get google => const AssetGenImage('assets/png/google.png');
 
@@ -62,8 +65,15 @@ class $AssetsPngGen {
   /// File path: assets/png/logowt.png
   AssetGenImage get logowt => const AssetGenImage('assets/png/logowt.png');
 
+  /// File path: assets/png/snx.png
+  AssetGenImage get snx => const AssetGenImage('assets/png/snx.png');
+
+  /// File path: assets/png/usat.png
+  AssetGenImage get usat => const AssetGenImage('assets/png/usat.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [google, logo, logowb, logowt];
+  List<AssetGenImage> get values =>
+      [btc, google, logo, logowb, logowt, snx, usat];
 }
 
 class $AssetsSvgGen {

@@ -1,3 +1,4 @@
+import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_viewmodel.dart';
 import 'package:get/get.dart';
 import '../../Features/Intro/IntroMain/intro_main_viewmodel.dart';
 import '../../Features/Intro/IntroSplash/intro_splash_viewmodel.dart';
@@ -17,6 +18,7 @@ class MyBindings extends Bindings{
     Get.put(RegisterLoginViewmodel());
     Get.put(RegisterSwitchViewmodel());
     Get.put(RegisterSignupViewmodel());
+    Get.put(MainWrapperBottomNavViewmodel());
   }
 
 }

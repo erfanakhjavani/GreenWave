@@ -37,7 +37,7 @@ class IntroSplashViewmodel extends GetxController {
           if(value.isRegistered == false) {
             splashRepository.postPlatformData();
           }else{
-            isReg.value = value.isRegistered!;
+            isReg.value = value.isRegistered;
           }
         });
         connectionStatus.value = ConnectionStatus.connected; //* Update status to connected

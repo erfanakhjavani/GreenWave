@@ -40,15 +40,19 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
                 ),
               ],
             ),
-            IconButton(
-              icon: Icon(Icons.notifications, color: AppColors.monopolyColor1),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.email, color: AppColors.monopolyColor1),
-              onPressed: () {
-                dialogForSendImage(context);
-              },
+            Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.notifications, color: AppColors.monopolyColor1),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(Icons.email, color: AppColors.monopolyColor1),
+                  onPressed: () {
+                    dialogForSendImage(context);
+                  },
+                ),
+              ],
             ),
           ],
         ),
