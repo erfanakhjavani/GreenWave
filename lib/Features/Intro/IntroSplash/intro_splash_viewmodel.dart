@@ -10,6 +10,7 @@ import 'model/intro_splash_model.dart';
 class IntroSplashViewmodel extends GetxController {
   var connectionStatus = ConnectionStatus.initial.obs; //* Observable for connection status
   final SplashRepository splashRepository = SplashRepository(); //* Repository to check connectivity
+  var isReg = false.obs;
 
   @override
   void onInit() {
@@ -35,6 +36,8 @@ class IntroSplashViewmodel extends GetxController {
         var dataBox = Hive.box<IntroSplashModel>('introRegisterBox').values.forEach((value){
           if(value.isRegistered == false) {
             splashRepository.postPlatformData();
+          }else{
+            isReg.value = value.isRegistered!;
           }
         });
         connectionStatus.value = ConnectionStatus.connected; //* Update status to connected

@@ -6,7 +6,7 @@ class IntroSplashModel {
   @HiveField(1)
   String? data;
   @HiveField(2)
-  bool? isRegistered;
+  bool isRegistered = false;
 
   IntroSplashModel({required this.data,required this.isRegistered});
 }

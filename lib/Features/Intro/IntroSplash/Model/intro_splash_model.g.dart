@@ -18,7 +18,7 @@ class IntroSplashModelAdapter extends TypeAdapter<IntroSplashModel> {
     };
     return IntroSplashModel(
       data: fields[1] as String?,
-      isRegistered: fields[2] as bool?,
+      isRegistered: fields[2] as bool,
     );
   }
 

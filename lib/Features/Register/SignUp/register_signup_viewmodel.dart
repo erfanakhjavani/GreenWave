@@ -1,4 +1,3 @@
-import 'package:GreenWave/Features/Register/Login/register_login_view.dart';
 import 'package:GreenWave/Features/Register/RegisterSwitch/register_switch_viewmodel.dart';
 import 'package:get/get.dart';
 

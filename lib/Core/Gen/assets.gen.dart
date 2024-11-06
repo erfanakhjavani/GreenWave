@@ -31,6 +31,9 @@ class $AssetsJsonGen {
   /// File path: assets/json/anima_tik.json
   String get animaTik => 'assets/json/anima_tik.json';
 
+  /// File path: assets/json/arrowUp.json
+  String get arrowUp => 'assets/json/arrowUp.json';
+
   /// File path: assets/json/env1.json
   String get env1 => 'assets/json/env1.json';
 
@@ -41,7 +44,7 @@ class $AssetsJsonGen {
   String get waveloop => 'assets/json/waveloop.json';
 
   /// List of all assets
-  List<String> get values => [animaTik, env1, wave2, waveloop];
+  List<String> get values => [animaTik, arrowUp, env1, wave2, waveloop];
 }
 
 class $AssetsPngGen {

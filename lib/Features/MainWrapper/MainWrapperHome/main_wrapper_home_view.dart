@@ -1,4 +1,5 @@
 import 'package:GreenWave/Core/Gen/assets.gen.dart';
+import 'package:GreenWave/Features/MainWrapper/MainWrapperHome/Widgets/dialog_for_send_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,10 +14,11 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: null,
         backgroundColor: Colors.white,
         elevation: 0,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // فاصله‌دهی بین عناصر
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
@@ -44,7 +46,9 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
             ),
             IconButton(
               icon: Icon(Icons.email, color: AppColors.monopolyColor1),
-              onPressed: () {},
+              onPressed: () {
+                dialogForSendImage(context);
+              },
             ),
           ],
         ),

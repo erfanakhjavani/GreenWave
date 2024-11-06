@@ -17,7 +17,7 @@ class RegisterSignupView extends GetView<RegisterSignupViewmodel> {
     var textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SingleChildScrollView(
-        padding:  EdgeInsets.symmetric(horizontal: width < 800 ? 24.0: 150.0),
+        padding: EdgeInsets.symmetric(horizontal: width < 900 ? 24.0: 240.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

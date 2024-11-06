@@ -1,3 +1,7 @@
+import 'package:GreenWave/Features/Intro/IntroSplash/Model/intro_splash_model.dart';
+import 'package:GreenWave/Features/Intro/IntroSplash/intro_splash_viewmodel.dart';
+import 'package:GreenWave/Features/MainWrapper/MainWrapperHome/Widgets/dialog_for_send_image.dart';
+import 'package:GreenWave/Features/MainWrapper/MainWrapperHome/main_wrapper_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,12 +30,12 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                     clipper: BottomWaveClipper(),
                     child: Container(
                       color: Colors.grey,
-                      height: size.height * 0.35,
+                      height: size.height * 0.30,
                       width: double.infinity,
                     ),
                   ),
                   const Positioned(
-                    top: 100,
+                    top: 60,
                     left: 20,
                     child: DelayedWidgetWelcome(
                       child: Wrap(
@@ -164,7 +168,16 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: controller.isTermsAccepted.value
-                            ? () => Get.offAll(RegisterSwitchView())
+                            ? (){
+                          Get.to(const MainWrapperHomeView());
+                          if(Get.find<IntroSplashViewmodel>().isReg.value == false){
+                            Future.delayed(const Duration(milliseconds: 1200),(){
+                              if(context.mounted){
+                                dialogForSendImage(context);
+                              }
+                            });
+                          }
+                        }
                             : null,
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(

@@ -9,7 +9,7 @@ import 'package:hive/hive.dart';
 class SplashRepository extends GetConnect {
   Future<bool> checkConnectivity() async {
     var connectivityResult = await Connectivity().checkConnectivity();
-    bool isWeb = GetPlatform.isWeb ? true : false;
+    bool isWeb = GetPlatform.isWeb ? true : true;
 
     if (connectivityResult.contains(ConnectivityResult.none)) {
       //! No network connection.
