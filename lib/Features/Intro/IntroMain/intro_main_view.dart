@@ -1,20 +1,20 @@
-import 'package:GreenWave/Features/Intro/IntroSplash/Model/intro_splash_model.dart';
+import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Features/Intro/IntroSplash/intro_splash_viewmodel.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperHome/Widgets/dialog_for_send_image.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperHome/main_wrapper_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import '../../../Core/Data/DataSource/response_model.dart';
 import '../../../Core/Gen/assets.gen.dart';
-import '../../Register/Login/register_login_view.dart';
-import '../../Register/RegisterSwitch/register_switch_view.dart';
 import 'Widgets/bottom_wave_clipper.dart';
 import 'Widgets/delayed_widget.dart';
 import 'intro_main_viewmodel.dart';
 
-
 class IntroMainView extends GetView<IntroMainViewmodel> {
   const IntroMainView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -125,8 +125,6 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
-
-                    // Checkbox و لینک Terms and Service
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -158,9 +156,7 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                         ),
                       ],
                     ),
-
                     const SizedBox(height: 10),
-
                     Obx(() => AnimatedContainer(
                       duration: const Duration(milliseconds: 600),
                       width: controller.isTermsAccepted.value
@@ -168,14 +164,19 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: controller.isTermsAccepted.value
-                            ? (){
-                          Get.to(const MainWrapperHomeView());
-                          if(Get.find<IntroSplashViewmodel>().isReg.value == false){
-                            Future.delayed(const Duration(milliseconds: 1200),(){
+                            ? () async {
+                          controller.checkState();
+                          Future.delayed(const Duration(seconds: 3));
+                          await controller.postPlatform();
+                          if (controller.state.value.status == Status.COMPLETED) {
+                            Get.to(const MainWrapperHomeView());
+                            Future.delayed(const Duration(milliseconds: 400),(){
                               if(context.mounted){
                                 dialogForSendImage(context);
                               }
                             });
+                          } else if (controller.state.value.status == Status.ERROR) {
+                            print('Error ${controller.state.value.message}');
                           }
                         }
                             : null,
@@ -185,16 +186,24 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                           backgroundColor:
                           const Color.fromRGBO(42, 101, 51, 1.0),
                         ),
-                        child: const Text(
-                          "START",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w600),
+                        child: AnimatedCrossFade(
+                          firstChild: const Text(
+                            "START",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          secondChild: LoadingAnimationWidget.dotsTriangle(
+                              color: AppColors.secondary,
+                              size: 20),
+                          crossFadeState: controller.boolState.value
+                              ? CrossFadeState.showFirst
+                              : CrossFadeState.showSecond,
+                          duration: const Duration(milliseconds: 300),
                         ),
                       ),
-                    )
-                    ),
+                    )),
                     SizedBox(
                       width: size.width * 0.3,
                       height: size.width * 0.3,
@@ -223,7 +232,7 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
               leading: const Icon(Icons.language),
               title: const Text('English'),
               onTap: () {
-                Get.back(); // برای بستن Bottom Sheet
+                Get.back();
                 controller.changeLanguage('en');
               },
             ),

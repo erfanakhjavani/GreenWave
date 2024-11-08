@@ -13,7 +13,7 @@ class MyBindings extends Bindings{
   void dependencies() {
     Get.put(IntroSplashViewmodel());
     Get.put(MainWrapperHomeViewmodel());
-    Get.lazyPut(()=> IntroWelcomeViewmodel());
+    Get.put(IntroWelcomeViewmodel());
     Get.put(IntroMainViewmodel());
     Get.put(RegisterLoginViewmodel());
     Get.put(RegisterSwitchViewmodel());

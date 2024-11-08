@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:GreenWave/Features/Intro/IntroSplash/model/intro_splash_model.dart';
+import 'package:GreenWave/Core/Constants/address_key.dart';
 import 'package:get/get.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
 
 class SplashRepository extends GetConnect {
   Future<bool> checkConnectivity() async {
@@ -18,7 +17,7 @@ class SplashRepository extends GetConnect {
       //! Connected to a network (Wi-Fi or mobile).
       try {
         final response = await get(
-          'https://www.google.com',
+          AddressKey.checkConnect,
         ).timeout(const Duration(seconds: 3));
 
         if (response.statusCode == 200) {
@@ -40,29 +39,4 @@ class SplashRepository extends GetConnect {
     }
   }
 
-  Future<void> postPlatformData() async {
-    Dio dio = Dio();
-    Map<String, dynamic> data = {
-      "platform": Platform.isAndroid ? 1 : Platform.isIOS ? 2 : 3, // 1 -> android, 2 -> ios, 3 -> web
-    };
-    try {
-      var dataBox = Hive.box<IntroSplashModel>('introRegisterBox');
-       var response = await dio.post(
-        'https://your-api-url.com/endpoint',
-        data: data,
-      );
-
-      if (response.statusCode == 200) {
-        var responseData = response.data;
-        print("status : ${responseData['statusCode']}");
-        print("message : ${responseData['message']}");
-        print("data :${responseData['data']}");
-        dataBox.add(IntroSplashModel(data: responseData['data'], isRegistered: true));
-      } else {
-        print("error to get data${response.statusCode}");
-      }
-    } catch (e) {
-      print("error : $e");
-    }
-  }
 }

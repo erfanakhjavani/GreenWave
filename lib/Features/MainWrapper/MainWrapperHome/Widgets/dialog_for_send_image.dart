@@ -115,10 +115,10 @@ class ImageSendDialog extends StatelessWidget {
                         child:   const Stack(
                           children: [
                             Center(child: FaIcon(FontAwesomeIcons.seedling,size: 35,)),
-                            Padding(
-                              padding: EdgeInsets.only(left: 45.0,top: 40),
-                              child: Icon(Icons.add,size: 25,),
-                            ),
+                            Positioned.fill(
+                                top: 20,
+                                left: 25,
+                                child: Icon(Icons.add,size: 25,)),
                           ],
                         )
                     ),
@@ -137,10 +137,10 @@ class ImageSendDialog extends StatelessWidget {
                         child:   const Stack(
                           children: [
                             Center(child: FaIcon(FontAwesomeIcons.seedling,size: 35,)),
-                            Padding(
-                              padding: EdgeInsets.only(left: 45.0,top: 40),
-                              child: Icon(Icons.add,size: 25,),
-                            ),
+                            Positioned.fill(
+                                top: 20,
+                                left: 25,
+                                child: Icon(Icons.add,size: 25,)),
                           ],
                         )
                     ),
