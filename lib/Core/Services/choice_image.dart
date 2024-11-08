@@ -1,13 +1,11 @@
 import 'dart:io';
 import 'dart:math';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ChoiceImage extends GetxController{
+class ChoiceImage {
 
   late File uploadImage;
-  String fileName = "";
-  bool load = false;
+
 
 
   Future<void> chooseImageC() async {
@@ -23,10 +21,8 @@ class ChoiceImage extends GetxController{
 
 
     uploadImage = imageTemp;
-    fileName = "image_$randomNumber.jpg";
-    print("your file name is =$fileName");
-    load = true;
-    update();
+
+
 
   }
   Future<void> chooseImageG() async {
@@ -41,10 +37,7 @@ class ChoiceImage extends GetxController{
 
 
 
-    this.uploadImage = imageTemp;
-    fileName = "image_$randomNumber.jpg";
-    print("your file name is =$fileName");
-    load = true;
-    update();
+    uploadImage = imageTemp;
+
   }
 }

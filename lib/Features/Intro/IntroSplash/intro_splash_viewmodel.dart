@@ -10,13 +10,13 @@ class IntroSplashViewmodel extends GetxController {
 
   @override
   void onInit() {
-    // checkConnection(); //! Check the connection status when the controller is initialized
+    checkConnection(); //! Check the connection status when the controller is initialized
     super.onInit();
   }
 
   @override
   void dispose() {
-  //  checkConnection(); //* Check the connection again before disposing (though this is uncommon)
+   checkConnection(); //* Check the connection again before disposing (though this is uncommon)
     super.dispose();
   }
 

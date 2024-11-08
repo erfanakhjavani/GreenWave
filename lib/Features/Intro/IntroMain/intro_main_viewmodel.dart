@@ -22,31 +22,34 @@ class IntroMainViewmodel extends GetxController {
   }
 
   Future<void> postPlatform() async {
+    boolState.value = false;
     Dio dio = Dio();
     Map<String, dynamic> data={
       "platform":""
     };
     try {
       try{
-        if(Platform.isAndroid){
+        if(GetPlatform.isAndroid){
           data["platform"]=1;
-        }else if(Platform.isIOS){
+        }else if(GetPlatform.isIOS){
           data["platform"]=2;
-        }else{
+        }else if(GetPlatform.isWeb){
           data["platform"]=3;
         }
-         // data["platform"] =  Platform.isAndroid ? 1 : Platform.isIOS ? 2 : 3, // 1 -> android, 2 -> ios, 3 -> web
+        //  data["platform"] =  Platform.isAndroid ? 1 : Platform.isIOS ? 2 : 3; // 1 -> android, 2 -> ios, 3 -> web
       }
       catch(e){
-        data["platform"]=3;
+        boolState.value = true;
+        state.value = ResponseModel.error('error: $e');
       }
 
       var response = await dio.post(
         AddressKey.postPlatform,
         data: data,
-      );
+      ).timeout(const Duration(seconds: 5));
       print(response);
       if (response.statusCode == 200) {
+        boolState.value = false;
         var dataJson = response.data;
         var dataResponse = IntroMainModel(
           message: dataJson['message'],
@@ -54,32 +57,21 @@ class IntroMainViewmodel extends GetxController {
           data: dataJson['data'],
         );
         if (dataResponse.status == 200) {
+          boolState.value = true;
           state.value = ResponseModel.completed(dataResponse);
           DataRepository().saveData('codeRD', dataResponse.data);
         } else {
+          boolState.value = true;
           state.value = ResponseModel.error(dataResponse.message);
         }
       }
     } catch (e) {
+      boolState.value = true;
       state.value = ResponseModel.error('Error occurred: $e');
     }
     refresh();
   }
 
-  Future<void> checkState() async{
-    switch (state.value.status) {
-      case Status.LOADING:
-        boolState.value = false;
-        break;
-      case Status.COMPLETED:
-        boolState.value = true;
-        break;
-      case Status.ERROR:
-        boolState.value = true;
-        break;
-    }
-    refresh();
-  }
 
   void startChallenge() {
     print("Challenge Started");

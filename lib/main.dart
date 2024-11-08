@@ -23,15 +23,12 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GetMaterialApp(
             debugShowCheckedModeBanner: false, //* Disable debug banner
-            scaffoldMessengerKey: GlobalObjectKey(context),
             getPages: AppRoute.pages, //* Define app routes
             initialBinding: MyBindings(), //* Set initial bindings for dependency injection
             darkTheme: Themes.dark, //* Define dark theme
             theme: Themes.light, //* Define light theme
             themeMode: Get.find<ThemeService>().theme, //* Use the theme defined by ThemeService
-         //   initialRoute: AppRoute.splashView, //* Set the initial route (splash screen)
-
-      home: const IntroMainView(),
+           initialRoute: AppRoute.splashView, //* Set the initial route (splash screen)
 
     );
   }

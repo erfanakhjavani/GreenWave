@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import '../../../Core/Data/DataSource/response_model.dart';
 import '../../../Core/Gen/assets.gen.dart';
 import '../../MainWrapper/MainWrapperHome/Widgets/switcher_dialog.dart';
 import 'Widgets/bottom_wave_clipper.dart';
@@ -163,19 +164,18 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                       child: ElevatedButton(
                         onPressed: controller.isTermsAccepted.value
                             ? () async {
-                         // controller.checkState();
-                          Future.delayed(const Duration(seconds: 3));
-                          // await controller.postPlatform();
-                        //  if (controller.state.value.status == Status.COMPLETED) {
+                         Future.delayed(const Duration(seconds: 3));
+                          await controller.postPlatform();
+                         if (controller.state.value.status == Status.COMPLETED) {
                             Get.to(const MainWrapperHomeView());
-                            Future.delayed(const Duration(milliseconds: 600),(){
+                            Future.delayed(const Duration(milliseconds: 300),(){
                               if(context.mounted){
                                 dialogForChoiceTypeImage(context);
                               }
                             });
-                          // } else if (controller.state.value.status == Status.ERROR) {
-                          //   print('Error ${controller.state.value.message}');
-                          // }
+                          } else if (controller.state.value.status == Status.ERROR) {
+                           print('Error ${controller.state.value.message}');
+                          }
                         }
                             : null,
                         style: ElevatedButton.styleFrom(

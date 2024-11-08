@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:gap/gap.dart';
@@ -91,7 +90,8 @@ class SwitcherDialog extends GetView<MainWrapperHomeViewmodel> {
                           child: controller.showImageDialog.value
                               ? const DialogForChoiceTypeImage()
                               : const DialogForSendImage(),
-                        ),)
+                        ),
+                        )
                       ],
                     ),
                   )),
