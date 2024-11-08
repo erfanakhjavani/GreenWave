@@ -13,9 +13,6 @@ class DataRepository {
     return data;
   }
 
-  void updateData(String key, dynamic value) {
-    box.write(key, value);
-  }
 
 
   void deleteData(String key) {

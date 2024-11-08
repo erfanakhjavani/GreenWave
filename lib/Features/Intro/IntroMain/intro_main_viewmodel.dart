@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:GreenWave/Core/Data/DataSource/response_model.dart';
+import 'package:GreenWave/Core/Data/Repositories/data_repository.dart';
 import 'package:GreenWave/Features/Intro/IntroMain/intro_main_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +23,24 @@ class IntroMainViewmodel extends GetxController {
 
   Future<void> postPlatform() async {
     Dio dio = Dio();
+    Map<String, dynamic> data={
+      "platform":""
+    };
     try {
-      Map<String, dynamic> data = {
-        "platform": Platform.isAndroid ? 1 : Platform.isIOS ? 2 : 3, // 1 -> android, 2 -> ios, 3 -> web
-      };
+      try{
+        if(Platform.isAndroid){
+          data["platform"]=1;
+        }else if(Platform.isIOS){
+          data["platform"]=2;
+        }else{
+          data["platform"]=3;
+        }
+         // data["platform"] =  Platform.isAndroid ? 1 : Platform.isIOS ? 2 : 3, // 1 -> android, 2 -> ios, 3 -> web
+      }
+      catch(e){
+        data["platform"]=3;
+      }
+
       var response = await dio.post(
         AddressKey.postPlatform,
         data: data,
@@ -40,6 +55,7 @@ class IntroMainViewmodel extends GetxController {
         );
         if (dataResponse.status == 200) {
           state.value = ResponseModel.completed(dataResponse);
+          DataRepository().saveData('codeRD', dataResponse.data);
         } else {
           state.value = ResponseModel.error(dataResponse.message);
         }
@@ -56,6 +72,8 @@ class IntroMainViewmodel extends GetxController {
         boolState.value = false;
         break;
       case Status.COMPLETED:
+        boolState.value = true;
+        break;
       case Status.ERROR:
         boolState.value = true;
         break;

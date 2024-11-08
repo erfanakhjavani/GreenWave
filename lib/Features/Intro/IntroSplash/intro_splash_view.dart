@@ -1,9 +1,13 @@
+import 'package:GreenWave/Core/Data/DataSource/response_model.dart';
 import 'package:GreenWave/Features/Intro/IntroSplash/widgets/splash_description_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../Core/Constants/app_colors.dart';
+import '../../../Core/Data/Repositories/data_repository.dart';
 import '../../../Core/Gen/assets.gen.dart';
+import '../../MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
+import '../IntroWelcome/intro_welcome_view.dart';
 import 'intro_splash_viewmodel.dart';
 
 //! SplashView class to display the splash screen and handle connection status
@@ -43,7 +47,7 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                         ),
                       ),
                       secondChild: const SplashDescriptionWidget(),
-                      crossFadeState: controller.connectionStatus == ConnectionStatus.connected
+                      crossFadeState: controller.state.value.status == Status.COMPLETED
                           ? CrossFadeState.showSecond
                           : CrossFadeState.showFirst,
                       duration: const Duration(seconds: 1),
@@ -52,9 +56,17 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
 
                   //! Handle connection status with reactive programming
                   Obx(() {
-                    if (controller.connectionStatus.value == ConnectionStatus.connected) {
-                      return const SizedBox.shrink();
-                    } else if (controller.connectionStatus.value == ConnectionStatus.disconnected) {
+                    if (controller.state.value.status == Status.COMPLETED) {
+                      Future.delayed(const Duration(seconds: 3), () async{
+                        var data = await DataRepository().loadData('codeRD');
+                        print(data);
+                        if (data != null) {
+                          Get.to(MainWrapperBottomNavView(),); //* Navigate to Welcome screen if data is loaded
+                        } else {
+                          Get.to(const IntroWelcomeView()); //* Navigate to Welcome screen if data is not loaded
+                        }
+                      });
+                    } else if (controller.state.value.status == Status.ERROR) {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -78,7 +90,7 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                           ),
                         ],
                       );
-                    } else if (controller.connectionStatus.value == ConnectionStatus.initial) {
+                    } else if (controller.state.value.status == Status.LOADING) {
                       return LoadingAnimationWidget.bouncingBall(
                         color: Colors.white,
                         size: width * 0.1,

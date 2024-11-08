@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:GreenWave/Core/Constants/address_key.dart';
 import 'package:get/get.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dio/dio.dart';
 
 class SplashRepository extends GetConnect {
   Future<bool> checkConnectivity() async {
