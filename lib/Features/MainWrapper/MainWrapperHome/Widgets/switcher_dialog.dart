@@ -19,8 +19,8 @@ class SwitcherDialog extends GetView<MainWrapperHomeViewmodel> {
     var height = MediaQuery.sizeOf(context).height;
     var width = MediaQuery.sizeOf(context).width;
     var textTheme = Theme.of(context).textTheme;
-    return Obx(() => PopScope(
-          canPop: true,
+    return  PopScope(
+          canPop: false,
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
             child: Container(
@@ -74,7 +74,7 @@ class SwitcherDialog extends GetView<MainWrapperHomeViewmodel> {
                           ),
                         ),
                         const Gap(10),
-                        PageTransitionSwitcher(
+                        Obx(()=> PageTransitionSwitcher(
                           reverse: controller.showImageDialog.value,
                           duration: const Duration(milliseconds: 500),
                           transitionBuilder: (Widget child,
@@ -84,20 +84,20 @@ class SwitcherDialog extends GetView<MainWrapperHomeViewmodel> {
                               animation: primaryAnimation,
                               secondaryAnimation: secondaryAnimation,
                               transitionType:
-                                  SharedAxisTransitionType.horizontal,
+                              SharedAxisTransitionType.horizontal,
                               child: child,
                             );
                           },
                           child: controller.showImageDialog.value
                               ? const DialogForChoiceTypeImage()
                               : const DialogForSendImage(),
-                        ),
+                        ),)
                       ],
                     ),
                   )),
             ),
           ),
-        ));
+        );
   }
 }
 
