@@ -7,6 +7,8 @@ import '../../Features/Intro/IntroSplash/intro_splash_viewmodel.dart';
 import '../../Features/Intro/IntroWelcome/intro_welcome_viewmodel.dart';
 import '../../Features/MainWrapper/MainWrapperHome/main_wrapper_home_viewmodel.dart';
 import '../../Features/Register/Login/register_login_viewmodel.dart';
+import '../../Features/Register/Mobile/PhoneNumber/register_mobile_phone_number_viewmodel.dart';
+import '../../Features/Register/Mobile/RegisterPhone/register_mobile_register_phone_viewmodel.dart';
 import '../../Features/Register/RegisterSwitch/register_switch_viewmodel.dart';
 import '../../Features/Register/SignUp/register_signup_viewmodel.dart';
 
@@ -22,5 +24,7 @@ class MyBindings extends Bindings {
     Get.put(RegisterSignupViewmodel());
     Get.put(MainWrapperBottomNavViewmodel());
     Get.put(DialogController());
+    Get.put(RegisterMobileViewmodel());
+    Get.put(RegisterMobileRegisterPhoneViewmodel());
   }
 }

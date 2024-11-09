@@ -1,7 +1,8 @@
-import 'package:GreenWave/Features/Register/RegisterSwitch/register_switch_viewmodel.dart';
 import 'package:get/get.dart';
 
-class RegisterSignupViewmodel extends GetxController {
+import '../../RegisterSwitch/register_switch_viewmodel.dart';
+
+class RegisterMobileRegisterPhoneViewmodel extends GetxController {
   var email = ''.obs;
   var password = ''.obs;
   var rememberMe = false.obs;
@@ -28,7 +29,7 @@ class RegisterSignupViewmodel extends GetxController {
     // Handle Google Sign-In
   }
 
-  void signInWithApple() {
+  void signInWithTelegram() {
     // Handle Apple Sign-In
   }
 
@@ -36,7 +37,7 @@ class RegisterSignupViewmodel extends GetxController {
     // Navigate to forgot password screen
   }
 
-  void signIn() {
+  void signUp() {
     var switchPage = Get.find<RegisterSwitchViewmodel>();
     switchPage.position.value = !switchPage.position.value;
   }

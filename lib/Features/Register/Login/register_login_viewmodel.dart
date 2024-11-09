@@ -39,6 +39,6 @@ class RegisterLoginViewmodel extends GetxController {
 
   void signUp() {
     var switchPage = Get.find<RegisterSwitchViewmodel>();
-    switchPage.showSignup.value = !switchPage.showSignup.value;
+    switchPage.position.value = !switchPage.position.value;
   }
 }

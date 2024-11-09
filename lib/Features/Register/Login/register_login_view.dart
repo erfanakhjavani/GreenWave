@@ -171,7 +171,7 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                               onPressed: controller.signInWithApple,
                               icon: Icon(
                                 Icons.apple,
-                                size: 30,
+                                size: 35,
                                 color: AppColors.primary,
                               ),
                               label: Text(

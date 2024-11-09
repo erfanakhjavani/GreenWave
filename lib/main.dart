@@ -1,4 +1,5 @@
 import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
+import 'package:GreenWave/Features/Register/RegisterSwitch/register_switch_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -36,9 +37,9 @@ class Main extends StatelessWidget {
       //* Define light theme
       themeMode: Get.find<ThemeService>().theme,
       //* Use the theme defined by ThemeService
-       initialRoute:
-           AppRoute.splashView, //* Set the initial route (splash screen)
-    //home: MainWrapperBottomNavView(),
+      //  initialRoute:
+      //      AppRoute.splashView, //* Set the initial route (splash screen)
+    home: GetPlatform.isWeb ? const RegisterSwitchMobileView() : const RegisterSwitchView(),
     );
   }
 }
