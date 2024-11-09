@@ -1,9 +1,9 @@
 import 'package:GreenWave/Core/Gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import '../../../Core/Constants/app_colors.dart';
-import 'Widgets/switcher_dialog.dart';
+import 'DialogImage/switcher_dialog.dart';
 import 'main_wrapper_home_viewmodel.dart';
 
 class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
@@ -43,7 +43,8 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
             Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.notifications, color: AppColors.monopolyColor1),
+                  icon: Icon(Icons.notifications,
+                      color: AppColors.monopolyColor1),
                   onPressed: () {},
                 ),
                 IconButton(
@@ -65,7 +66,8 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
               const SizedBox(height: 20),
               Row(
                 children: [
-                  _buildAvatar(imagePath: Assets.png.logo.path, index: 0, size: 50),
+                  _buildAvatar(
+                      imagePath: Assets.png.logo.path, index: 0, size: 50),
                   const SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,10 +128,14 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  _buildAvatar(imagePath: Assets.png.logo.path, index: 1, size: 25),
-                  _buildAvatar(imagePath: Assets.png.logo.path, index: 2, size: 25),
-                  _buildAvatar(imagePath: Assets.png.logo.path, index: 3, size: 25),
-                  _buildAvatar(imagePath: Assets.png.logo.path, index: 4, size: 25),
+                  _buildAvatar(
+                      imagePath: Assets.png.logo.path, index: 1, size: 25),
+                  _buildAvatar(
+                      imagePath: Assets.png.logo.path, index: 2, size: 25),
+                  _buildAvatar(
+                      imagePath: Assets.png.logo.path, index: 3, size: 25),
+                  _buildAvatar(
+                      imagePath: Assets.png.logo.path, index: 4, size: 25),
                   const SizedBox(width: 10),
                   CircleAvatar(
                     radius: 25,
@@ -144,7 +150,8 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
                   hintText: 'Search People...',
                   filled: true,
                   fillColor: Colors.grey[200],
-                  prefixIcon: Icon(Icons.search, color: AppColors.monopolyColor1),
+                  prefixIcon:
+                      Icon(Icons.search, color: AppColors.monopolyColor1),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: BorderSide.none,
@@ -165,7 +172,8 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
     );
   }
 
-  Widget _buildAvatar({required String imagePath, required int index, required double size}) {
+  Widget _buildAvatar(
+      {required String imagePath, required int index, required double size}) {
     return Padding(
       padding: const EdgeInsets.only(left: 6.0, right: 4.0, top: 10, bottom: 8),
       child: GestureDetector(

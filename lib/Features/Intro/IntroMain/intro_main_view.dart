@@ -1,12 +1,13 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperHome/main_wrapper_home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+
 import '../../../Core/Data/DataSource/response_model.dart';
 import '../../../Core/Gen/assets.gen.dart';
-import '../../MainWrapper/MainWrapperHome/Widgets/switcher_dialog.dart';
+import '../../MainWrapper/MainWrapperHome/DialogImage/switcher_dialog.dart';
 import 'Widgets/bottom_wave_clipper.dart';
 import 'Widgets/delayed_widget.dart';
 import 'intro_main_viewmodel.dart';
@@ -81,7 +82,7 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           backgroundColor:
-                          const Color.fromRGBO(42, 101, 51, 1.0),
+                              const Color.fromRGBO(42, 101, 51, 1.0),
                         ),
                         child: const Text(
                           "ENGLISH",
@@ -128,17 +129,16 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Obx(() => Checkbox(
-                          value: controller.isTermsAccepted.value,
-                          activeColor: Colors.green,
-                          shape: const CircleBorder(),
-                          onChanged: (value) {
-                            controller.isTermsAccepted.value = value!;
-                          },
-                        )),
-                        const Text("I agree to the ",
-                          style: TextStyle(color: Colors.black87,
-                              fontSize: 12
-                          ),
+                              value: controller.isTermsAccepted.value,
+                              activeColor: Colors.green,
+                              shape: const CircleBorder(),
+                              onChanged: (value) {
+                                controller.isTermsAccepted.value = value!;
+                              },
+                            )),
+                        const Text(
+                          "I agree to the ",
+                          style: TextStyle(color: Colors.black87, fontSize: 12),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -149,59 +149,63 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                             style: TextStyle(
                                 color: Colors.blue,
                                 decoration: TextDecoration.underline,
-                                fontSize: 12
-                            ),
+                                fontSize: 12),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 10),
                     Obx(() => AnimatedContainer(
-                      duration: const Duration(milliseconds: 600),
-                      width: controller.isTermsAccepted.value
-                          ? size.width * 0.7 : size.width * 0.5 ,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: controller.isTermsAccepted.value
-                            ? () async {
-                         Future.delayed(const Duration(seconds: 3));
-                          await controller.postPlatform();
-                         if (controller.state.value.status == Status.COMPLETED) {
-                            Get.to(const MainWrapperHomeView());
-                            Future.delayed(const Duration(milliseconds: 300),(){
-                              if(context.mounted){
-                                dialogForChoiceTypeImage(context);
-                              }
-                            });
-                          } else if (controller.state.value.status == Status.ERROR) {
-                           print('Error ${controller.state.value.message}');
-                          }
-                        }
-                            : null,
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          backgroundColor:
-                          const Color.fromRGBO(42, 101, 51, 1.0),
-                        ),
-                        child: AnimatedCrossFade(
-                          firstChild: const Text(
-                            "START",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w600),
+                          duration: const Duration(milliseconds: 600),
+                          width: controller.isTermsAccepted.value
+                              ? size.width * 0.7
+                              : size.width * 0.5,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: controller.isTermsAccepted.value
+                                ? () async {
+                                    Future.delayed(const Duration(seconds: 3));
+                                    await controller.postPlatform();
+                                    if (controller.state.value.status ==
+                                        Status.COMPLETED) {
+                                      Get.to(const MainWrapperHomeView());
+                                      Future.delayed(
+                                          const Duration(milliseconds: 300),
+                                          () {
+                                        if (context.mounted) {
+                                          dialogForChoiceTypeImage(context);
+                                        }
+                                      });
+                                    } else if (controller.state.value.status ==
+                                        Status.ERROR) {
+                                      print(
+                                          'Error ${controller.state.value.message}');
+                                    }
+                                  }
+                                : null,
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              backgroundColor:
+                                  const Color.fromRGBO(42, 101, 51, 1.0),
+                            ),
+                            child: AnimatedCrossFade(
+                              firstChild: const Text(
+                                "START",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              secondChild: LoadingAnimationWidget.dotsTriangle(
+                                  color: AppColors.secondary, size: 20),
+                              crossFadeState: controller.boolState.value
+                                  ? CrossFadeState.showFirst
+                                  : CrossFadeState.showSecond,
+                              duration: const Duration(milliseconds: 300),
+                            ),
                           ),
-                          secondChild: LoadingAnimationWidget.dotsTriangle(
-                              color: AppColors.secondary,
-                              size: 20),
-                          crossFadeState: controller.boolState.value
-                              ? CrossFadeState.showFirst
-                              : CrossFadeState.showSecond,
-                          duration: const Duration(milliseconds: 300),
-                        ),
-                      ),
-                    )),
+                        )),
                     SizedBox(
                       width: size.width * 0.3,
                       height: size.width * 0.3,

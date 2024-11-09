@@ -48,16 +48,20 @@ class IntroPage extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                  bottomRight: Radius.circular(70),
-                  topLeft: Radius.circular(5),
-                  bottomLeft: Radius.circular(5),
-                  topRight: Radius.circular(5),
+                bottomRight: Radius.circular(70),
+                topLeft: Radius.circular(5),
+                bottomLeft: Radius.circular(5),
+                topRight: Radius.circular(5),
               ),
               child: DelayedWidget(
-                delayDuration: const Duration(milliseconds: 200), // Not required
-                animationDuration: const Duration(seconds: 1), // Not required
-                animation: DelayedAnimations.SLIDE_FROM_BOTTOM, //
-                child: Image.asset(image, fit: BoxFit.cover), // استفاده از BoxFit برای تناسب تصویر
+                delayDuration: const Duration(milliseconds: 200),
+                // Not required
+                animationDuration: const Duration(seconds: 1),
+                // Not required
+                animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
+                //
+                child: Image.asset(image,
+                    fit: BoxFit.cover), // استفاده از BoxFit برای تناسب تصویر
               ),
             ),
           ),
@@ -80,9 +84,12 @@ class IntroPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: DelayedWidget(
-                delayDuration: const Duration(milliseconds: 600), // Not required
-                animationDuration: const Duration(seconds: 1), // Not required
-                animation: DelayedAnimations.SLIDE_FROM_BOTTOM, // Not required
+                delayDuration: const Duration(milliseconds: 600),
+                // Not required
+                animationDuration: const Duration(seconds: 1),
+                // Not required
+                animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
+                // Not required
                 child: Text(description, style: textTheme.bodyMedium)),
           ),
         ],

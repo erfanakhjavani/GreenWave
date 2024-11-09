@@ -87,7 +87,7 @@ class DialogForSendImage extends GetView<MainWrapperHomeViewmodel> {
             children: [
               Obx(() => _imageContainer(
                     imageFile: controller.selectedImage1.value,
-                context: context,
+                    context: context,
                   )),
               IconButton(
                   onPressed: () {},
@@ -96,7 +96,7 @@ class DialogForSendImage extends GetView<MainWrapperHomeViewmodel> {
                   icon: const Icon(FontAwesomeIcons.arrowUpFromBracket)),
               Obx(() => _imageContainer(
                     imageFile: controller.selectedImage2.value,
-                context: context,
+                    context: context,
                   )),
             ],
           ),
@@ -127,15 +127,14 @@ class DialogForSendImage extends GetView<MainWrapperHomeViewmodel> {
     );
   }
 
-  Widget _imageContainer({
-      required BuildContext context,
-      File? imageFile
-}) {
+  Widget _imageContainer({required BuildContext context, File? imageFile}) {
     return GestureDetector(
       onTap: () {
-        bottomSheetChoiceImage(
-            onTapG: () {controller.selectImageFromGallery();},
-            onTapC: () {controller.selectImageFromCamera();});
+        bottomSheetChoiceImage(onTapG: () {
+          controller.selectImageFromGallery();
+        }, onTapC: () {
+          controller.selectImageFromCamera();
+        });
       },
       child: Container(
         decoration: BoxDecoration(

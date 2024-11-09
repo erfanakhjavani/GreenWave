@@ -2,15 +2,16 @@ import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+
 import '../../../Core/Gen/assets.gen.dart';
 import 'main_wrapper_wallet_model.dart';
 import 'main_wrapper_wallet_viewmodel.dart';
 
-
 class MainWrapperWalletView extends StatelessWidget {
-   MainWrapperWalletView({super.key});
+  MainWrapperWalletView({super.key});
 
-  final MainWrapperWalletViewmodel viewModel = Get.put(MainWrapperWalletViewmodel());
+  final MainWrapperWalletViewmodel viewModel =
+      Get.put(MainWrapperWalletViewmodel());
 
   final List<MainWrapperWalletModel> tokens = [
     MainWrapperWalletModel(
@@ -39,7 +40,6 @@ class MainWrapperWalletView extends StatelessWidget {
     ),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +49,7 @@ class MainWrapperWalletView extends StatelessWidget {
           'Wallet',
         ),
         leading: null,
-        actions:  [
+        actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
@@ -65,11 +65,11 @@ class MainWrapperWalletView extends StatelessWidget {
           children: [
             const Text(
               '9.2362 ETH',
-              style: TextStyle( fontSize: 36),
+              style: TextStyle(fontSize: 36),
             ),
             const Text(
               '\$16,858.15',
-              style: TextStyle( fontSize: 16),
+              style: TextStyle(fontSize: 16),
             ),
             const Text(
               '+0.7%',
@@ -81,8 +81,12 @@ class MainWrapperWalletView extends StatelessWidget {
               children: [
                 ElevatedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.paperPlane, color: Colors.white),
-                  label: const Text('Send',style: TextStyle(color: Colors.white),),
+                  icon: const Icon(FontAwesomeIcons.paperPlane,
+                      color: Colors.white),
+                  label: const Text(
+                    'Send',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey[800],
                     shape: const StadiumBorder(),
@@ -90,8 +94,12 @@ class MainWrapperWalletView extends StatelessWidget {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.download, color: Colors.white),
-                  label: const Text('Receive',style: TextStyle(color: Colors.white),),
+                  icon: const Icon(FontAwesomeIcons.download,
+                      color: Colors.white),
+                  label: const Text(
+                    'Receive',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey[800],
                     shape: const StadiumBorder(),
@@ -99,8 +107,12 @@ class MainWrapperWalletView extends StatelessWidget {
                 ),
                 ElevatedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.shoppingCart, color: Colors.white),
-                  label: const Text('Buy',style: TextStyle(color: Colors.white),),
+                  icon: const Icon(FontAwesomeIcons.shoppingCart,
+                      color: Colors.white),
+                  label: const Text(
+                    'Buy',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey[800],
                     shape: const StadiumBorder(),
@@ -110,34 +122,38 @@ class MainWrapperWalletView extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Obx(() => Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    viewModel.selectedTab.value = 'Token';
-                  },
-                  child: Text(
-                    'Token',
-                    style: TextStyle(
-                      color: viewModel.selectedTab.value == 'Token' ? AppColors.monopolyColor1 : AppColors.primary,
-                      fontWeight: FontWeight.bold,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        viewModel.selectedTab.value = 'Token';
+                      },
+                      child: Text(
+                        'Token',
+                        style: TextStyle(
+                          color: viewModel.selectedTab.value == 'Token'
+                              ? AppColors.monopolyColor1
+                              : AppColors.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    viewModel.selectedTab.value = 'Collectibles';
-                  },
-                  child: Text(
-                    'Collectibles',
-                    style: TextStyle(
-                      color: viewModel.selectedTab.value == 'Token' ? AppColors.primary : AppColors.monopolyColor1,
-                      fontWeight: FontWeight.bold,
+                    TextButton(
+                      onPressed: () {
+                        viewModel.selectedTab.value = 'Collectibles';
+                      },
+                      child: Text(
+                        'Collectibles',
+                        style: TextStyle(
+                          color: viewModel.selectedTab.value == 'Token'
+                              ? AppColors.primary
+                              : AppColors.monopolyColor1,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            )),
+                  ],
+                )),
             Expanded(
               child: ListView.builder(
                 itemCount: tokens.length,
@@ -146,8 +162,13 @@ class MainWrapperWalletView extends StatelessWidget {
                   return ListTile(
                     leading: Image.asset(token.iconPath, width: 40),
                     title: Text(token.name),
-                    subtitle: Text(token.price + ' • ' + token.change, style: TextStyle(color: token.change.startsWith('+') ? Colors.green : Colors.red)),
-                    trailing: Text(token.amount + ' ' + token.symbol, style: const TextStyle(fontSize: 12)),
+                    subtitle: Text(token.price + ' • ' + token.change,
+                        style: TextStyle(
+                            color: token.change.startsWith('+')
+                                ? Colors.green
+                                : Colors.red)),
+                    trailing: Text(token.amount + ' ' + token.symbol,
+                        style: const TextStyle(fontSize: 12)),
                   );
                 },
               ),
@@ -155,7 +176,8 @@ class MainWrapperWalletView extends StatelessWidget {
             Center(
               child: TextButton(
                 onPressed: () {},
-                child: const Text('+ Add Tokens', style: TextStyle(color: Colors.blue)),
+                child: const Text('+ Add Tokens',
+                    style: TextStyle(color: Colors.blue)),
               ),
             ),
           ],

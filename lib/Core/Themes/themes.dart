@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import '../Constants/app_colors.dart';
 
+import '../Constants/app_colors.dart';
 
 class Themes {
   //! Light theme configuration
   static final light = ThemeData(
     primaryColor: AppColors.primary, //* Primary color for the light theme
-     appBarTheme: AppBarTheme(
+    appBarTheme: AppBarTheme(
       backgroundColor:
           Colors.transparent, //* Transparent background for the AppBar
-      iconTheme: IconThemeData(
-          color: AppColors.primary), //* Icon color in the AppBar
+      iconTheme:
+          IconThemeData(color: AppColors.primary), //* Icon color in the AppBar
     ),
     iconTheme: IconThemeData(color: AppColors.secondary), //* Default icon color
     textTheme: _getTextTheme(isDarkMode: false), //* Add text theme
@@ -18,16 +18,18 @@ class Themes {
 
   //! Dark theme configuration
   static final dark = ThemeData(
-    primaryColor: AppColors.secondary, //* Primary color for the dark theme
-    scaffoldBackgroundColor:
-        AppColors.primary, //* Background color for the scaffold
+    primaryColor: AppColors.secondary,
+    //* Primary color for the dark theme
+    scaffoldBackgroundColor: AppColors.primary,
+    //* Background color for the scaffold
     appBarTheme: AppBarTheme(
       backgroundColor:
           Colors.transparent, //* Transparent background for the AppBar
-      iconTheme:
-          IconThemeData(color: AppColors.secondary), //* Icon color in the AppBar
+      iconTheme: IconThemeData(
+          color: AppColors.secondary), //* Icon color in the AppBar
     ),
-    iconTheme: IconThemeData(color: AppColors.secondary), //* Default icon color
+    iconTheme: IconThemeData(color: AppColors.secondary),
+    //* Default icon color
     textTheme: _getTextTheme(isDarkMode: true), //* Add text theme
   );
 

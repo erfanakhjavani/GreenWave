@@ -6,7 +6,6 @@ class MainWrapperWalletModel {
   final String change;
   final String iconPath;
 
-
   MainWrapperWalletModel({
     required this.name,
     required this.symbol,

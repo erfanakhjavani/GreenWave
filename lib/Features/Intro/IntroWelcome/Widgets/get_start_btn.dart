@@ -27,7 +27,8 @@ class GetStartBtn extends StatelessWidget {
         },
         child: Text(
           text,
-          style: const TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w500),
+          style: const TextStyle(
+              fontSize: 15, color: Colors.white, fontWeight: FontWeight.w500),
         ),
       ),
     );

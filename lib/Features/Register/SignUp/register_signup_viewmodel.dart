@@ -7,12 +7,12 @@ class RegisterSignupViewmodel extends GetxController {
   var rememberMe = false.obs;
   var isObscured = false.obs;
 
-
   void toggleRememberMe() {
     rememberMe.value = !rememberMe.value;
   }
+
   void toggleObscured() {
-    isObscured.value =!isObscured.value;
+    isObscured.value = !isObscured.value;
   }
 
   Future<void> login() async {

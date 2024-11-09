@@ -8,13 +8,13 @@ class BottomWaveClipper extends CustomClipper<Path> {
 
     var firstControlPoint = Offset(size.width / 7, size.height + 5);
     var firstEndPoint = Offset(size.width / 2.75, size.height - 30.0);
-    path.quadraticBezierTo(
-        firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
 
     var secondControlPoint = Offset(size.width * 3 / 4, size.height - 100);
     var secondEndPoint = Offset(size.width, size.height - 100);
-    path.quadraticBezierTo(
-        secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
 
     path.lineTo(size.width, 0.0);
     path.close();

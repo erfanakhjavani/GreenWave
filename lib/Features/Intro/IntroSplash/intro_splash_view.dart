@@ -3,10 +3,9 @@ import 'package:GreenWave/Features/Intro/IntroSplash/widgets/splash_description_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+
 import '../../../Core/Constants/app_colors.dart';
-import '../../../Core/Data/Repositories/data_repository.dart';
 import '../../../Core/Gen/assets.gen.dart';
-import '../../MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
 import '../IntroWelcome/intro_welcome_view.dart';
 import 'intro_splash_viewmodel.dart';
 
@@ -36,7 +35,8 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                 ),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, // Center content vertically
+                mainAxisAlignment: MainAxisAlignment.center,
+                // Center content vertically
                 children: [
                   Obx(() {
                     return AnimatedCrossFade(
@@ -47,9 +47,10 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                         ),
                       ),
                       secondChild: const SplashDescriptionWidget(),
-                      crossFadeState: controller.state.value.status == Status.COMPLETED
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
+                      crossFadeState:
+                          controller.state.value.status == Status.COMPLETED
+                              ? CrossFadeState.showSecond
+                              : CrossFadeState.showFirst,
                       duration: const Duration(seconds: 1),
                     );
                   }),
@@ -57,21 +58,23 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                   //! Handle connection status with reactive programming
                   Obx(() {
                     if (controller.state.value.status == Status.COMPLETED) {
-                      Future.delayed(const Duration(seconds: 3), () async{
-                        var data = await DataRepository().loadData('codeRD');
-                        print(data);
-                        if (data != null) {
-                          Get.to(MainWrapperBottomNavView(),); //* Navigate to Welcome screen if data is loaded
-                        } else {
-                          Get.to(const IntroWelcomeView()); //* Navigate to Welcome screen if data is not loaded
-                        }
+                      Future.delayed(const Duration(seconds: 3), () async {
+                        // var data = await DataRepository().loadData('codeRD');
+                        // print(data);
+                        // if (data != null) {
+                        //   Get.to(MainWrapperBottomNavView(),); //* Navigate to Welcome screen if data is loaded
+                        // } else {
+                        Get.to(
+                            const IntroWelcomeView()); //* Navigate to Welcome screen if data is not loaded
+                        // }
                       });
                     } else if (controller.state.value.status == Status.ERROR) {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: width * 0.1),
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 0.1),
                             child: Text(
                               'Please check your connection..!',
                               style: Get.textTheme.bodyLarge,
@@ -90,7 +93,8 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                           ),
                         ],
                       );
-                    } else if (controller.state.value.status == Status.LOADING) {
+                    } else if (controller.state.value.status ==
+                        Status.LOADING) {
                       return LoadingAnimationWidget.bouncingBall(
                         color: Colors.white,
                         size: width * 0.1,

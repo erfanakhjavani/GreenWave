@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class SplashDescriptionWidget extends StatelessWidget {
@@ -11,17 +9,12 @@ class SplashDescriptionWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Text(
         description,
-        style: const TextStyle(color: Colors.white,
-        fontSize: 14
-        ),
-        textAlign: TextAlign.center,),
+        style: const TextStyle(color: Colors.white, fontSize: 14),
+        textAlign: TextAlign.center,
+      ),
     );
-
-
-
   }
 }
-
 
 String description = '''
 Nature GreenLink is a global initiative dedicated to fostering a deeper connection between humanity and the environment.

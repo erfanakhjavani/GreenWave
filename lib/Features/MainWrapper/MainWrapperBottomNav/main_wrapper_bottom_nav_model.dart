@@ -5,5 +5,6 @@ class MainWrapperBottomNavModel {
   final IconData iconPath;
   final Widget pageRoute;
 
-  MainWrapperBottomNavModel({required this.title, required this.iconPath,required this.pageRoute});
+  MainWrapperBottomNavModel(
+      {required this.title, required this.iconPath, required this.pageRoute});
 }

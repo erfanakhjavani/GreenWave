@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:GreenWave/Core/Data/DataSource/response_model.dart';
 import 'package:GreenWave/Core/Data/Repositories/data_repository.dart';
 import 'package:GreenWave/Features/Intro/IntroMain/intro_main_model.dart';
@@ -24,29 +23,28 @@ class IntroMainViewmodel extends GetxController {
   Future<void> postPlatform() async {
     boolState.value = false;
     Dio dio = Dio();
-    Map<String, dynamic> data={
-      "platform":""
-    };
+    Map<String, dynamic> data = {"platform": ""};
     try {
-      try{
-        if(GetPlatform.isAndroid){
-          data["platform"]=1;
-        }else if(GetPlatform.isIOS){
-          data["platform"]=2;
-        }else if(GetPlatform.isWeb){
-          data["platform"]=3;
+      try {
+        if (GetPlatform.isAndroid) {
+          data["platform"] = 1;
+        } else if (GetPlatform.isIOS) {
+          data["platform"] = 2;
+        } else if (GetPlatform.isWeb) {
+          data["platform"] = 3;
         }
         //  data["platform"] =  Platform.isAndroid ? 1 : Platform.isIOS ? 2 : 3; // 1 -> android, 2 -> ios, 3 -> web
-      }
-      catch(e){
+      } catch (e) {
         boolState.value = true;
         state.value = ResponseModel.error('error: $e');
       }
 
-      var response = await dio.post(
-        AddressKey.postPlatform,
-        data: data,
-      ).timeout(const Duration(seconds: 5));
+      var response = await dio
+          .post(
+            AddressKey.postPlatform,
+            data: data,
+          )
+          .timeout(const Duration(seconds: 5));
       print(response);
       if (response.statusCode == 200) {
         boolState.value = false;
@@ -71,7 +69,6 @@ class IntroMainViewmodel extends GetxController {
     }
     refresh();
   }
-
 
   void startChallenge() {
     print("Challenge Started");

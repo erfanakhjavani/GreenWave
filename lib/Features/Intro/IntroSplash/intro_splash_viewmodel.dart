@@ -1,12 +1,13 @@
 import 'package:GreenWave/Features/Intro/IntroSplash/repositories/check_connectivity.dart';
 import 'package:get/get.dart';
-import '../../../Core/Data/DataSource/response_model.dart';
 
+import '../../../Core/Data/DataSource/response_model.dart';
 
 //! SplashViewModel class handles splash logic, including checking internet connection and navigation
 class IntroSplashViewmodel extends GetxController {
   Rx<ResponseModel> state = ResponseModel.loading('Loading...').obs;
-  final SplashRepository splashRepository = SplashRepository(); //* Repository to check connectivity
+  final SplashRepository splashRepository =
+      SplashRepository(); //* Repository to check connectivity
 
   @override
   void onInit() {
@@ -16,25 +17,22 @@ class IntroSplashViewmodel extends GetxController {
 
   @override
   void dispose() {
-   checkConnection(); //* Check the connection again before disposing (though this is uncommon)
+    checkConnection(); //* Check the connection again before disposing (though this is uncommon)
     super.dispose();
   }
-
 
   //! Method to check internet connection and handle the navigation flow
   Future<void> checkConnection() async {
     state.value = ResponseModel.loading('Loading...');
     Future.delayed(const Duration(seconds: 3), () async {
-      bool isConnected = await splashRepository.checkConnectivity(); //* Check if connected
+      bool isConnected =
+          await splashRepository.checkConnectivity(); //* Check if connected
       if (isConnected == true) {
         state.value = ResponseModel.completed(isConnected);
       } else {
-        return state.value = ResponseModel.error('error connection...'); //* Set status to disconnected if no internet
+        return state.value = ResponseModel.error(
+            'error connection...'); //* Set status to disconnected if no internet
       }
     });
   }
-
-
 }
-
-

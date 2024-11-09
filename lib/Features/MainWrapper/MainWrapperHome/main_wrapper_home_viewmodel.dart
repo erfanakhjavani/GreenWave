@@ -1,6 +1,8 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../Core/Services/choice_image.dart';
 
 class MainWrapperHomeViewmodel extends GetxController {
@@ -44,7 +46,6 @@ class MainWrapperHomeViewmodel extends GetxController {
   var showImageDialog = true.obs;
   var selectedCode = (-1).obs;
   var isSelectedContainer = false.obs;
-
 
   void selectContainer(int code) {
     selectedCode.value = code;

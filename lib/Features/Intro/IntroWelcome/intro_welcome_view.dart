@@ -37,7 +37,7 @@ class IntroWelcomeView extends GetView<IntroWelcomeViewmodel> {
 
           // Animated Positioned for the button
           Obx(
-                () => Align(
+            () => Align(
               alignment: Alignment.bottomCenter,
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 250),
