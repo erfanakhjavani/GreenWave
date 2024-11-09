@@ -1,7 +1,7 @@
-import 'package:GreenWave/Features/Intro/IntroSplash/repositories/check_connectivity.dart';
 import 'package:get/get.dart';
 
-import '../../../Core/Data/DataSource/response_model.dart';
+import '../../../Core/Data/Repositories/check_connectivity.dart';
+import '../../../Core/Services/response_model.dart';
 
 //! SplashViewModel class handles splash logic, including checking internet connection and navigation
 class IntroSplashViewmodel extends GetxController {

@@ -1,9 +1,11 @@
+import 'package:GreenWave/Core/Data/Repositories/data_repository.dart';
 import 'package:GreenWave/Core/Gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+
 import '../../../Core/Constants/app_colors.dart';
-import 'DialogImage/switcher_dialog.dart';
+import '../DialogImage/switcher_dialog.dart';
 import 'main_wrapper_home_viewmodel.dart';
 
 class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
@@ -45,7 +47,9 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
                 IconButton(
                   icon: Icon(Icons.notifications,
                       color: AppColors.monopolyColor1),
-                  onPressed: () {},
+                  onPressed: () {
+                    DataRepository().deleteData('codeRD');
+                  },
                 ),
                 IconButton(
                   icon: Icon(Icons.email, color: AppColors.monopolyColor1),
@@ -163,8 +167,7 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
               const SizedBox(height: 10),
               _buildGreenBox(),
               const SizedBox(height: 40),
-              _buildProfileCard(context),
-              const SizedBox(height: 20),
+
             ],
           ),
         ),
@@ -223,56 +226,4 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
     );
   }
 
-  Widget _buildProfileCard(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(80, 86, 74, 1.0),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 40),
-              Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-              ),
-              Text(
-                'Executive Engineer',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Rick Wright',
-                style: TextStyle(
-                  color: Colors.orange,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          top: -30,
-          left: (MediaQuery.of(context).size.width / 2) - 50,
-          child: const CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.orange,
-            child: Icon(Icons.person, size: 30, color: Colors.white),
-          ),
-        ),
-      ],
-    );
-  }
 }

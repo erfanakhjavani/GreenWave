@@ -5,9 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import '../../../Core/Data/DataSource/response_model.dart';
 import '../../../Core/Gen/assets.gen.dart';
-import '../../MainWrapper/MainWrapperHome/DialogImage/switcher_dialog.dart';
+import '../../../Core/Services/response_model.dart';
+import '../../MainWrapper/DialogImage/switcher_dialog.dart';
 import 'Widgets/bottom_wave_clipper.dart';
 import 'Widgets/delayed_widget.dart';
 import 'intro_main_viewmodel.dart';

@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../Core/Gen/assets.gen.dart';
-import '../main_wrapper_home_viewmodel.dart';
+import 'dialog_controller.dart';
 import 'dialog_for_choice_type_image.dart';
 import 'dialog_for_send_image.dart';
 
-class SwitcherDialog extends GetView<MainWrapperHomeViewmodel> {
+class SwitcherDialog extends GetView<DialogController> {
   const SwitcherDialog({super.key});
 
   @override

@@ -1,3 +1,4 @@
+import 'package:GreenWave/Features/MainWrapper/DialogImage/dialog_controller.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_viewmodel.dart';
 import 'package:get/get.dart';
 
@@ -20,5 +21,6 @@ class MyBindings extends Bindings {
     Get.put(RegisterSwitchViewmodel());
     Get.put(RegisterSignupViewmodel());
     Get.put(MainWrapperBottomNavViewmodel());
+    Get.put(DialogController());
   }
 }

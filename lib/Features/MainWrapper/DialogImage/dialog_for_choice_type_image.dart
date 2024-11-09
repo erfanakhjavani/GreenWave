@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-import '../main_wrapper_home_viewmodel.dart';
+import 'dialog_controller.dart';
 
-class DialogForChoiceTypeImage extends GetView<MainWrapperHomeViewmodel> {
+class DialogForChoiceTypeImage extends GetView<DialogController> {
   const DialogForChoiceTypeImage({super.key});
 
   @override
