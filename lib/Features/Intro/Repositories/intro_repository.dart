@@ -1,8 +1,8 @@
 import 'package:GreenWave/Core/Constants/address_key.dart';
 import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
 import 'package:GreenWave/Core/Services/response_model.dart';
-import '../../../Features/Intro/IntroMain/intro_main_model.dart';
-import 'Base/base_repository.dart';
+import '../IntroMain/intro_main_model.dart';
+import '../../../Core/Data/Repositories/base_repository.dart';
 import 'package:dio/dio.dart';
 
 class IntroRepository extends BaseRepository {

@@ -36,9 +36,9 @@ class Main extends StatelessWidget {
       //* Define light theme
       themeMode: Get.find<ThemeService>().theme,
       //* Use the theme defined by ThemeService
-       initialRoute:
-           AppRoute.splashView, //* Set the initial route (splash screen)
-   // home: GetPlatform.isWeb ? const RegisterSwitchMobileView() : const RegisterSwitchView(),
+      //  initialRoute:
+      //      AppRoute.splashView, //* Set the initial route (splash screen)
+    home: GetPlatform.isAndroid ? const RegisterSwitchMobileView() : const RegisterSwitchView(),
     );
   }
 }

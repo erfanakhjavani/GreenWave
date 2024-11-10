@@ -61,10 +61,10 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                   Obx(
                     () => SizedBox(
                       width: width * 1.5,
-                      height: 75,
+                      height: 78,
                       child: TextField(
                         cursorColor: Colors.grey.shade600,
-                        style: textTheme.bodySmall,
+                        style: textTheme.bodyMedium,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderSide:

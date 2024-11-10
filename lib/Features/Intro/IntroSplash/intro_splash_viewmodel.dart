@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../Core/Data/Repositories/check_connectivity.dart';
+import '../Repositories/check_connectivity.dart';
 import '../../../Core/Services/response_model.dart';
 
 //! SplashViewModel class handles splash logic, including checking internet connection and navigation

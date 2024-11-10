@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:get/get.dart';
-import '../../../Core/Data/Repositories/intro_repository.dart';
+import '../Repositories/intro_repository.dart';
 import '../../../Core/Services/response_model.dart';
 
 class IntroMainViewmodel extends GetxController {

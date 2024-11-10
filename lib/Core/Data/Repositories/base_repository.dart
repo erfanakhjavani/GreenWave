@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../../Services/response_model.dart';
+import '../../Services/response_model.dart';
 
 abstract class BaseRepository {
   final Dio _dio = Dio();

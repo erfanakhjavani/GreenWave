@@ -6,11 +6,11 @@ import 'package:lottie/lottie.dart';
 
 import '../../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Widgets/animate_switch.dart';
-import 'dialog_controller.dart';
+import 'wrapper_dialog_viewmodel.dart';
 
 
-class WrapperDialog extends GetView<DialogController> {
-  const WrapperDialog({super.key});
+class WrapperDialogView extends  GetView<WrapperDialogViewmodel>{
+  const WrapperDialogView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,11 +85,11 @@ class WrapperDialog extends GetView<DialogController> {
   }
 }
 
-void dialogForChoiceTypeImage(BuildContext context) {
+void showWrapperDialog(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return const WrapperDialog();
+      return const WrapperDialogView();
     },
   );
 }

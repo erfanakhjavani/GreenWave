@@ -7,7 +7,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Services/response_model.dart';
-import '../../MainWrapper/DialogImage/wrapper_dialog.dart';
+import '../../MainWrapper/DialogWrapper/wrapper_dialog_view.dart';
 import 'Widgets/bottom_wave_clipper.dart';
 import 'Widgets/delayed_widget.dart';
 import 'intro_main_viewmodel.dart';
@@ -173,7 +173,7 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                                           const Duration(milliseconds: 300),
                                           () {
                                         if (context.mounted) {
-                                          dialogForChoiceTypeImage(context);
+                                          showWrapperDialog(context);
                                         }
                                       });
                                     } else if (controller.state.value.status ==

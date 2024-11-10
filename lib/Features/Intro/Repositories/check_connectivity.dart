@@ -4,12 +4,12 @@ import 'package:GreenWave/Core/Services/response_model.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get_utils/src/platform/platform.dart';
-import 'Base/base_repository.dart';
+import '../../../Core/Data/Repositories/base_repository.dart';
 
 class SplashRepository extends BaseRepository {
   Future<bool> checkConnectivity() async {
     var connectivityResult = await Connectivity().checkConnectivity();
-    bool isWeb = GetPlatform.isWeb ? true : false;
+    bool isWeb = GetPlatform.isWeb ? true : true;
 
     if (connectivityResult == ConnectivityResult.none) {
       //! No network connection

@@ -35,7 +35,7 @@ class RegisterSignupView extends GetView<RegisterSignupViewmodel> {
               height: 45,
               child: TextField(
                 cursorColor: Colors.grey.shade600,
-                style: textTheme.bodySmall,
+                style: textTheme.bodyMedium,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey.shade500),
@@ -54,7 +54,7 @@ class RegisterSignupView extends GetView<RegisterSignupViewmodel> {
               height: 45,
               child: TextField(
                 cursorColor: Colors.grey.shade600,
-                style: textTheme.bodySmall,
+                style: textTheme.bodyMedium,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey.shade500),
@@ -74,7 +74,7 @@ class RegisterSignupView extends GetView<RegisterSignupViewmodel> {
                 height: 45,
                 child: TextField(
                   cursorColor: Colors.grey.shade600,
-                  style: textTheme.bodySmall,
+                  style: textTheme.bodyMedium,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey.shade500),
@@ -95,6 +95,29 @@ class RegisterSignupView extends GetView<RegisterSignupViewmodel> {
                           ))),
                   obscureText: controller.isObscured.value,
                   onChanged: (value) => controller.password.value = value,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            Center(
+              child: SizedBox(
+                width: width / 2,
+                height: 45,
+                child: TextField(
+                  cursorColor: Colors.grey.shade600,
+                  style: textTheme.bodyMedium,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade500),
+                        borderRadius: BorderRadius.circular(10)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade600),
+                        borderRadius: BorderRadius.circular(10)),
+                    hintText: 'Referral Code',
+
+                  ),
+                  textAlign: TextAlign.center,
+                  onChanged: (value) => controller.email.value = value,
                 ),
               ),
             ),

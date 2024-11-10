@@ -1,10 +1,11 @@
-import 'package:GreenWave/Features/MainWrapper/DialogImage/dialog_controller.dart';
+import 'package:GreenWave/Features/MainWrapper/DialogWrapper/DialogChoiceItem/dialog_choice_item_view.dart';
+import 'package:GreenWave/Features/MainWrapper/DialogWrapper/wrapper_dialog_viewmodel.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Features/MainWrapper/DialogImage/dialog_for_choice_type_image.dart';
-import '../../Features/MainWrapper/DialogImage/dialog_for_send_image.dart';
+
+import '../../Features/MainWrapper/DialogWrapper/DialogSendImage/dialog_send_image_view.dart';
 import '../../Features/Register/Login/register_login_view.dart';
 import '../../Features/Register/Mobile/PhoneNumber/register_mobile_phone_number_view.dart';
 import '../../Features/Register/Mobile/RegisterPhone/register_mobile_register_phone_view.dart';
@@ -72,7 +73,7 @@ AbstractRegisterSwitchView<RegisterSwitchViewmodel> {
   const RegisterSwitchMobileView({super.key});
 
   @override
-  Widget widget2() => const RegisterMobileView();
+  Widget widget2() =>  RegisterMobileView();
 
   @override
   Widget widget1() => const RegisterMobileRegisterPhoneView();
@@ -87,14 +88,14 @@ AbstractRegisterSwitchView<RegisterSwitchViewmodel> {
 
 
 class SwitcherDialog extends
-AbstractRegisterSwitchView<DialogController> {
+AbstractRegisterSwitchView<WrapperDialogViewmodel> {
   const SwitcherDialog({super.key});
 
   @override
-  Widget widget1() => const DialogForChoiceTypeImage();
+  Widget widget1() => const DialogChoiceItemView();
 
   @override
-  Widget widget2() => const DialogForSendImage();
+  Widget widget2() => const DialogSendImageView();
 
   @override
   RxBool change() {

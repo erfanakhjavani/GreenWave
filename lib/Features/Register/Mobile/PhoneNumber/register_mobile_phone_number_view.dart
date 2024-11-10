@@ -1,5 +1,4 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
-import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
 import 'package:GreenWave/Features/Register/Mobile/PhoneNumber/register_mobile_phone_number_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,9 @@ import 'package:lottie/lottie.dart';
 import '../../../../Core/Gen/assets.gen.dart';
 
 class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
-  const RegisterMobileView({super.key});
+  RegisterMobileView({super.key});
+
+  final TextEditingController number = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,7 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                     width: width * 1.5,
                     height: 45,
                     child: TextField(
+                      controller: number,
                       cursorColor: Colors.grey.shade600,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -54,9 +56,10 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                             borderRadius: BorderRadius.circular(10)),
                         hintText: 'Enter phone Number',
                       ),
-                      onChanged: (value) => controller.number.value = value,
+                      onChanged: (value) => number.text = value,
                     ),
                   ),
+                 
 
                   const SizedBox(height: 16.0),
                   Row(

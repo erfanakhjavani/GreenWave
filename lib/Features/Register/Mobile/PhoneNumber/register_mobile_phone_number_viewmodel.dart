@@ -1,12 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../SwitchController/register_switch_controller.dart';
 
 
 class RegisterMobileViewmodel extends GetxController {
-  var number = ''.obs;
   var rememberMe = false.obs;
-
+  TextEditingController number = TextEditingController();
 
   void toggleRememberMe() {
     rememberMe.value = !rememberMe.value;
@@ -15,11 +15,10 @@ class RegisterMobileViewmodel extends GetxController {
 
 
   Future<void> checkNumber() async {
-    if (number.isNotEmpty ) {
-      // Call API to log in
-      // Handle success or error
+    if (number.text.isNotEmpty ) {
+
     } else {
-      Get.snackbar('Error', 'Email and password cannot be empty');
+      Get.snackbar('Error', 'Please enter a number');
     }
   }
 
