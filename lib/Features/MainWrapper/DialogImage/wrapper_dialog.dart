@@ -1,18 +1,16 @@
 import 'dart:ui';
-
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../Core/Gen/assets.gen.dart';
+import '../../../Core/Widgets/animate_switch.dart';
 import 'dialog_controller.dart';
-import 'dialog_for_choice_type_image.dart';
-import 'dialog_for_send_image.dart';
 
-class SwitcherDialog extends GetView<DialogController> {
-  const SwitcherDialog({super.key});
+
+class WrapperDialog extends GetView<DialogController> {
+  const WrapperDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,7 @@ class SwitcherDialog extends GetView<DialogController> {
     var width = MediaQuery.sizeOf(context).width;
     var textTheme = Theme.of(context).textTheme;
     return PopScope(
-      canPop: false,
+      canPop: true,
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: Container(
@@ -76,25 +74,8 @@ class SwitcherDialog extends GetView<DialogController> {
                       ),
                     ),
                     const Gap(10),
-                    Obx(
-                      () => PageTransitionSwitcher(
-                        reverse: controller.showImageDialog.value,
-                        duration: const Duration(milliseconds: 500),
-                        transitionBuilder: (Widget child,
-                            Animation<double> primaryAnimation,
-                            Animation<double> secondaryAnimation) {
-                          return SharedAxisTransition(
-                            animation: primaryAnimation,
-                            secondaryAnimation: secondaryAnimation,
-                            transitionType: SharedAxisTransitionType.horizontal,
-                            child: child,
-                          );
-                        },
-                        child: controller.showImageDialog.value
-                            ? const DialogForChoiceTypeImage()
-                            : const DialogForSendImage(),
-                      ),
-                    )
+                     const SwitcherDialog(),
+
                   ],
                 ),
               )),
@@ -108,7 +89,7 @@ void dialogForChoiceTypeImage(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return const SwitcherDialog();
+      return const WrapperDialog();
     },
   );
 }

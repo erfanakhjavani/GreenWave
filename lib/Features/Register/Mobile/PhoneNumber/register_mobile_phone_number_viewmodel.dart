@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 
-import '../../RegisterSwitch/register_switch_viewmodel.dart';
+import '../../SwitchController/register_switch_controller.dart';
+
 
 class RegisterMobileViewmodel extends GetxController {
   var number = ''.obs;
   var rememberMe = false.obs;
-  var position = false.obs;
 
 
   void toggleRememberMe() {
@@ -36,6 +36,7 @@ class RegisterMobileViewmodel extends GetxController {
   }
 
   void changePage() {
-    position.value = !position.value;
+    var switchPage = Get.find<RegisterSwitchViewmodel>();
+    switchPage.position.value = !switchPage.position.value;
   }
 }

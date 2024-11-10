@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 import '../../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Services/response_model.dart';
-import '../../Register/RegisterSwitch/register_switch_view.dart';
+import '../../../Core/Widgets/animate_switch.dart';
 import 'Ui_helpers/bottom_sheet_choice_image.dart';
 import 'dialog_controller.dart';
 
@@ -103,7 +103,7 @@ class DialogForSendImage extends GetView<DialogController> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
-            onPressed: controller.imageUploadStatus.value.status
+            onPressed: controller.state.value.status
               == Status.COMPLETED ? () {
               Get.to(const RegisterSwitchView());
             } : null,

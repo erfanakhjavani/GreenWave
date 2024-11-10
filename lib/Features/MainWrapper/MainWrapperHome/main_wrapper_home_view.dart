@@ -1,11 +1,11 @@
-import 'package:GreenWave/Core/Data/Repositories/data_repository.dart';
+import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
 import 'package:GreenWave/Core/Gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import '../../../Core/Constants/app_colors.dart';
-import '../DialogImage/switcher_dialog.dart';
+import '../DialogImage/wrapper_dialog.dart';
 import 'main_wrapper_home_viewmodel.dart';
 
 class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {

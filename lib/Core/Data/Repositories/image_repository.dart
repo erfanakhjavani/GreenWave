@@ -1,26 +1,17 @@
 import 'package:GreenWave/Core/Constants/address_key.dart';
 import 'package:GreenWave/Core/Services/response_model.dart';
-import 'package:dio/dio.dart';
+import 'Base/base_repository.dart';
 
-class ImageRepository {
-  final Dio _dio = Dio();
+class ImageRepository extends BaseRepository {
+  Future<ResponseModel> uploadImages(Map<String, dynamic> data) async {
+    return await postRequest(AddressKey.uploadImage, data,);
+  }
 
-  Future<ResponseModel> uploadImages(Map<String, dynamic> data,) async {
-    try {
-
-      final response = await _dio.post(
-        AddressKey.uploadImage,
-        data: data,
-
-      );
-
-      if (response.statusCode == 200) {
-      return  ResponseModel.completed(response);
-      } else {
-      return  ResponseModel.error("Failed to upload images: ${response.statusCode}");
-      }
-    } catch (e) {
-     return ResponseModel.error("Error uploading images: $e");
-    }
+  Future<ResponseModel> getChoicesServer(Map<String, dynamic> data) async {
+    return await postRequest(AddressKey.getChoices, data,);
   }
 }
+
+
+
+

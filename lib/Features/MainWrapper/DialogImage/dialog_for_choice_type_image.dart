@@ -18,7 +18,7 @@ class DialogForChoiceTypeImage extends GetView<DialogController> {
       children: [
         Column(
           children: List.generate(
-            5,
+            controller.steps.length,
             (index) {
               int containerCode = index + 1;
               return Padding(

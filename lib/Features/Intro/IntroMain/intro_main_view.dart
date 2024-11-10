@@ -7,7 +7,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Services/response_model.dart';
-import '../../MainWrapper/DialogImage/switcher_dialog.dart';
+import '../../MainWrapper/DialogImage/wrapper_dialog.dart';
 import 'Widgets/bottom_wave_clipper.dart';
 import 'Widgets/delayed_widget.dart';
 import 'intro_main_viewmodel.dart';
@@ -164,8 +164,8 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                           child: ElevatedButton(
                             onPressed: controller.isTermsAccepted.value
                                 ? () async {
-                                    Future.delayed(const Duration(seconds: 3));
-                                    await controller.postPlatform();
+                              await controller.postPlatform();
+                              Future.delayed(const Duration(seconds: 3));
                                     if (controller.state.value.status ==
                                         Status.COMPLETED) {
                                       Get.to(const MainWrapperHomeView());

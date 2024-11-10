@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
-import '../RegisterSwitch/register_switch_viewmodel.dart';
+import '../SwitchController/register_switch_controller.dart';
+
 
 class RegisterLoginViewmodel extends GetxController {
   var email = ''.obs;

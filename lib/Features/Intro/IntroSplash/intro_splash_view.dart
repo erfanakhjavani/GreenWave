@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../Core/Constants/app_colors.dart';
-import '../../../Core/Data/Repositories/data_repository.dart';
+import '../../../Core/Data/Repositories/storage_repository.dart';
 import '../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Services/response_model.dart';
 import '../../MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
@@ -61,7 +61,7 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                   Obx(() {
                     if (controller.state.value.status == Status.COMPLETED) {
                       Future.delayed(const Duration(seconds: 3), () async {
-                        var data = await DataRepository().loadData('codeRD');
+                        var data = await DataRepository().loadData('codeJWT');
                         print(data);
                         if (data != null) {
                           Get.to(MainWrapperBottomNavView(),); //* Navigate to Welcome screen if data is loaded
@@ -79,7 +79,9 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                                 EdgeInsets.symmetric(horizontal: width * 0.1),
                             child: Text(
                               'Please check your connection..!',
-                              style: Get.textTheme.bodyLarge,
+                              style: Get.textTheme.bodyLarge!.copyWith(
+                                color: Colors.white
+                              ),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -89,7 +91,7 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                             },
                             icon: Icon(
                               Icons.autorenew,
-                              color: Get.theme.primaryColor,
+                              color: AppColors.secondary,
                               size: width * 0.08,
                             ),
                           ),

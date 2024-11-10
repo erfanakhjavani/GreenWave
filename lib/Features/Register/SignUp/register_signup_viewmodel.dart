@@ -1,5 +1,6 @@
-import 'package:GreenWave/Features/Register/RegisterSwitch/register_switch_viewmodel.dart';
 import 'package:get/get.dart';
+
+import '../SwitchController/register_switch_controller.dart';
 
 class RegisterSignupViewmodel extends GetxController {
   var email = ''.obs;

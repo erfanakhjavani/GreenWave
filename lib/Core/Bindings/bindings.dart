@@ -9,8 +9,8 @@ import '../../Features/MainWrapper/MainWrapperHome/main_wrapper_home_viewmodel.d
 import '../../Features/Register/Login/register_login_viewmodel.dart';
 import '../../Features/Register/Mobile/PhoneNumber/register_mobile_phone_number_viewmodel.dart';
 import '../../Features/Register/Mobile/RegisterPhone/register_mobile_register_phone_viewmodel.dart';
-import '../../Features/Register/RegisterSwitch/register_switch_viewmodel.dart';
 import '../../Features/Register/SignUp/register_signup_viewmodel.dart';
+import '../../Features/Register/SwitchController/register_switch_controller.dart';
 
 class MyBindings extends Bindings {
   @override
@@ -23,7 +23,7 @@ class MyBindings extends Bindings {
     Get.put(RegisterSwitchViewmodel());
     Get.put(RegisterSignupViewmodel());
     Get.put(MainWrapperBottomNavViewmodel());
-    Get.put(DialogController());
+    Get.lazyPut(() => DialogController());
     Get.put(RegisterMobileViewmodel());
     Get.put(RegisterMobileRegisterPhoneViewmodel());
   }
