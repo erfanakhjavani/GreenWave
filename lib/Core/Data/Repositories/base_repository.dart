@@ -1,3 +1,4 @@
+import 'package:GreenWave/Core/UI%20Helper/show_snack_bar.dart';
 import 'package:dio/dio.dart';
 
 import '../../Services/response_model.dart';
@@ -55,6 +56,7 @@ abstract class BaseRepository {
         return ResponseModel.error(dataJson['message']);
       }
     } else {
+      showCustomSnackBar('Error', 'Request failed: ${response.statusCode}');
       return ResponseModel.error("Request failed: ${response.statusCode}");
     }
   }

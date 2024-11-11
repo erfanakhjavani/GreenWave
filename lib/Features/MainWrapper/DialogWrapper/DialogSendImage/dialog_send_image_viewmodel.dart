@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:GreenWave/Core/UI%20Helper/show_snack_bar.dart';
 import 'package:get/get.dart';
 
 import '../Repository/dialog_repository.dart';
@@ -34,6 +35,7 @@ class DialogSendImageViewmodel extends GetxController{
     final base64Image2 = _convertImageToBase64(selectedImage2.value);
 
     if (base64Image1 == null || base64Image2 == null) {
+      showCustomSnackBar('Alarm', "Please select both images.");
       state.value = ResponseModel.error("Please select both images.");
       return;
     }
@@ -46,7 +48,11 @@ class DialogSendImageViewmodel extends GetxController{
     };
 
     final response = await imageRepository.uploadImages(data);
-    state.value =  ResponseModel.completed(response.data);
+    if (response.status == Status.COMPLETED) {
+      state.value =  ResponseModel.completed(response.data);
+    } else {
+      showCustomSnackBar('Error', "Failed to upload image.");
+    }
 
   }
 

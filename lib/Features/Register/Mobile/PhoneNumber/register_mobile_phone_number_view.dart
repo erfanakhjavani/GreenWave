@@ -59,8 +59,6 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                       onChanged: (value) => number.text = value,
                     ),
                   ),
-                 
-
                   const SizedBox(height: 16.0),
                   Row(
                     children: [

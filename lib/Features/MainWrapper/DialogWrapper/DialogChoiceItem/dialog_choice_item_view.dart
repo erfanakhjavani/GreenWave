@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../../../../Core/Data/Repositories/storage_repository.dart';
 import '../../../../Core/Services/response_model.dart';
 import 'dialog_choice_item_viewmodel.dart';
 
@@ -98,6 +99,7 @@ class DialogChoiceItemView extends GetView<DialogChoiceItemViewmodel> {
               ),
               onPressed: controller.isSelectedContainer.value
                   ? () {
+                      DataRepository().saveData('stepNum', controller.step.value);
                       Get.find<WrapperDialogViewmodel>().showImageDialog.value =
                           false;
                     }

@@ -1,4 +1,3 @@
-import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../Core/Services/response_model.dart';
@@ -11,7 +10,7 @@ class DialogChoiceItemViewmodel extends GetxController {
   var stepsList = <DialogChoiceItemModel>[].obs;
   var isSelectedContainer = false.obs;
 
-  Rx<ResponseModel> state = ResponseModel.loading('Loading...').obs;
+  Rx<ResponseModel> state = ResponseModel.error('Nothing...').obs;
   final DialogRepository _dialogRepository = DialogRepository();
 
   @override
@@ -38,9 +37,9 @@ class DialogChoiceItemViewmodel extends GetxController {
   Future<void> getChoicesStep() async {
     state.value = ResponseModel.loading("Getting choices...");
     final data = {
-      "stepNum": step.value,
+      "stepNum": 1,
     };
-    DataRepository().saveData('stepNum', step.value);
+
 
     final response = await _dialogRepository.getChoicesStep(data);
     if (response.status == Status.COMPLETED) {

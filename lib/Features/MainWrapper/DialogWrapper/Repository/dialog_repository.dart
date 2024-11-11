@@ -7,12 +7,12 @@ class DialogRepository extends BaseRepository {
 
   //! step 1: Choices subject image
   Future<ResponseModel> getChoicesStep(Map<String, dynamic> data) async {
-    return await postRequest(AddressKey.choicesSubject, data);
+    return await postRequest(AddressKey.choicesSubject, data).timeout(const Duration(seconds: 10));
   }
 
   //! step 2: Upload image after choice subject
   Future<ResponseModel> uploadImages(Map<String, dynamic> data) async {
-    return await postRequest(AddressKey.uploadImage, data,);
+    return await postRequest(AddressKey.uploadImage, data,).timeout(const Duration(seconds: 20));
   }
 
 }

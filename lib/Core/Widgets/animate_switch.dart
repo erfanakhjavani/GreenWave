@@ -52,7 +52,7 @@ class RegisterSwitchView extends AbstractRegisterSwitchView<RegisterSwitchViewmo
   const RegisterSwitchView({super.key});
 
   @override
-  Widget widget1() => const RegisterSignupView();
+  Widget widget1() => const  RegisterSignupView();
 
   @override
   Widget widget2() => const RegisterLoginView();

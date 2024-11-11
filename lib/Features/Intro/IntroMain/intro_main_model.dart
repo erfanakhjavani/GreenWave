@@ -1,8 +1,6 @@
 class IntroMainModel {
-  final String message;
-  final int status;
-  final String data;
+  final dynamic data;
 
   IntroMainModel(
-      {required this.status, required this.message, required this.data});
+      {required this.data});
 }

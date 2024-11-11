@@ -7,8 +7,7 @@ import '../../../Core/Services/response_model.dart';
 class IntroMainViewmodel extends GetxController {
   final IntroRepository _introRepository = IntroRepository();
   var isTermsAccepted = false.obs;
-  Rx<ResponseModel> state = ResponseModel.loading('Loading...').obs;
-  var boolState = true.obs;
+  Rx<ResponseModel> state = ResponseModel.error('Nothing...').obs;
 
   void changeLanguage(String languageCode) {
     if (languageCode == 'en') {
@@ -19,8 +18,7 @@ class IntroMainViewmodel extends GetxController {
   }
 
   Future<void> postPlatform() async {
-    boolState.value = false;
-
+    state.value = ResponseModel.loading('isLoading...');
     int platformCode = 0;
     if (GetPlatform.isAndroid) {
       platformCode = 1;
@@ -33,14 +31,10 @@ class IntroMainViewmodel extends GetxController {
     var response = await _introRepository.postPlatformData(platformCode);
 
     if (response.status == Status.COMPLETED) {
-      boolState.value = true;
       state.value = response;
     } else {
-      boolState.value = true;
       state.value = response;
     }
-
-    refresh();
   }
 
   void startChallenge() {

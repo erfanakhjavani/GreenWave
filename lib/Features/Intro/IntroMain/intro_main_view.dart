@@ -189,7 +189,7 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                               backgroundColor:
                                   const Color.fromRGBO(42, 101, 51, 1.0),
                             ),
-                            child: AnimatedCrossFade(
+                            child: Obx(()=> AnimatedCrossFade(
                               firstChild: const Text(
                                 "START",
                                 style: TextStyle(
@@ -199,11 +199,11 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                               ),
                               secondChild: LoadingAnimationWidget.dotsTriangle(
                                   color: AppColors.secondary, size: 20),
-                              crossFadeState: controller.boolState.value
-                                  ? CrossFadeState.showFirst
-                                  : CrossFadeState.showSecond,
+                              crossFadeState: controller.state.value.status == Status.LOADING
+                                  ? CrossFadeState.showSecond
+                                  : CrossFadeState.showFirst,
                               duration: const Duration(milliseconds: 300),
-                            ),
+                            ),)
                           ),
                         )),
                     SizedBox(

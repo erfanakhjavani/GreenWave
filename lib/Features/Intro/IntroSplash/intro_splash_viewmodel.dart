@@ -5,7 +5,7 @@ import '../../../Core/Services/response_model.dart';
 
 //! SplashViewModel class handles splash logic, including checking internet connection and navigation
 class IntroSplashViewmodel extends GetxController {
-  Rx<ResponseModel> state = ResponseModel.loading('Loading...').obs;
+  Rx<ResponseModel> state = ResponseModel.error('Nothing...').obs;
   final SplashRepository splashRepository =
       SplashRepository(); //* Repository to check connectivity
 

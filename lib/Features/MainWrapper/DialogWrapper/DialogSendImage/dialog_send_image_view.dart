@@ -27,7 +27,7 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
           width: width,
           height: 120,
           decoration: BoxDecoration(
-            color: Colors.green,
+            color: AppColors.monopolyColor1,
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Row(
@@ -55,59 +55,63 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
           ),
         ),
         const Gap(10),
-        Container(
+        Obx(()=> Container(
           width: width,
           height: 120,
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: controller.state.value.status == Status.COMPLETED ? AppColors.monopolyColor1 :Colors.blue,
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Image container for the first selected image
-              Obx(() => _imageContainer(
-                    imageFile: controller.selectedImage1.value,
-                    onImageSelected: () async {
-                      await controller.selectImageFromGallery(1);
+              _imageContainer(
+                imageFile: controller.selectedImage1.value,
+                onImageSelected: () async {
+                  await controller.selectImageFromGallery(1);
+                },
+                context: context,
+              ),
+              SizedBox(
+                width: 50,
+                height: 50,
+                child: IconButton(
+                    onPressed: () async {
+                      await controller.sendImagesToServer();
                     },
-                    context: context,
-                  )),
-              Obx(
-                () => IconButton(
-                  onPressed: () async {
-                    await controller.sendImagesToServer();
-                  },
-                  style: IconButton.styleFrom(
-                    backgroundColor: AppColors.monopolyColor1,
-                  ),
-                  icon: AnimatedCrossFade(
-                    crossFadeState:
-                        controller.state.value.status == Status.LOADING
-                            ? CrossFadeState.showSecond
-                            : CrossFadeState.showFirst,
-                    duration: const Duration(milliseconds: 500),
-                    firstChild:
-                         controller.state.value.status == Status.COMPLETED
-                         ? const Icon(Icons.check_circle_rounded, size: 30)
-                          : const Icon(FontAwesomeIcons.arrowUpFromBracket),
-                    secondChild: Center(
-                      child: LoadingAnimationWidget.dotsTriangle(color: AppColors.secondary,
+                    style: IconButton.styleFrom(
+                      backgroundColor: AppColors.monopolyColor1,
+                    ),
+                    icon: AnimatedCrossFade(
+                      crossFadeState:
+                      controller.state.value.status == Status.LOADING
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst,
+                      duration: const Duration(milliseconds: 500),
+                      firstChild:
+                      controller.state.value.status == Status.COMPLETED
+                          ? const Icon(Icons.check_circle_rounded, size: 40)
+                          : const Icon(FontAwesomeIcons.arrowUpFromBracket,size: 30,),
+                      secondChild: LoadingAnimationWidget.twoRotatingArc(color: AppColors.secondary,
                           size: 20),
+                      firstCurve: Curves.linearToEaseOut,
+                      secondCurve: Curves.linearToEaseOut,
                     ),
                   ),
-                ),
               ),
-              Obx(() => _imageContainer(
-                    imageFile: controller.selectedImage2.value,
-                    onImageSelected: () async {
-                      await controller.selectImageFromGallery(2);
-                    },
-                    context: context,
-                  )),
+
+               _imageContainer(
+                imageFile: controller.selectedImage2.value,
+                onImageSelected: () async {
+                  await controller.selectImageFromGallery(2);
+                },
+                context: context,
+              ),
             ],
           ),
-        ),
+        )),
         const Gap(20),
         Obx(
           () => SizedBox(
@@ -122,7 +126,7 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
               ),
               onPressed: controller.state.value.status == Status.COMPLETED
                   ? () {
-                      Get.to(const RegisterSwitchView());
+                      Get.offAll(const RegisterSwitchMobileView());
                     }
                   : null,
               child: Text(
