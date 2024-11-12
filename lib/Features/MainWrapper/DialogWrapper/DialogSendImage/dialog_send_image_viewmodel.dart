@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:GreenWave/Core/UI%20Helper/show_snack_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../Repository/dialog_repository.dart';
@@ -43,11 +44,15 @@ class DialogSendImageViewmodel extends GetxController{
     final data = {
       "image1": base64Image1,
       "image2": base64Image2,
-      "codeDevice": DataRepository().loadData('codeRD'),
+      "codeDevice": DataRepository().loadData(''),
       "choice": await DataRepository().loadData('stepNum'),
     };
 
     final response = await imageRepository.uploadImages(data);
+    var code = response.data['data'];
+    if (kDebugMode) {
+      print(code);
+    }
     if (response.status == Status.COMPLETED) {
       state.value =  ResponseModel.completed(response.data);
     } else {

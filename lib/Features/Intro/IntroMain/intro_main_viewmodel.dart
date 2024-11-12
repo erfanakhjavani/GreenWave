@@ -37,7 +37,5 @@ class IntroMainViewmodel extends GetxController {
     }
   }
 
-  void startChallenge() {
-    print("Challenge Started");
-  }
+
 }

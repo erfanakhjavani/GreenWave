@@ -1,5 +1,7 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
+import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperHome/main_wrapper_home_view.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -29,9 +31,10 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                   ClipPath(
                     clipper: BottomWaveClipper(),
                     child: Container(
-                      color: Colors.grey,
                       height: size.height * 0.30,
-                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(image: Assets.jpg.intro2.provider(),fit: BoxFit.cover)
+                      ),
                     ),
                   ),
                   const Positioned(
@@ -168,18 +171,13 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                               Future.delayed(const Duration(seconds: 3));
                                     if (controller.state.value.status ==
                                         Status.COMPLETED) {
-                                      Get.to(const MainWrapperHomeView());
-                                      Future.delayed(
-                                          const Duration(milliseconds: 300),
-                                          () {
-                                        if (context.mounted) {
-                                          showWrapperDialog(context);
-                                        }
-                                      });
+                                      Get.offAllNamed(AppRoute.registerSwitchMobileView);
                                     } else if (controller.state.value.status ==
                                         Status.ERROR) {
-                                      print(
+                                      if (kDebugMode) {
+                                        print(
                                           'Error ${controller.state.value.message}');
+                                      }
                                     }
                                   }
                                 : null,

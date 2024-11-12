@@ -69,9 +69,8 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
               // Image container for the first selected image
               _imageContainer(
                 imageFile: controller.selectedImage1.value,
-                onImageSelected: () async {
-                  await controller.selectImageFromGallery(1);
-                },
+                onImageSelectedC: () async => await controller.selectImageFromCamera(1),
+                onImageSelectedG: () async => await controller.selectImageFromGallery(1),
                 context: context,
               ),
               SizedBox(
@@ -104,9 +103,8 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
 
                _imageContainer(
                 imageFile: controller.selectedImage2.value,
-                onImageSelected: () async {
-                  await controller.selectImageFromGallery(2);
-                },
+                 onImageSelectedC: () async => await controller.selectImageFromCamera(2),
+                 onImageSelectedG: () async => await controller.selectImageFromGallery(2),
                 context: context,
               ),
             ],
@@ -157,17 +155,14 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
   Widget _imageContainer({
     required BuildContext context,
     File? imageFile,
-    required VoidCallback onImageSelected,
+    required VoidCallback onImageSelectedG,
+    required VoidCallback onImageSelectedC,
   }) {
     return GestureDetector(
       onTap: () {
         bottomSheetChoiceImage(
-          onTapG: onImageSelected,
-          onTapC: () async {
-            await controller.selectImageFromCamera(
-                controller.selectedImage1.value == null ? 1 : 2);
-            Get.back();
-          },
+          onTapG: onImageSelectedG,
+          onTapC: onImageSelectedC,
         );
       },
       child: Container(

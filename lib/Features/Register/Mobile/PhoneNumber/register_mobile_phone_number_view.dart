@@ -1,10 +1,14 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Features/Register/Mobile/PhoneNumber/register_mobile_phone_number_viewmodel.dart';
+import 'package:GreenWave/Features/Register/Mobile/RegisterPhone/register_mobile_register_phone_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../Core/Gen/assets.gen.dart';
+import '../../../../Core/Services/response_model.dart';
 
 class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
   RegisterMobileView({super.key});
@@ -30,7 +34,7 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
                     child: Text(
-                      'Welcome back!',
+                      'Welcome to GreenWave!',
                       style: textTheme.headlineMedium,
                     ),
                   ),
@@ -43,9 +47,11 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                   const SizedBox(height: 10.0),
                   SizedBox(
                     width: width * 1.5,
-                    height: 45,
+                    height: 70,
                     child: TextField(
+                      maxLength: 15,
                       controller: number,
+                      keyboardType:  TextInputType.phone,
                       cursorColor: Colors.grey.shade600,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -77,24 +83,36 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                     child: SizedBox(
                         width: width * 1.5,
                         height: 40,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.monopolyColor2,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                        child: Obx(() => ElevatedButton(
+                            onPressed:  () async{
+                              await controller.postNumber(number.text);
+                              if(controller.state.value.status == Status.COMPLETED){
+                               await Get.find<RegisterMobileRegisterPhoneViewmodel>().checkStatus(number.text);
+                                controller.changePage();
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              backgroundColor:
+                              const Color.fromRGBO(42, 101, 51, 1.0),
                             ),
-                          ),
-                          onPressed: () {
-                            controller.changePage();
-                          },
-                          child: Text(
-                            'Next',
-                            style: textTheme.bodyMedium!.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )),
+                            child: AnimatedCrossFade(
+                              firstChild:  Text(
+                                'Next',
+                                style: textTheme.bodyMedium!.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              secondChild: LoadingAnimationWidget.dotsTriangle(
+                                  color: AppColors.secondary, size: 20),
+                              crossFadeState: controller.state.value.status == Status.LOADING
+                                  ? CrossFadeState.showSecond
+                                  : CrossFadeState.showFirst,
+                              duration: const Duration(milliseconds: 300),
+                            ),)
+                        ),),
                   ),
                   const SizedBox(height: 25.0),
                   Row(

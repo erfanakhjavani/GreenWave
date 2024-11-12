@@ -76,7 +76,7 @@ AbstractRegisterSwitchView<RegisterSwitchViewmodel> {
   Widget widget2() =>  RegisterMobileView();
 
   @override
-  Widget widget1() => const RegisterMobileRegisterPhoneView();
+  Widget widget1() =>  RegisterMobileRegisterPhoneView();
 
   @override
   RxBool change() {

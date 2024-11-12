@@ -25,7 +25,7 @@ class IntroRepository extends BaseRepository {
         status: dataJson['statusCode'],
       );
       if (statusModel.status == 200) {
-        DataRepository().saveData('codeRD', dataResponse.data);
+        DataRepository().saveData(AddressKeyStorage.codeRD, dataResponse.data);
         return ResponseModel.completed(dataResponse);
       } else {
         showCustomSnackBar('Error', statusModel.message);

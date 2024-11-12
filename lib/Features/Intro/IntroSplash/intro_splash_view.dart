@@ -1,3 +1,5 @@
+import 'package:GreenWave/Core/Constants/address_key.dart';
+import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:GreenWave/Features/Intro/IntroSplash/widgets/splash_description_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,8 +9,6 @@ import '../../../Core/Constants/app_colors.dart';
 import '../../../Core/Data/Repositories/storage_repository.dart';
 import '../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Services/response_model.dart';
-import '../../MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
-import '../IntroWelcome/intro_welcome_view.dart';
 import 'intro_splash_viewmodel.dart';
 
 //! SplashView class to display the splash screen and handle connection status
@@ -29,45 +29,38 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
               width: width,
               height: height,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [AppColors.monopolyColor1, AppColors.monopolyColor2],
-                  stops: const [0.6, 1.0],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+                // gradient: LinearGradient(
+                //   colors: [AppColors.monopolyColor1, AppColors.monopolyColor2],
+                //   stops: const [0.6, 1.0],
+                //   begin: Alignment.topCenter,
+                //   end: Alignment.bottomCenter,
+                // ),
+                color: AppColors.monopolyColor2
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 // Center content vertically
                 children: [
-                  Obx(() {
-                    return AnimatedCrossFade(
-                      firstChild: FractionallySizedBox(
-                        widthFactor: width > 800 ? 0.3 : 0.6, // Responsive size
+                      FractionallySizedBox(
                         child: Assets.png.logo.image(
-                          fit: BoxFit.contain,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      secondChild: const SplashDescriptionWidget(),
-                      crossFadeState:
-                          controller.state.value.status == Status.COMPLETED
-                              ? CrossFadeState.showSecond
-                              : CrossFadeState.showFirst,
-                      duration: const Duration(seconds: 1),
-                    );
-                  }),
 
                   //! Handle connection status with reactive programming
                   Obx(() {
                     if (controller.state.value.status == Status.COMPLETED) {
-                      Future.delayed(const Duration(seconds: 3), () async {
-                        var data = await DataRepository().loadData('codeJWT');
-                        print(data);
-                        if (data != null) {
-                          Get.to(MainWrapperBottomNavView(),); //* Navigate to Welcome screen if data is loaded
-                        } else {
-                        Get.to(
-                            const IntroWelcomeView()); //* Navigate to Welcome screen if data is not loaded
+                      Future.sync(() async {
+                        var codeJWT = await DataRepository().loadData(AddressKeyStorage.codeJWT);
+                        var checkWP = await DataRepository().loadData(AddressKeyStorage.checkReadWelcomeView);
+                        if (codeJWT != null){
+                          Get.toNamed(AppRoute.mainWrapperBottomNavView); //* Navigate to Welcome screen if data is loaded
+                        }
+                        else if (checkWP != null){
+                          Get.toNamed(AppRoute.introMainView); //* Navigate to Welcome screen if data is not loaded
+                        }
+                        else {
+                          Get.toNamed(AppRoute.introWelcomeView); //* Navigate to Welcome screen if data is not loaded
                         }
                       });
                     } else if (controller.state.value.status == Status.ERROR) {

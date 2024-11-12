@@ -1,44 +1,61 @@
+import 'package:GreenWave/Core/Constants/address_key.dart';
+import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
+import '../../../../Core/Services/response_model.dart';
+import '../../../../Core/UI Helper/show_snack_bar.dart';
 import '../../SwitchController/register_switch_controller.dart';
+import '../Repository/mobile_repository.dart';
 
 class RegisterMobileRegisterPhoneViewmodel extends GetxController {
   var email = ''.obs;
   var password = ''.obs;
-  var rememberMe = false.obs;
   var isObscured = false.obs;
+  var isPassword = ''.obs;
+  final MobileRepository _checkNumber = MobileRepository();
+  Rx<ResponseModel> state = ResponseModel.error('Nothing...').obs;
+  var number = ''.obs;
 
-  void toggleRememberMe() {
-    rememberMe.value = !rememberMe.value;
+
+  Future<void> postPassword(String num) async {
+    state.value = ResponseModel.loading('isLoading...');
+
+    number.value = num;
+    if (password.value == '') {
+      state.value = ResponseModel.error('Please enter password');
+      return showCustomSnackBar('error', state.value.message);
+    }
+
+    var postPassword = {"phoneNumber": number.value, "password" : password.value};
+    var response = await _checkNumber.enterPassword(postPassword);
+
+
+      print(response.data);
+
+    if (response.status == Status.COMPLETED) {
+      state.value = response;
+    } else {
+      state.value = response;
+      return showCustomSnackBar('error', state.value.message);
+    }
+    state.value = response;
   }
+
 
   void toggleObscured() {
     isObscured.value = !isObscured.value;
   }
 
-  Future<void> login() async {
-    if (email.isNotEmpty && password.isNotEmpty) {
-      // Call API to log in
-      // Handle success or error
-    } else {
-      Get.snackbar('Error', 'Email and password cannot be empty');
-    }
+  Future<void> checkStatus(String num) async {
+    number.value = num;
+    var isPasswordS = await DataRepository().loadData(AddressKeyStorage.isPassword);
+    isPassword.value = isPasswordS;
   }
 
-  void signInWithGoogle() {
-    // Handle Google Sign-In
-  }
-
-  void signInWithTelegram() {
-    // Handle Apple Sign-In
-  }
-
-  void forgotPassword() {
-    // Navigate to forgot password screen
-  }
-
-  void signUp() {
+  void backPage() {
     var switchPage = Get.find<RegisterSwitchViewmodel>();
     switchPage.position.value = !switchPage.position.value;
+    isPassword.value = 'false';
   }
 }

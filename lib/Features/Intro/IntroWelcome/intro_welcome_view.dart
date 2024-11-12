@@ -1,3 +1,5 @@
+import 'package:GreenWave/Core/Constants/address_key.dart';
+import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
 import 'package:GreenWave/Features/Intro/IntroMain/intro_main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,6 +48,7 @@ class IntroWelcomeView extends GetView<IntroWelcomeViewmodel> {
                   text: controller.showGetStart.value ? "Let's go" : 'Next',
                   onTap: () {
                     if (controller.showGetStart.value) {
+                      DataRepository().saveData(AddressKeyStorage.checkReadWelcomeView, 'true');
                       Get.offAll(const IntroMainView());
                     } else {
                       controller.nextPage();

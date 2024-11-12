@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'Core/Bindings/bindings.dart';
 import 'Core/Constants/app_route.dart';
 import 'Core/Themes/theme_service.dart';
 import 'Core/Themes/themes.dart';
-import 'Core/Widgets/animate_switch.dart';
 
 //! Main function to initialize the app and set up system configurations
 void main() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); //* Ensure Flutter is fully initialized before running
-  GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized(); //* Ensure Flutter is fully initialized before running
   Get.put(ThemeService());
   runApp(const Main()); //* Run the main app widget
 }
@@ -37,8 +34,7 @@ class Main extends StatelessWidget {
       themeMode: Get.find<ThemeService>().theme,
       //* Use the theme defined by ThemeService
        initialRoute:
-           AppRoute.splashView, //* Set the initial route (splash screen)
-    // home: GetPlatform.isAndroid ? const RegisterSwitchMobileView() : const RegisterSwitchView(),
+           AppRoute.introSplashView, //* Set the initial route (splash screen)
     );
   }
 }

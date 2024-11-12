@@ -9,7 +9,7 @@ class DialogChoiceItemModel {
 
   factory DialogChoiceItemModel.fromJson(Map<String, dynamic> json) {
     return DialogChoiceItemModel(
-      step: json['step'] ?? 0,
+      step: json['step'] ?? 1,
       title: json['title'] ?? '',
     );
   }

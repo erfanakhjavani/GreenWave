@@ -1,19 +1,19 @@
-import 'package:get_storage/get_storage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class DataRepository {
-  final box = GetStorage();
+  final storage =  const FlutterSecureStorage();
 
-  void saveData(String key, dynamic value) {
-    box.write(key, value);
+  void saveData(String key, dynamic value) async{
+   await storage.write(key: key, value: value.toString());
   }
 
-  dynamic loadData(String key) {
+  dynamic loadData(String key) async{
     dynamic data;
-    data = box.read(key);
+    data = await storage.read(key: key);
     return data;
   }
 
-  void deleteData(String key) {
-    box.remove(key);
+  void deleteData(String key) async{
+    await storage.delete(key: key);
   }
 }

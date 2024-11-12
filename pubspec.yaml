@@ -29,8 +29,8 @@ dependencies:
   animations: ^2.0.11
   gap: ^3.0.1
   font_awesome_flutter: any
-  get_storage: ^2.1.1
   image_picker: ^1.1.2
+  flutter_secure_storage: ^9.2.2
 
 
 dev_dependencies:

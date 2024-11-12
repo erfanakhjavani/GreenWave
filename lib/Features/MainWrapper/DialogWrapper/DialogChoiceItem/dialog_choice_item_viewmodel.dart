@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../Core/Services/response_model.dart';
@@ -47,7 +48,9 @@ class DialogChoiceItemViewmodel extends GetxController {
         stepsList.value = (response.data['data'] as List)
             .map((item) => DialogChoiceItemModel.fromJson(item))
             .toList();
-        print(response.data);
+        if (kDebugMode) {
+          print(response.data);
+        }
         state.value = ResponseModel.completed("Data loaded successfully");
       } else {
         state.value = ResponseModel.error("Unexpected data format: expected a list.");
