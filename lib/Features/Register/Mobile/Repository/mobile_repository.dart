@@ -16,7 +16,7 @@ class MobileRepository extends BaseRepository {
 
   //! step 1: send phone Number
   Future<ResponseModel> enterPassword(Map<String, dynamic> data) async {
-    final response = await postRequest(AddressKey.postPlatform, data)
+    final response = await postRequest(AddressKey.verifyPhoneNumberPassword, data)
         .timeout(const Duration(seconds: 10), onTimeout: () {
       return ResponseModel.error('TimeoutException...');
     });

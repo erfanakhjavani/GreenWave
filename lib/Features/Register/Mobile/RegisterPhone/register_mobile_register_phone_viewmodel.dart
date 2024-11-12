@@ -39,7 +39,6 @@ class RegisterMobileRegisterPhoneViewmodel extends GetxController {
       state.value = response;
       return showCustomSnackBar('error', state.value.message);
     }
-    state.value = response;
   }
 
 
