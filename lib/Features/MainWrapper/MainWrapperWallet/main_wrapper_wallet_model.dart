@@ -1,17 +1,21 @@
-class MainWrapperWalletModel {
-  final String name;
-  final String symbol;
-  final String amount;
-  final String price;
-  final String change;
-  final String iconPath;
+import 'package:get/get.dart';
 
-  MainWrapperWalletModel({
+class BalanceData {
+  final double totalBalance;
+  final List<double> chartData;
+  BalanceData(this.totalBalance, this.chartData);
+}
+
+class Transaction {
+  final String name;
+  final String date;
+  final double amount;
+  final bool isIncome;
+
+  Transaction({
     required this.name,
-    required this.symbol,
+    required this.date,
     required this.amount,
-    required this.price,
-    required this.change,
-    required this.iconPath,
+    required this.isIncome,
   });
 }

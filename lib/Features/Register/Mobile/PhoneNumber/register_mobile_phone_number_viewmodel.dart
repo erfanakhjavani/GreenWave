@@ -10,9 +10,45 @@ import '../../SwitchController/register_switch_controller.dart';
 
 
 class RegisterMobileViewmodel extends GetxController {
+  var rememberMe = false.obs;
+  final MobileRepository _checkNumber = MobileRepository();
+  Rx<ResponseModel> state = ResponseModel.error('Nothing...').obs;
+  var number = ''.obs;
+
+
+  void toggleRememberMe() {
+    rememberMe.value = !rememberMe.value;
+  }
+
+
+  Future<void> postNumber(String num) async {
+    state.value = ResponseModel.loading('isLoading...');
+
+    number.value = num;
+    if (number.value == '') {
+      state.value = ResponseModel.error('Please enter a number');
+      return showCustomSnackBar('error', state.value.message);
+    }
+
+    var postNumber = {"phoneNumber": number.value};
+    var response = await _checkNumber.sendPhoneNumber(postNumber);
+
+
+    if (response.status == Status.COMPLETED) {
+      state.value = response;
+    } else {
+      state.value = ResponseModel.error(response.message);
+      return showCustomSnackBar('error', state.value.message);
+    }
+  }
+  void signInWithTelegram() {
+    // Handle Apple Sign-In
+  }
 
 
 
-
-
+  void changePage() {
+    var switchPage = Get.find<RegisterSwitchViewmodel>();
+    switchPage.position.value = !switchPage.position.value;
+  }
 }

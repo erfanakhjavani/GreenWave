@@ -1,3 +1,4 @@
+import 'package:GreenWave/Core/Constants/address_key.dart';
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Features/MainWrapper/DialogWrapper/wrapper_dialog_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -43,13 +44,15 @@ class DialogChoiceItemView extends GetView<DialogChoiceItemViewmodel> {
                         child: GestureDetector(
                           onTap: () {
                             controller.isSelectedContainer.value = true;
+                            controller.selectContainer(containerCode);
                           },
                           child: Obx(() =>
                               Container(
                                 width: width,
                                 height: 60,
                                 decoration: BoxDecoration(
-
+                                  color: controller.getContainerColor(
+                                      containerCode),
                                   borderRadius: BorderRadius.circular(16.0),
                                 ),
                                 child: Padding(
@@ -97,7 +100,9 @@ class DialogChoiceItemView extends GetView<DialogChoiceItemViewmodel> {
               ),
               onPressed: controller.isSelectedContainer.value
                   ? () {
-
+                      DataRepository().saveData(AddressKeyStorage.stepNum, controller.step.value);
+                      Get.find<WrapperDialogViewmodel>().showImageDialog.value =
+                          false;
                     }
                   : null,
               child: Text(

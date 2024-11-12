@@ -23,6 +23,7 @@ class IntroWelcomeView extends GetView<IntroWelcomeViewmodel> {
           // PageView positioned in the full screen
           Positioned.fill(
             child: PageView.builder(
+              onPageChanged: controller.onPageChanged,
               controller: controller.pageController,
               itemCount: controller.introPages.length,
               itemBuilder: (context, index) {
@@ -50,6 +51,7 @@ class IntroWelcomeView extends GetView<IntroWelcomeViewmodel> {
                       DataRepository().saveData(AddressKeyStorage.checkReadWelcomeView, 'true');
                       Get.offAll(const IntroMainView());
                     } else {
+                      controller.nextPage();
                     }
                   },
                 ),

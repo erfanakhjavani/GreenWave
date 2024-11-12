@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:GreenWave/Core/Constants/app_colors.dart';
+import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
@@ -75,7 +76,7 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
               ),
               SizedBox(
                 width: 50,
-                height: 50,
+                height: 60,
                 child: IconButton(
                     onPressed: () async {
                       await controller.sendImagesToServer();
@@ -91,9 +92,9 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
                       duration: const Duration(milliseconds: 500),
                       firstChild:
                       controller.state.value.status == Status.COMPLETED
-                          ? const Icon(Icons.check_circle_rounded, size: 40)
+                          ? const Icon(Icons.check_circle_rounded, size: 35)
                           : const Icon(FontAwesomeIcons.arrowUpFromBracket,size: 30,),
-                      secondChild: LoadingAnimationWidget.twoRotatingArc(color: AppColors.secondary,
+                      secondChild: LoadingAnimationWidget.bouncingBall(color: AppColors.secondary,
                           size: 20),
                       firstCurve: Curves.linearToEaseOut,
                       secondCurve: Curves.linearToEaseOut,
@@ -124,7 +125,7 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
               ),
               onPressed: controller.state.value.status == Status.COMPLETED
                   ? () {
-                      Get.offAll(const RegisterSwitchMobileView());
+                    Get.offAllNamed(AppRoute.mainWrapperBottomNavView);
                     }
                   : null,
               child: Text(

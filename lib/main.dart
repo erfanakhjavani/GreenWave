@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 import 'Core/Bindings/bindings.dart';
@@ -34,7 +33,7 @@ class Main extends StatelessWidget {
       themeMode: Get.find<ThemeService>().theme,
       //* Use the theme defined by ThemeService
        initialRoute:
-           AppRoute.introSplashView, //* Set the initial route (splash screen)
+           AppRoute.mainWrapperBottomNavView, //* Set the initial route (splash screen)
     );
   }
 }

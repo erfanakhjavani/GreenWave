@@ -179,11 +179,15 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
       padding: const EdgeInsets.only(left: 6.0, right: 4.0, top: 10, bottom: 8),
       child: GestureDetector(
         onTap: () {
+          controller.toggleAvatarClicked(index);
         },
         child: Obx(() {
+          Color borderColor = controller.avatarBorderColor(index);
+          bool isLoading = controller.isLoading[index];
           return Stack(
             alignment: Alignment.center,
             children: [
+              if (isLoading)
                 SpinKitRing(
                   color: AppColors.monopolyColor1,
                   size: size == 25 ? 60 : 110,
@@ -194,6 +198,7 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
+                    color: isLoading ? Colors.transparent : borderColor,
                     width: 2.0,
                   ),
                 ),

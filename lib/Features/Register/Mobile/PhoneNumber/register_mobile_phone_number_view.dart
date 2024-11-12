@@ -69,10 +69,10 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                     children: [
                       Obx(() => Checkbox(
                         activeColor: AppColors.monopolyColor1,
-                        value: true,
+                        value: controller.rememberMe.value,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
-                        onChanged: (value) {}
+                        onChanged: (value) => controller.toggleRememberMe(),
                       )),
                       const Text('Remember me on device'),
                     ],
@@ -84,7 +84,11 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                         height: 40,
                         child: Obx(() => ElevatedButton(
                             onPressed:  () async{
-
+                              await controller.postNumber(number.text);
+                              if(controller.state.value.status == Status.COMPLETED){
+                               await Get.find<RegisterMobileRegisterPhoneViewmodel>().checkStatus(number.text);
+                                controller.changePage();
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
@@ -92,15 +96,21 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                               backgroundColor:
                               const Color.fromRGBO(42, 101, 51, 1.0),
                             ),
-                            child:  Text(
+                            child: AnimatedCrossFade(
+                              firstChild:  Text(
                                 'Next',
                                 style: textTheme.bodyMedium!.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-
-                        )
+                              secondChild: LoadingAnimationWidget.dotsTriangle(
+                                  color: AppColors.secondary, size: 20),
+                              crossFadeState: controller.state.value.status == Status.LOADING
+                                  ? CrossFadeState.showSecond
+                                  : CrossFadeState.showFirst,
+                              duration: const Duration(milliseconds: 300),
+                            ),)
                         ),),
                   ),
                   const SizedBox(height: 25.0),
@@ -118,7 +128,7 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
 
                         Center(
                           child: ElevatedButton.icon(
-                          onPressed: (){},
+                          onPressed: controller.signInWithTelegram,
                           icon: const Icon(
                             Icons.telegram,
                             size: 40,

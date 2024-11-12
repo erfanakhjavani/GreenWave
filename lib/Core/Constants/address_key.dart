@@ -1,5 +1,5 @@
 class AddressKey {
-  static const String globalDomain = 'http://10.10.10.159:3000';
+  static const String globalDomain = 'http://10.10.10.183:3000';
   static const String checkConnect = '$globalDomain/greeter';
   static const String postPlatform = '$globalDomain/RegisterApps/registerDevice';
   static const String uploadImage = '$globalDomain/Step1/setImage';
@@ -11,6 +11,7 @@ class AddressKey {
 class AddressKeyStorage{
   static const String codeJWT = 'codeJWT';
   static const String codeRD = 'codeRD';
+  static const String stepNum = 'stepNum';
   static const String checkReadWelcomeView = 'checkReadWelcomeView';
   static const String isPassword = 'true';
 }

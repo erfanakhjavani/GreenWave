@@ -99,11 +99,8 @@ AbstractRegisterSwitchView<WrapperDialogViewmodel> {
 
   @override
   RxBool change() {
-    // TODO: implement change
-    throw UnimplementedError();
+    return controller.showImageDialog;
   }
-
-
 }
 
 

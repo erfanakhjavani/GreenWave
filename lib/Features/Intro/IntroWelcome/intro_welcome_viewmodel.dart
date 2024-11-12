@@ -24,7 +24,18 @@ class IntroWelcomeViewmodel extends GetxController {
 
   PageController pageController = PageController();
 
+  void onPageChanged(int index) {
+    if (index == introPages.length - 1) {
+      showGetStart.value = true;
+    } else {
+      showGetStart.value = false;
+    }
+  }
 
-
-
+  void nextPage() {
+    if (pageController.page!.toInt() < introPages.length - 1) {
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
+    }
+  }
 }

@@ -1,188 +1,189 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:fl_chart/fl_chart.dart';
 
-import '../../../Core/Gen/assets.gen.dart';
-import 'main_wrapper_wallet_model.dart';
 import 'main_wrapper_wallet_viewmodel.dart';
 
 class MainWrapperWalletView extends StatelessWidget {
-  MainWrapperWalletView({super.key});
+  final BalanceViewModel controller = Get.put(BalanceViewModel());
 
-  final MainWrapperWalletViewmodel viewModel =
-      Get.put(MainWrapperWalletViewmodel());
-
-  final List<MainWrapperWalletModel> tokens = [
-    MainWrapperWalletModel(
-      name: 'Bitcoin',
-      symbol: 'BTC',
-      amount: '19.2371',
-      price: '\$73.69',
-      change: '+2%',
-      iconPath: Assets.png.btc.path,
-    ),
-    MainWrapperWalletModel(
-      name: 'USD Tether',
-      symbol: 'USDT',
-      amount: '92.3',
-      price: '\$1.00',
-      change: '+4.3%',
-      iconPath: Assets.png.usat.path,
-    ),
-    MainWrapperWalletModel(
-      name: 'Synthetix',
-      symbol: 'SNX',
-      amount: '42.74',
-      price: '\$20.83',
-      change: '-1.3%',
-      iconPath: Assets.png.snx.path,
-    ),
-  ];
+   MainWrapperWalletView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text(
-          'Wallet',
-        ),
-        leading: null,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage(Assets.png.logo.path),
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.green.shade900, Colors.green.shade300],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              '9.2362 ETH',
-              style: TextStyle(fontSize: 36),
-            ),
-            const Text(
-              '\$16,858.15',
-              style: TextStyle(fontSize: 16),
-            ),
-            const Text(
-              '+0.7%',
-              style: TextStyle(color: Colors.green, fontSize: 16),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.paperPlane,
-                      color: Colors.white),
-                  label: const Text(
-                    'Send',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[800],
-                    shape: const StadiumBorder(),
-                  ),
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.download,
-                      color: Colors.white),
-                  label: const Text(
-                    'Receive',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[800],
-                    shape: const StadiumBorder(),
-                  ),
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.shoppingCart,
-                      color: Colors.white),
-                  label: const Text(
-                    'Buy',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[800],
-                    shape: const StadiumBorder(),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Obx(() => Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        viewModel.selectedTab.value = 'Token';
-                      },
-                      child: Text(
-                        'Token',
-                        style: TextStyle(
-                          color: viewModel.selectedTab.value == 'Token'
-                              ? AppColors.monopolyColor1
-                              : AppColors.primary,
-                          fontWeight: FontWeight.bold,
+          child: Center(
+            child: Obx(() {
+              return Stack(
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Card(
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Total Balance',
+                                style: TextStyle(fontSize: 18, color: Colors.grey.shade700),
+                              ),
+                              const SizedBox(height: 8),
+                              AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 500),
+                                transitionBuilder: (child, animation) =>
+                                    ScaleTransition(scale: animation, child: child),
+                                child: Text(
+                                  '\$${controller.balanceData.value.totalBalance.toStringAsFixed(2)}',
+                                  key: ValueKey(controller.balanceData.value.totalBalance),
+                                  style: TextStyle(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold,
+                                    foreground: Paint()
+                                      ..shader = LinearGradient(
+                                        colors: <Color>[
+                                          AppColors.monopolyColor2,
+                                          AppColors.monopolyColor1
+                                        ],
+                                      ).createShader(
+                                        const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
+                                      ),
+                                    shadows: [
+                                      Shadow(
+                                        blurRadius: 10.0,
+                                        color: Colors.black.withOpacity(0.2),
+                                        offset: const Offset(2, 4),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              SizedBox(
+                                height: 200,
+                                child: LineChart(
+                                  LineChartData(
+                                    gridData: const FlGridData(show: false),
+                                    titlesData: const FlTitlesData(show: false),
+                                    borderData: FlBorderData(show: false),
+                                    lineBarsData: [
+                                      LineChartBarData(
+                                        spots: controller.balanceData.value.chartData
+                                            .asMap()
+                                            .entries
+                                            .map((e) => FlSpot(e.key.toDouble(), e.value))
+                                            .toList(),
+                                        isCurved: true,
+                                        color: Colors.blueGrey,
+                                        barWidth: 4,
+                                        belowBarData: BarAreaData(
+                                          show: true,
+                                          color: Colors.green.withOpacity(0.3),
+                                        ),
+                                        dotData: const FlDotData(show: true),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        viewModel.selectedTab.value = 'Collectibles';
-                      },
-                      child: Text(
-                        'Collectibles',
-                        style: TextStyle(
-                          color: viewModel.selectedTab.value == 'Token'
-                              ? AppColors.primary
-                              : AppColors.monopolyColor1,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          _buildActionIcon(Icons.arrow_upward, "Send",),
+                          _buildActionIcon(Icons.arrow_downward, "Receive"),
+                          _buildActionIcon(Icons.attach_money_rounded, "Buy"),
+                        ],
                       ),
-                    ),
-                  ],
-                )),
-            Expanded(
-              child: ListView.builder(
-                itemCount: tokens.length,
-                itemBuilder: (context, index) {
-                  final token = tokens[index];
-                  return ListTile(
-                    leading: Image.asset(token.iconPath, width: 40),
-                    title: Text(token.name),
-                    subtitle: Text(token.price + ' • ' + token.change,
-                        style: TextStyle(
-                            color: token.change.startsWith('+')
-                                ? Colors.green
-                                : Colors.red)),
-                    trailing: Text(token.amount + ' ' + token.symbol,
-                        style: const TextStyle(fontSize: 12)),
-                  );
-                },
-              ),
-            ),
-            Center(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text('+ Add Tokens',
-                    style: TextStyle(color: Colors.blue)),
-              ),
-            ),
-          ],
+                    ],
+                  ),
+                  DraggableScrollableSheet(
+                    initialChildSize: 0.45,
+                    minChildSize: 0.45,
+                    maxChildSize: 1,
+                    builder: (context, scrollController) {
+                      return Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 4,
+                                width: 40,
+                                color: Colors.grey.shade400,
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                controller: scrollController,
+                                itemCount: controller.transactions.length,
+                                itemBuilder: (context, index) {
+                                  final transaction = controller.transactions[index];
+                                  return ListTile(
+                                    title: Text(transaction.name),
+                                    subtitle: Text(transaction.date),
+                                    trailing: Text(
+                                      "\$${transaction.amount}",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: transaction.isIncome ? Colors.green : Colors.red,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              );
+            }),
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildActionIcon(IconData icon, String label) {
+    return Column(
+      children: [
+        Icon(icon, color: Colors.white, size: 32,opticalSize: 12,),
+        const SizedBox(height: 4),
+        Text(label, style: const TextStyle(color: Colors.white)),
+      ],
     );
   }
 }

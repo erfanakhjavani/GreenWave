@@ -32,6 +32,7 @@ class RegisterMobileRegisterPhoneView extends GetView<RegisterMobileRegisterPhon
                 leading: Get.find<RegisterSwitchViewmodel>().position.value == true
                     ? IconButton(
                     onPressed: () {
+                     controller.backPage();
                     },
                     icon: const Icon(
                         Icons.arrow_back_ios_new_rounded))
@@ -48,7 +49,9 @@ class RegisterMobileRegisterPhoneView extends GetView<RegisterMobileRegisterPhon
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
                       child: Text(
-                             'send your message!',
+                        true
+                            ? 'Welcome back!'
+                            : 'send your message!',
                         style: textTheme.headlineMedium,
                       ),
                     ),
@@ -57,15 +60,18 @@ class RegisterMobileRegisterPhoneView extends GetView<RegisterMobileRegisterPhon
                       padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 30.0),
                       child:
                       Text(
-                            'We send code for verification in bot'
+                          true ?
+                              'Please enter your Password'
+                            : 'We send code for verification in bot'
                       ),
                     ),
                     const SizedBox(height: 10.0),
                     SizedBox(
                       width: width * 1.5,
                       height: 45,
-                      child:
-                              _TextFieldPassword(controller: controller)
+                      child:  true
+                            ?  _TextFieldPassword(controller: controller)
+                            : _TextFieldCode(controller: controller)
                       ),
 
       
@@ -75,20 +81,40 @@ class RegisterMobileRegisterPhoneView extends GetView<RegisterMobileRegisterPhon
                         width: width * 1.5,
                         height: 40,
                         child: Obx(() => ElevatedButton(
-                          onPressed:  () async{},
+                          onPressed:  () async{
+                             await controller.postPassword(controller.number.value);
+                            if(controller.state.value.status == Status.COMPLETED){
+                              Get.toNamed(AppRoute.mainWrapperBottomNavView);
+                              Future.delayed(
+                                  const Duration(milliseconds: 300),
+                                      () {
+                                    if (context.mounted) {
+                                      showWrapperDialog(context);
+                                    }
+                                  });
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             backgroundColor:
                             const Color.fromRGBO(42, 101, 51, 1.0),
                           ),
-                          child: Text(
+                          child: AnimatedCrossFade(
+                            firstChild:  Text(
                               'Next',
                               style: textTheme.bodyMedium!.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
-                            ),)
+                            ),
+                            secondChild: LoadingAnimationWidget.dotsTriangle(
+                                color: AppColors.secondary, size: 20),
+                            crossFadeState: controller.state.value.status == Status.LOADING
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst,
+                            duration: const Duration(milliseconds: 300),
+                          ),)
                         ),),
                     ),
                   ],
@@ -125,7 +151,7 @@ class _TextFieldCode extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)),
         hintText: 'Enter Code',
       ),
-      onChanged: (value){}
+      onChanged: (value) => controller.email.value = value,
     );
   }
 }
@@ -152,11 +178,16 @@ class _TextFieldPassword extends StatelessWidget {
           hintText: 'Password',
           suffixIcon: IconButton(
               onPressed: () {
+                controller.toggleObscured();
               },
-              icon: const Icon(
-                     Icons.visibility_outlined
+              icon: Icon(
+                controller.isObscured.value
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined,
+                color: Colors.grey,
               ))),
-
+      obscureText: controller.isObscured.value,
+      onChanged: (value) => controller.password.value = value,
     ));
   }
 }
