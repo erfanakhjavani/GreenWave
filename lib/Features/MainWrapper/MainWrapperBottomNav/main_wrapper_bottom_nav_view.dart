@@ -30,13 +30,9 @@ class MainWrapperBottomNavView extends GetView<MainWrapperBottomNavViewmodel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() {
-        return items[controller.selectedIndex.value].pageRoute;
-      }),
+
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
-          currentIndex: controller.selectedIndex.value,
-          onTap: controller.onTabSelected,
           elevation: 0,
           selectedItemColor: AppColors.monopolyColor1,
           items: items.map((item) {

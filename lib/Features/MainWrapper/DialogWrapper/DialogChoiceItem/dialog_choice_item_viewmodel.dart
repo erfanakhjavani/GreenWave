@@ -27,13 +27,6 @@ class DialogChoiceItemViewmodel extends GetxController {
     super.dispose();
   }
 
-  void selectContainer(int code) {
-    step.value = code;
-  }
-
-  Color getContainerColor(int code) {
-    return step.value == code ? Colors.green : Colors.blue;
-  }
 
   Future<void> getChoicesStep() async {
     state.value = ResponseModel.loading("Getting choices...");

@@ -39,14 +39,6 @@ class WrapperDialogView extends  GetView<WrapperDialogViewmodel>{
                           AppBar(
                             elevation: 0,
                             toolbarHeight: 30,
-                            leading: controller.showImageDialog.value == false
-                                ? IconButton(
-                                    onPressed: () {
-                                      controller.showImageDialog.value = true;
-                                    },
-                                    icon: const Icon(
-                                        Icons.arrow_back_ios_new_rounded))
-                                : null,
                             automaticallyImplyLeading: false,
                           ),
                           Center(

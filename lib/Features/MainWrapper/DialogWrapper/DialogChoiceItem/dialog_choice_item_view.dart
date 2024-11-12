@@ -43,15 +43,13 @@ class DialogChoiceItemView extends GetView<DialogChoiceItemViewmodel> {
                         child: GestureDetector(
                           onTap: () {
                             controller.isSelectedContainer.value = true;
-                            controller.selectContainer(containerCode);
                           },
                           child: Obx(() =>
                               Container(
                                 width: width,
                                 height: 60,
                                 decoration: BoxDecoration(
-                                  color: controller.getContainerColor(
-                                      containerCode),
+
                                   borderRadius: BorderRadius.circular(16.0),
                                 ),
                                 child: Padding(
@@ -99,9 +97,7 @@ class DialogChoiceItemView extends GetView<DialogChoiceItemViewmodel> {
               ),
               onPressed: controller.isSelectedContainer.value
                   ? () {
-                      DataRepository().saveData('stepNum', controller.step.value);
-                      Get.find<WrapperDialogViewmodel>().showImageDialog.value =
-                          false;
+
                     }
                   : null,
               child: Text(

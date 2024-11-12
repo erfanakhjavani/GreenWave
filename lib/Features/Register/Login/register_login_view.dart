@@ -77,7 +77,6 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                             hintText: 'Password',
                             suffixIcon: IconButton(
                                 onPressed: () {
-                                  controller.toggleObscured();
                                 },
                                 icon: Icon(
                                   controller.isObscured.value
@@ -105,7 +104,7 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                             value: controller.rememberMe.value,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
-                            onChanged: (value) => controller.toggleRememberMe(),
+                            onChanged: (value) {},
                           )),
                       const Text('Remember me on device'),
                     ],
@@ -151,7 +150,7 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                     children: [
                       width > 800
                           ? ElevatedButton.icon(
-                              onPressed: controller.signInWithGoogle,
+                              onPressed: (){},
                               icon: Assets.png.google.image(width: 20),
                               label: const Text('Sign in with Google'),
                               style: ElevatedButton.styleFrom(
@@ -159,7 +158,7 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                                   backgroundColor: Colors.white),
                             )
                           : IconButton(
-                              onPressed: controller.signInWithGoogle,
+                              onPressed: (){},
                               icon: Assets.png.google.image(width: 20),
                               style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.black,
@@ -168,7 +167,7 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                       const SizedBox(width: 5.0),
                       width > 800
                           ? ElevatedButton.icon(
-                              onPressed: controller.signInWithApple,
+                              onPressed: (){},
                               icon: Icon(
                                 Icons.apple,
                                 size: 35,
@@ -182,7 +181,7 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                                   backgroundColor: AppColors.secondary),
                             )
                           : IconButton(
-                              onPressed: controller.signInWithApple,
+                              onPressed: (){},
                               icon: Icon(
                                 Icons.apple,
                                 size: 30,
@@ -202,7 +201,7 @@ class RegisterLoginView extends GetView<RegisterLoginViewmodel> {
                         style: textTheme.bodyMedium,
                       ),
                       TextButton(
-                          onPressed: controller.signUp,
+                          onPressed: (){},
                           child: Text(
                             'Sign Up',
                             style: textTheme.bodySmall!
