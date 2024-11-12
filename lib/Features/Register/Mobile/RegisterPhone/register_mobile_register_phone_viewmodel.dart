@@ -1,6 +1,5 @@
 import 'package:GreenWave/Core/Constants/address_key.dart';
 import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../../../../Core/Services/response_model.dart';
@@ -31,7 +30,6 @@ class RegisterMobileRegisterPhoneViewmodel extends GetxController {
     var response = await _checkNumber.enterPassword(postPassword);
 
 
-      print(response.data);
 
     if (response.status == Status.COMPLETED) {
       state.value = response;
@@ -39,6 +37,7 @@ class RegisterMobileRegisterPhoneViewmodel extends GetxController {
       state.value = response;
       return showCustomSnackBar('error', state.value.message);
     }
+
   }
 
 

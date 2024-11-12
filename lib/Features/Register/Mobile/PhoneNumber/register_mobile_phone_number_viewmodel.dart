@@ -45,9 +45,9 @@ class RegisterMobileViewmodel extends GetxController {
     if (response.status == Status.COMPLETED) {
       var isPassword = response.data['data']['isPassword'];
       if (isPassword == true) {
-        DataRepository().saveData(AddressKeyStorage.isPassword, 'true');
+        DataRepository().saveData(AddressKeyStorage.isPassword, true);
       } else {
-        DataRepository().saveData(AddressKeyStorage.isPassword, 'false');
+        DataRepository().saveData(AddressKeyStorage.isPassword, false);
       }
       state.value = response;
     } else {
