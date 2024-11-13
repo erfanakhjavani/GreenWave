@@ -33,7 +33,7 @@ class Main extends StatelessWidget {
       themeMode: Get.find<ThemeService>().theme,
       //* Use the theme defined by ThemeService
        initialRoute:
-           AppRoute.mainWrapperBottomNavView, //* Set the initial route (splash screen)
+           AppRoute.introSplashView, //* Set the initial route (splash screen)
     );
   }
 }

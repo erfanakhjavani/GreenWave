@@ -178,7 +178,7 @@ class MainWrapperWalletView extends StatelessWidget {
   }
 
   Widget _buildActionIcon(IconData icon, String label) {
-    return Column(
+    return Wrap(
       children: [
         Icon(icon, color: Colors.white, size: 32,opticalSize: 12,),
         const SizedBox(height: 4),
