@@ -1,6 +1,5 @@
 import 'package:GreenWave/Core/Constants/address_key.dart';
 import 'package:GreenWave/Core/Constants/app_route.dart';
-import 'package:GreenWave/Features/Intro/IntroSplash/widgets/splash_description_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -29,12 +28,6 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
               width: width,
               height: height,
               decoration: BoxDecoration(
-                // gradient: LinearGradient(
-                //   colors: [AppColors.monopolyColor1, AppColors.monopolyColor2],
-                //   stops: const [0.6, 1.0],
-                //   begin: Alignment.topCenter,
-                //   end: Alignment.bottomCenter,
-                // ),
                 color: AppColors.monopolyColor2
               ),
               child: Column(
@@ -54,13 +47,13 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                         var codeJWT = await DataRepository().loadData(AddressKeyStorage.codeJWT);
                         var checkWP = await DataRepository().loadData(AddressKeyStorage.checkReadWelcomeView);
                         if (codeJWT != null){
-                          Get.toNamed(AppRoute.mainWrapperBottomNavView); //* Navigate to Welcome screen if data is loaded
+                          Get.offAllNamed(AppRoute.mainWrapperBottomNavView); //* Navigate to Welcome screen if data is loaded
                         }
                         else if (checkWP != null){
-                          Get.toNamed(AppRoute.introMainView); //* Navigate to Welcome screen if data is not loaded
+                          Get.offAllNamed(AppRoute.introMainView); //* Navigate to Welcome screen if data is not loaded
                         }
                         else {
-                          Get.toNamed(AppRoute.introWelcomeView); //* Navigate to Welcome screen if data is not loaded
+                          Get.offAllNamed(AppRoute.introWelcomeView); //* Navigate to Welcome screen if data is not loaded
                         }
                       });
                     } else if (controller.state.value.status == Status.ERROR) {

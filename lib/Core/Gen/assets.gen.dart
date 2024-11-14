@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsJpgGen {
   const $AssetsJpgGen();
 
+  /// File path: assets/jpg/erfan.jpg
+  AssetGenImage get erfan => const AssetGenImage('assets/jpg/erfan.jpg');
+
   /// File path: assets/jpg/intro1.jpg
   AssetGenImage get intro1 => const AssetGenImage('assets/jpg/intro1.jpg');
 
@@ -22,7 +25,7 @@ class $AssetsJpgGen {
   AssetGenImage get intro3 => const AssetGenImage('assets/jpg/intro3.jpg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [intro1, intro2, intro3];
+  List<AssetGenImage> get values => [erfan, intro1, intro2, intro3];
 }
 
 class $AssetsJsonGen {

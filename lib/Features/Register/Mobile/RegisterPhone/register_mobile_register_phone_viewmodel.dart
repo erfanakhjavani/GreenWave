@@ -10,10 +10,13 @@ import '../Repository/mobile_repository.dart';
 class RegisterMobileRegisterPhoneViewmodel extends GetxController {
   var email = ''.obs;
   var password = ''.obs;
-  var isObscured = false.obs;
+  var isObscured = true.obs;
   final MobileRepository _checkNumber = MobileRepository();
   Rx<ResponseModel> state = ResponseModel.error('Nothing...').obs;
   var number = ''.obs;
+
+
+
 
 
   Future<void> postPassword(String num) async {

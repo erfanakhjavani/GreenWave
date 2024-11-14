@@ -1,6 +1,6 @@
 import 'package:GreenWave/Core/Constants/address_key.dart';
+import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
-import 'package:GreenWave/Features/Intro/IntroMain/intro_main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -49,7 +49,7 @@ class IntroWelcomeView extends GetView<IntroWelcomeViewmodel> {
                   onTap: () {
                     if (controller.showGetStart.value) {
                       DataRepository().saveData(AddressKeyStorage.checkReadWelcomeView, 'true');
-                      Get.offAll(const IntroMainView());
+                      Get.offAllNamed(AppRoute.introMainView);
                     } else {
                       controller.nextPage();
                     }

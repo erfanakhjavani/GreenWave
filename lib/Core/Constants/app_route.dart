@@ -13,31 +13,55 @@ import '../../Features/Register/SignUp/register_signup_view.dart';
 import '../Widgets/animate_switch.dart';
 
 class AppRoute {
+
+
+  //! intro
   static const String introSplashView = '/introSplash';
   static const String introMainView = '/introMain';
   static const String introWelcomeView = '/introWelcome';
+
+
+  //! main wrapper
   static const String switcherDialog = '/switcherDialog';
-  static const String registerSwitchMobileView = '/registerSwitchMobile';
-  static const String registerSwitchView = '/registerSwitch';
   static const String mainWrapperBottomNavView = '/mainWrapperBottomNav';
   static const String mainWrapperHomeView = '/mainWrapperHome';
   static const String mainWrapperQuestView = '/mainWrapperQuest';
   static const String mainWrapperWalletView = '/mainWrapperWallet';
+  static const String mainWrapperProfileView = '/mainWrapperProfile';
+
+
+
+  //! register
+  static const String registerSwitchMobileView = '/registerSwitchMobile';
+  static const String registerSwitchView = '/registerSwitch';
   static const String registerMobileRegisterPhoneView = '/registerMobileRegisterPhone';
   static const String registerSignupView = '/registerSignup';
   static const String registerLoginView = '/registerLogin';
 
   static List<GetPage> pages = [
+
+
+    //! intro
     GetPage(name: introSplashView, page: () => const IntroSplashView()),
     GetPage(name: introMainView, page: () => const IntroMainView()),
     GetPage(name: introWelcomeView, page: () => const IntroWelcomeView()),
+
+
+
+    //! main wrapper
     GetPage(name: switcherDialog, page: () => const SwitcherDialog()),
-    GetPage(name: registerSwitchMobileView, page: () => const RegisterSwitchMobileView()),
-    GetPage(name: registerSwitchView, page: () => const RegisterSwitchView()),
     GetPage(name: mainWrapperBottomNavView, page: () => MainWrapperBottomNavView()),
     GetPage(name: mainWrapperHomeView, page: () => const MainWrapperHomeView()),
     GetPage(name: mainWrapperQuestView, page: () => const MainWrapperQuestView()),
     GetPage(name: mainWrapperWalletView, page: () => MainWrapperWalletView()),
+    GetPage(name: mainWrapperWalletView, page: () => MainWrapperWalletView()),
+
+
+
+
+    //! register
+    GetPage(name: registerSwitchMobileView, page: () => const RegisterSwitchMobileView()),
+    GetPage(name: registerSwitchView, page: () => const RegisterSwitchView()),
     GetPage(name: registerMobileRegisterPhoneView, page: () =>  RegisterMobileRegisterPhoneView()),
     GetPage(name: registerSignupView, page: () => const RegisterSignupView()),
     GetPage(name: registerLoginView, page: () => const RegisterLoginView()),

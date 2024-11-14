@@ -1,7 +1,8 @@
-import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
 import 'package:GreenWave/Core/Gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '../../../Core/Constants/app_colors.dart';
@@ -17,6 +18,13 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
       appBar: AppBar(
         leading: null,
         backgroundColor: Colors.white,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 8.0,top: 10),
+            child: IconButton(onPressed: (){}, icon: FaIcon(FontAwesomeIcons.message,color: AppColors.monopolyColor2,)),
+          )
+        ],
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -26,7 +34,7 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
                 Text(
                   'GREEN',
                   style: TextStyle(
-                    color: AppColors.monopolyColor1,
+                    color: AppColors.monopolyColor2,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -34,193 +42,230 @@ class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
                 Text(
                   'Wave',
                   style: TextStyle(
-                    color: AppColors.monopolyColor1,
+                    color: AppColors.monopolyColor2,
                     fontSize: 19,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
               ],
             ),
-            Row(
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 10),
+            SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: _buildStoryRow()),
+            const SizedBox(height: 10),
+            _buildPostsList(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStoryRow() {
+    int storyCount = 4;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          _buildUserStory(
+            imagePath: Assets.jpg.erfan.path,
+            index: 0,
+            isCurrentUser: true,
+          ),
+          for (int i = 1; i < storyCount; i++)
+            _buildUserStory(
+              imagePath: 'assets/jpg/intro$i.jpg',
+              index: i,
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUserStory({
+    required String imagePath,
+    required int index,
+    bool isCurrentUser = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      child: GestureDetector(
+        onTap: () {
+        },
+        child: Column(
+          children: [
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.bottomRight,
               children: [
-                IconButton(
-                  icon: Icon(Icons.notifications,
-                      color: AppColors.monopolyColor1),
-                  onPressed: () {
-                    DataRepository().deleteData('codeRD');
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.email, color: AppColors.monopolyColor1),
-                  onPressed: () {
-                  },
-                ),
+                _buildAvatar(imagePath: imagePath,
+                    avatarSize: 30,
+                    index: index, size: 70),
+                if (isCurrentUser)
+                  Positioned(
+                    bottom: -10,
+                    left: 23,
+                    child: Container(
+                      decoration:  BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.monopolyColor2,
+                        border: Border.all(width: 2,color: Colors.white)
+                      ),
+                      child: const Icon(Icons.add, color: Colors.white, size: 20),
+                    ),
+                  ),
               ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              isCurrentUser ? 'your think' : 'User $index',
+              style: TextStyle(color: Colors.grey[700],
+              fontSize: 15
+              ),
             ),
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  _buildAvatar(
-                      imagePath: Assets.png.logo.path, index: 0, size: 50),
-                  const SizedBox(width: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Hi, Saeed',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.monopolyColor1,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'LEVEL 4',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: AppColors.monopolyColor1,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Stack(
-                        children: [
-                          Container(
-                            width: 150,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          Container(
-                            width: 60, // میزان پیشرفت
-                            height: 10,
-                            decoration: BoxDecoration(
-                              color: AppColors.monopolyColor1,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        '10/100',
-                        style: TextStyle(color: AppColors.monopolyColor1),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Image.asset(
-                    Assets.png.logo.path,
-                    width: 50,
-                    height: 50,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _buildAvatar(
-                      imagePath: Assets.png.logo.path, index: 1, size: 25),
-                  _buildAvatar(
-                      imagePath: Assets.png.logo.path, index: 2, size: 25),
-                  _buildAvatar(
-                      imagePath: Assets.png.logo.path, index: 3, size: 25),
-                  _buildAvatar(
-                      imagePath: Assets.png.logo.path, index: 4, size: 25),
-                  const SizedBox(width: 10),
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.grey[300],
-                    child: Icon(Icons.add, color: AppColors.monopolyColor1),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search People...',
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  prefixIcon:
-                      Icon(Icons.search, color: AppColors.monopolyColor1),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              _buildGreenBox(),
-              const SizedBox(height: 10),
-              _buildGreenBox(),
-              const SizedBox(height: 40),
+    );
+  }
 
-            ],
+
+  Widget _buildPostsList() {
+    return
+        ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return _buildPostItem(index);
+          },
+        );
+  }
+
+  Widget _buildPostItem(int index) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical:.0,horizontal: .0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      elevation: 5,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildRowAvatarPost(index: index),
+          const Gap(10),
+          Image.asset(
+            Assets.jpg.intro1.path,
+            fit: BoxFit.cover,
+            height: 200,
+            width: double.infinity,
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(()=>Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        controller.isPostLiked[index]
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: const Color.fromRGBO(255, 215, 0, 1.0),
+                      ),
+                      onPressed: () => controller.toggleLike(index),
+                    ),
+                    Text(controller.postLikes[index].toString()),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      icon: Icon(
+                        controller.isPostDisliked[index]
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: const Color.fromRGBO(87, 18, 18, 1.0),
+                      ),
+                      onPressed: () => controller.toggleDislike(index),
+                    ),
+                    Text(controller.postDislikes[index].toString()),
+                  ],
+                ),),
+                IconButton(
+                  icon: Icon(Icons.share, color: AppColors.monopolyColor1),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
+    );
+  }
+
+
+  Widget _buildRowAvatarPost({required int index}){
+    return  Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: _buildAvatar(
+               index: 0, imagePath: Assets.jpg.erfan.path,
+                avatarSize: 20,
+                size: 50,
+            ),
+          ),
+        const Text('erfanakhjavani')
+      ],
     );
   }
 
   Widget _buildAvatar(
-      {required String imagePath, required int index, required double size}) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 6.0, right: 4.0, top: 10, bottom: 8),
-      child: GestureDetector(
-        onTap: () {
-          controller.toggleAvatarClicked(index);
-        },
-        child: Obx(() {
-          Color borderColor = controller.avatarBorderColor(index);
-          bool isLoading = controller.isLoading[index];
-          return Stack(
-            alignment: Alignment.center,
-            children: [
-              if (isLoading)
-                SpinKitRing(
-                  color: AppColors.monopolyColor1,
-                  size: size == 25 ? 60 : 110,
-                  lineWidth: 2.0,
+      {required String imagePath,
+        required int index,
+        required double size,
+        required double avatarSize,
+      }) {
+    return GestureDetector(
+      onTap: () {
+        controller.toggleAvatarClicked(index);
+      },
+      child: Obx(() {
+        Color borderColor = controller.avatarBorderColor(index);
+        bool isLoading = controller.isLoading[index];
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            if (isLoading)
+              SpinKitRing(
+                color: AppColors.monopolyColor1,
+                size: size ,
+                lineWidth: 2.0,
+              ),
+            Container(
+              padding: const EdgeInsets.all(3.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isLoading ? Colors.transparent : borderColor,
+                  width: 2.0,
                 ),
-              Container(
-                padding: const EdgeInsets.all(3.0),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: isLoading ? Colors.transparent : borderColor,
-                    width: 2.0,
-                  ),
-                ),
-                child: CircleAvatar(
-                  radius: size,
-                  backgroundImage: AssetImage(imagePath),
-                ),
-              )
-            ],
-          );
-        }),
-      ),
-    );
-  }
-
-  Widget _buildGreenBox() {
-    return Container(
-      height: 100,
-      decoration: BoxDecoration(
-        color: AppColors.monopolyColor1,
-        borderRadius: BorderRadius.circular(20),
-      ),
+              ),
+              child: CircleAvatar(
+                radius: avatarSize,
+                backgroundImage: AssetImage(imagePath),
+              ),
+            )
+          ],
+        );
+      }),
     );
   }
 

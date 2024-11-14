@@ -14,6 +14,7 @@ class MainWrapperWalletView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -30,9 +31,14 @@ class MainWrapperWalletView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Card(
+                        margin: const EdgeInsets.all(0),
                         elevation: 8,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(16),
+                              bottomLeft: Radius.circular(16),
+
+                          ),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
@@ -117,7 +123,7 @@ class MainWrapperWalletView extends StatelessWidget {
                     ],
                   ),
                   DraggableScrollableSheet(
-                    initialChildSize: 0.45,
+                    initialChildSize: 0.46,
                     minChildSize: 0.45,
                     maxChildSize: 1,
                     builder: (context, scrollController) {
@@ -128,7 +134,7 @@ class MainWrapperWalletView extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black26,
-                              blurRadius: 10,
+                              blurRadius: 20,
                               spreadRadius: 2,
                             ),
                           ],
@@ -155,7 +161,8 @@ class MainWrapperWalletView extends StatelessWidget {
                                     trailing: Text(
                                       "\$${transaction.amount}",
                                       style: TextStyle(
-                                        fontSize: 14,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
                                         color: transaction.isIncome ? Colors.green : Colors.red,
                                       ),
                                     ),

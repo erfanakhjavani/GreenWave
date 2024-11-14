@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,8 +34,7 @@ class Main extends StatelessWidget {
       //* Define light theme
       themeMode: Get.find<ThemeService>().theme,
       //* Use the theme defined by ThemeService
-       initialRoute:
-           AppRoute.introSplashView, //* Set the initial route (splash screen)
+       initialRoute: AppRoute.mainWrapperBottomNavView, //* Set the initial route (splash screen)
     );
   }
 }

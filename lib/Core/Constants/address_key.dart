@@ -1,5 +1,5 @@
 class AddressKey {
-  static const String globalDomain = 'http://10.10.10.183:3000';
+  static const String globalDomain = 'https://app.yektap.com';
   static const String checkConnect = '$globalDomain/greeter';
   static const String postPlatform = '$globalDomain/RegisterApps/registerDevice';
   static const String uploadImage = '$globalDomain/Step1/setImage';

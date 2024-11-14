@@ -18,14 +18,10 @@ abstract class BaseRepository {
   Future<ResponseModel> postRequest(String url, Map<String, dynamic> data, {Options? options}) async {
     try {
       final response = await _dio.post(url, data: data, options: options);
-      if (response.statusCode == 200) {
         final dataJson = response.data as Map<String, dynamic>;
-        return ResponseModel.completed(dataJson);
-      } else {
-        return ResponseModel.error('Request failed with status: ${response.statusCode}');
-      }
+        return _parseResponse(response);
     } catch (e) {
-      return ResponseModel.error("Error occurred: $e");
+      return ResponseModel.error("Error in POST request: $e");
     }
   }
 

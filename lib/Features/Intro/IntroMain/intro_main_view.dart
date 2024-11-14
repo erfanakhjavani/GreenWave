@@ -1,6 +1,5 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Core/Constants/app_route.dart';
-import 'package:GreenWave/Features/MainWrapper/MainWrapperHome/main_wrapper_home_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,7 +8,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Services/response_model.dart';
-import '../../MainWrapper/DialogWrapper/wrapper_dialog_view.dart';
 import 'Widgets/bottom_wave_clipper.dart';
 import 'Widgets/delayed_widget.dart';
 import 'intro_main_viewmodel.dart';
