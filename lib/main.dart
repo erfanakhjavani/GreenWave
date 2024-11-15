@@ -29,7 +29,6 @@ class Main extends GetView<TelegramController> {
       //* Define light theme
 
 
-      getPages: AppRoute.pages,
       initialBinding: MyBindings(),
 
       home: const IntroSplashView(),
