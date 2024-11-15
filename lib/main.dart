@@ -2,6 +2,7 @@
 import 'dart:ui';
 
 import 'package:GreenWave/Core/Constants/app_route.dart';
+import 'package:GreenWave/Features/Intro/IntroSplash/intro_splash_view.dart';
 import 'package:GreenWave/telegram_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,7 @@ class Main extends GetView<TelegramController> {
       getPages: AppRoute.pages,
       initialBinding: MyBindings(),
 
+      home: const IntroSplashView(),
     );
   }
 }
