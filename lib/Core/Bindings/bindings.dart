@@ -20,36 +20,29 @@ import '../../Features/Register/SwitchController/register_switch_controller.dart
 class MyBindings extends Bindings {
   @override
   void dependencies() {
-
     Get.put(TelegramController());
 
     //! Intro
     Get.put(IntroSplashViewmodel());
-    Get.lazyPut(()=>IntroWelcomeViewmodel());
-    Get.lazyPut(()=> IntroMainViewmodel());
-
-
+    Get.put(IntroWelcomeViewmodel());
+    Get.lazyPut(() => IntroMainViewmodel());
 
     //! MainWrapper
-    Get.lazyPut(()=> WrapperDialogViewmodel());
-    Get.lazyPut(()=> DialogChoiceItemViewmodel(),);
-    Get.lazyPut(()=> DialogSendImageViewmodel());
-    Get.lazyPut(()=> MainWrapperBottomNavViewmodel());
-    Get.lazyPut(()=>MainWrapperHomeViewmodel());
-    Get.lazyPut(()=> MainWrapperProfileViewmodel());
-    Get.put(MainWrapperWalletViewmodel());
-
-
+    Get.lazyPut(() => WrapperDialogViewmodel());
+    Get.lazyPut(
+      () => DialogChoiceItemViewmodel(),
+    );
+    Get.lazyPut(() => DialogSendImageViewmodel());
+    Get.lazyPut(() => MainWrapperBottomNavViewmodel());
+    Get.lazyPut(() => MainWrapperHomeViewmodel());
+    Get.lazyPut(() => MainWrapperProfileViewmodel());
+    Get.lazyPut(() => MainWrapperWalletViewmodel());
 
     //! Register
-    Get.lazyPut(()=> RegisterLoginViewmodel());
-    Get.lazyPut(()=> RegisterSwitchViewmodel());
-    Get.lazyPut(()=> RegisterSignupViewmodel());
-    Get.lazyPut(()=> RegisterMobileViewmodel());
-    Get.lazyPut(()=> RegisterMobileRegisterPhoneViewmodel());
-
-
-
-
+    Get.lazyPut(() => RegisterLoginViewmodel());
+    Get.lazyPut(() => RegisterSwitchViewmodel());
+    Get.lazyPut(() => RegisterSignupViewmodel());
+    Get.lazyPut(() => RegisterMobileViewmodel());
+    Get.lazyPut(() => RegisterMobileRegisterPhoneViewmodel());
   }
 }
