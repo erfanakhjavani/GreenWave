@@ -34,7 +34,7 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 // Center content vertically
                 children: [
-                      FractionallySizedBox(
+                      Expanded(
                         child: Assets.png.logo.image(
                           fit: BoxFit.cover,
                         ),
@@ -85,12 +85,14 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                       );
                     } else if (controller.state.value.status ==
                         Status.LOADING) {
-                      return LoadingAnimationWidget.bouncingBall(
-                        color: Colors.white,
-                        size: width * 0.1,
+                      return Expanded(
+                        child: LoadingAnimationWidget.bouncingBall(
+                          color: Colors.white,
+                          size: width * 0.1,
+                        ),
                       );
                     }
-                    return const SizedBox.shrink();
+                    return Expanded(child: const SizedBox.shrink());
                   }),
                 ],
               ),

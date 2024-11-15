@@ -8,29 +8,16 @@ import '../../../Core/Data/Repositories/base_repository.dart';
 import '../IntroMain/intro_main_model.dart';
 
 class IntroRepository extends BaseRepository {
-  Future<ResponseModel> postPlatformData(int platformCode) async {
+  Future<ResponseModel> postPlatformData(dynamic platformCode) async {
     final data = {"platform": platformCode};
 
     final response = await postRequest(AddressKey.postPlatform, data)
         .timeout(const Duration(seconds: 10), onTimeout: () {
       return ResponseModel.error('TimeoutException...');
     });
-    if (response.status == Status.COMPLETED && response.data != null) {
-      var dataJson = response.data;
-      var dataResponse = IntroMainModel(
-        data: dataJson['data'],
-      );
-      var statusModel = ModelRepository(
-        message: dataJson['message'],
-        status: dataJson['statusCode'],
-      );
-      if (statusModel.status == 200) {
-        DataRepository().saveData(AddressKeyStorage.codeRD, dataResponse.data);
-        return ResponseModel.completed(dataResponse);
-      } else {
-        showCustomSnackBar('Error', statusModel.message);
-        return ResponseModel.error(statusModel.message);
-      }
+    if (response.status == Status.COMPLETED) {
+        DataRepository().saveData(AddressKeyStorage.codeRD, response.data);
+        return ResponseModel.completed(response.data);
     } else {
       showCustomSnackBar('Error', 'Failed to post platform data');
       return ResponseModel.error('Failed to post platform data');

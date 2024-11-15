@@ -8,8 +8,10 @@ import 'package:get/get.dart';
 import '../../../Core/Constants/app_colors.dart';
 import 'main_wrapper_home_viewmodel.dart';
 
-class MainWrapperHomeView extends GetView<MainWrapperHomeViewmodel> {
-  const MainWrapperHomeView({super.key});
+class MainWrapperHomeView extends StatelessWidget {
+   MainWrapperHomeView({super.key});
+
+ final MainWrapperHomeViewmodel controller = MainWrapperHomeViewmodel();
 
   @override
   Widget build(BuildContext context) {

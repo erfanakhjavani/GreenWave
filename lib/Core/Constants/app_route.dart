@@ -51,7 +51,7 @@ class AppRoute {
     //! main wrapper
     GetPage(name: switcherDialog, page: () => const SwitcherDialog()),
     GetPage(name: mainWrapperBottomNavView, page: () => MainWrapperBottomNavView()),
-    GetPage(name: mainWrapperHomeView, page: () => const MainWrapperHomeView()),
+    GetPage(name: mainWrapperHomeView, page: () =>  MainWrapperHomeView()),
     GetPage(name: mainWrapperQuestView, page: () => const MainWrapperQuestView()),
     GetPage(name: mainWrapperWalletView, page: () => MainWrapperWalletView()),
     GetPage(name: mainWrapperWalletView, page: () => MainWrapperWalletView()),

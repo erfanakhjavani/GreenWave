@@ -17,7 +17,7 @@ class MainWrapperBottomNavView extends GetView<MainWrapperBottomNavViewmodel> {
     MainWrapperBottomNavModel(
         title: 'Home',
         iconPath: FontAwesomeIcons.house,
-        pageRoute: const MainWrapperHomeView()),
+        pageRoute:  MainWrapperHomeView()),
     MainWrapperBottomNavModel(
         title: 'Quests',
         iconPath: FontAwesomeIcons.personCircleQuestion,

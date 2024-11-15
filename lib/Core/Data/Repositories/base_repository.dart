@@ -18,7 +18,6 @@ abstract class BaseRepository {
   Future<ResponseModel> postRequest(String url, Map<String, dynamic> data, {Options? options}) async {
     try {
       final response = await _dio.post(url, data: data, options: options);
-        final dataJson = response.data as Map<String, dynamic>;
         return _parseResponse(response);
     } catch (e) {
       return ResponseModel.error("Error in POST request: $e");
