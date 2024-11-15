@@ -1,6 +1,7 @@
 import 'package:GreenWave/Features/MainWrapper/DialogWrapper/wrapper_dialog_viewmodel.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_viewmodel.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperProfile/main_wrapper_profile_viewmodel.dart';
+import 'package:GreenWave/telegram_controller.dart';
 import 'package:get/get.dart';
 
 import '../../Features/Intro/IntroMain/intro_main_viewmodel.dart';
@@ -19,6 +20,8 @@ import '../../Features/Register/SwitchController/register_switch_controller.dart
 class MyBindings extends Bindings {
   @override
   void dependencies() {
+
+    Get.put(TelegramController());
 
     //! Intro
     Get.put(IntroSplashViewmodel());

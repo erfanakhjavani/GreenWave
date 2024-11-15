@@ -1,8 +1,7 @@
-import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+
 import '../../../Core/Gen/assets.gen.dart';
 import 'main_wrapper_wallet_viewmodel.dart';
 
@@ -16,7 +15,6 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
 
     return SafeArea(
       child: Scaffold(
-
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -34,8 +32,8 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: GestureDetector(
-                        onHorizontalDragEnd: (_) => controller.flipCard(),
-                        child: AnimatedBuilder(
+                          onHorizontalDragEnd: (_) => controller.flipCard(),
+                          child: AnimatedBuilder(
                             animation: controller.rotationAnimation,
                             builder: (context, child) {
                               double rotationValue =
@@ -44,28 +42,28 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
                               return Transform(
                                 transform: Matrix4.identity()
                                   ..setEntry(3, 2, 0.001)
-                                  ..rotateY(rotationValue / 180 * 3.1415926535897932),
+                                  ..rotateY(
+                                      rotationValue / 180 * 3.1415926535897932),
                                 alignment: Alignment.center,
                                 child: isFront
                                     ? _buildCard(
-                                  width,
-                                  height,
-                                  image: Assets.jpg.cc.provider(),
-                                )
+                                        width,
+                                        height,
+                                        image: Assets.jpg.cc.provider(),
+                                      )
                                     : Transform(
-                                  transform: Matrix4.identity()
-                                    ..rotateY(3.1415926535897932),
-                                  alignment: Alignment.center,
-                                  child: _buildCard(
-                                    width,
-                                    height,
-                                    image: Assets.jpg.cc.provider(),
-                                  ),
-                                ),
+                                        transform: Matrix4.identity()
+                                          ..rotateY(3.1415926535897932),
+                                        alignment: Alignment.center,
+                                        child: _buildCard(
+                                          width,
+                                          height,
+                                          image: Assets.jpg.intro2.provider(),
+                                        ),
+                                      ),
                               );
                             },
-                          )
-                      ),
+                          )),
                     ),
                     const Gap(20),
                     _buildActionIconsRows()
@@ -80,7 +78,7 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(16)),
+                            BorderRadius.vertical(top: Radius.circular(16)),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black26,
@@ -105,7 +103,7 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
                               itemCount: controller.transactions.length,
                               itemBuilder: (context, index) {
                                 final transaction =
-                                controller.transactions[index];
+                                    controller.transactions[index];
                                 return ListTile(
                                   title: Text(transaction.name),
                                   subtitle: Text(transaction.date),
@@ -136,7 +134,8 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
     );
   }
 
-  Widget _buildCard(double width, double height, {required ImageProvider image}) {
+  Widget _buildCard(double width, double height,
+      {required ImageProvider image}) {
     return Card(
       elevation: 8,
       shape: RoundedRectangleBorder(
@@ -168,8 +167,6 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
     );
   }
 
-
-
   Widget _buildActionIcon(IconData icon, String label) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -181,6 +178,7 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
       ],
     );
   }
+
   Widget _buildActionIconsRows() {
     final icons = [
       Icons.arrow_upward,
@@ -202,12 +200,12 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
 
     final groups = List.generate(
       (icons.length / 3).ceil(),
-          (index) => icons.skip(index * 3).take(3).toList(),
+      (index) => icons.skip(index * 3).take(3).toList(),
     );
 
     final labelGroups = List.generate(
       (labels.length / 3).ceil(),
-          (index) => labels.skip(index * 3).take(3).toList(),
+      (index) => labels.skip(index * 3).take(3).toList(),
     );
 
     return Column(
