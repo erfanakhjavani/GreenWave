@@ -12,7 +12,6 @@ import 'Core/Themes/themes.dart';
 //! Main function to initialize the app and set up system configurations
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //* Ensure Flutter is fully initialized before running
-
   runApp(const Main()); //* Run the main app widget
 }
 
