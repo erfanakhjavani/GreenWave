@@ -4,9 +4,16 @@ import 'package:get/get.dart';
 
 import 'main_wrapper_wallet_model.dart';
 
-class MainWrapperWalletViewmodel extends GetxController with GetTickerProviderStateMixin{
-  late AnimationController animationController;
-  late Animation<double> rotationAnimation;
+class MainWrapperWalletViewmodel extends GetxController with GetTickerProviderStateMixin {
+  late final AnimationController animationController = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 800),
+  );
+
+  late final Animation<double> rotationAnimation = Tween<double>(begin: 0, end: 1).animate(
+    CurvedAnimation(parent: animationController, curve: Curves.easeInOut),
+  );
+
   var isFront = true.obs;
   var balanceData = BalanceData(2365.20, [200, 300, 400, 500, 600]).obs;
   var transactions = [
@@ -16,22 +23,7 @@ class MainWrapperWalletViewmodel extends GetxController with GetTickerProviderSt
     Transaction(name: "Sent Transaction", date: "December 25, 2017", amount: 123.20, isIncome: false),
     Transaction(name: "Sent Transaction", date: "December 25, 2017", amount: 400.32, isIncome: false),
     Transaction(name: "Received Transaction", date: "December 25, 2017", amount: 120.18, isIncome: true),
-
-    // Add more transactions as needed
   ].obs;
-
-
-  @override
-  void onInit() {
-    super.onInit();
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
-    rotationAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: animationController, curve: Curves.easeInOut),
-    );
-  }
 
   void flipCard() {
     if (isFront.value) {
@@ -48,4 +40,3 @@ class MainWrapperWalletViewmodel extends GetxController with GetTickerProviderSt
     super.onClose();
   }
 }
-
