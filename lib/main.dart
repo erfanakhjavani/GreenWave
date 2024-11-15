@@ -5,7 +5,6 @@ import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:GreenWave/telegram_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:telegram_web_app/telegram_web_app.dart';
 
 import 'Core/Bindings/bindings.dart';
 import 'Core/Themes/themes.dart';
@@ -14,7 +13,6 @@ import 'Core/Themes/themes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //* Ensure Flutter is fully initialized before running
 
-  TelegramWebApp.instance;
   runApp(const Main()); //* Run the main app widget
 }
 
