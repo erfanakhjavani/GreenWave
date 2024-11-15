@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import '../../../Core/Gen/assets.gen.dart';
 import 'main_wrapper_wallet_viewmodel.dart';
 
-class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
-  const MainWrapperWalletView({super.key});
+class MainWrapperWalletView extends StatelessWidget {
+   MainWrapperWalletView({super.key});
 
+  MainWrapperWalletViewmodel controller = MainWrapperWalletViewmodel();
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.sizeOf(context).width;
