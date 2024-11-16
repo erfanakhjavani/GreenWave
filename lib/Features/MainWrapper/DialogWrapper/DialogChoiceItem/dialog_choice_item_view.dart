@@ -10,10 +10,9 @@ import '../../../../Core/Data/Repositories/storage_repository.dart';
 import '../../../../Core/Services/response_model.dart';
 import 'dialog_choice_item_viewmodel.dart';
 
-class DialogChoiceItemView extends StatelessWidget {
-   DialogChoiceItemView({super.key});
+class DialogChoiceItemView extends GetView<DialogChoiceItemViewmodel> {
+   const DialogChoiceItemView({super.key});
 
-  final DialogChoiceItemViewmodel controller = DialogChoiceItemViewmodel();
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.sizeOf(context).height;

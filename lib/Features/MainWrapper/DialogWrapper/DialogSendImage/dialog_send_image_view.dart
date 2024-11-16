@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Core/Constants/app_route.dart';
+import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
@@ -135,7 +136,7 @@ class DialogSendImageView extends StatelessWidget{
               ),
               onPressed: controller.state.value.status == Status.COMPLETED
                   ? () {
-                Get.offAllNamed(AppRoute.mainWrapperBottomNavView);
+                Get.offAll(MainWrapperBottomNavView());
               }
                   : null,
               child: Text(

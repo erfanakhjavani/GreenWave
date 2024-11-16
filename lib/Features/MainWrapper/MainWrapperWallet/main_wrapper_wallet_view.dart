@@ -1,5 +1,6 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Core/Constants/app_route.dart';
+import 'package:GreenWave/Features/MainWrapper/MainWrapperWallet/Analysis/wallet_analysis_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -141,16 +142,16 @@ class MainWrapperWalletView extends GetView<MainWrapperWalletViewmodel> {
                         () {
                       switch (labelGroup[i]) {
                         case "Send":
-                          Get.toNamed('sendRoute');
+                          Get.to('sendRoute');
                           break;
                         case "Receive":
-                          Get.toNamed('receiveRoute');
+                          Get.to('receiveRoute');
                           break;
                         case "Buy & Sell":
-                          Get.toNamed('buySellRoute');
+                          Get.to('buySellRoute');
                           break;
                         case "Analysis":
-                          Get.toNamed(AppRoute.walletAnalysis);
+                          Get.to(const WalletAnalysisView());
                           break;
                       }
                     },

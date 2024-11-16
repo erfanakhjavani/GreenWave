@@ -1,6 +1,7 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:GreenWave/Core/Services/response_model.dart';
+import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
 import 'package:GreenWave/Features/Register/Mobile/RegisterPhone/register_mobile_register_phone_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,10 +12,9 @@ import '../../../../Core/Gen/assets.gen.dart';
 import '../../../MainWrapper/DialogWrapper/wrapper_dialog_view.dart';
 import '../../SwitchController/register_switch_controller.dart';
 
-class RegisterMobileRegisterPhoneView extends StatelessWidget {
+class RegisterMobileRegisterPhoneView extends GetView<RegisterMobileRegisterPhoneViewmodel> {
    RegisterMobileRegisterPhoneView({super.key});
 
-    final RegisterMobileRegisterPhoneViewmodel controller = RegisterMobileRegisterPhoneViewmodel();
     final TextEditingController password = TextEditingController();
 
 
@@ -84,7 +84,7 @@ class RegisterMobileRegisterPhoneView extends StatelessWidget {
                           onPressed:  () async{
                              await controller.postPassword(controller.number.value);
                             if(controller.state.value.status == Status.COMPLETED){
-                              Get.offAllNamed(AppRoute.mainWrapperBottomNavView);
+                              Get.offAll(MainWrapperBottomNavView());
                             }
                           },
                           style: ElevatedButton.styleFrom(

@@ -1,5 +1,6 @@
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Core/Constants/app_route.dart';
+import 'package:GreenWave/Core/Widgets/animate_switch.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,10 +13,9 @@ import 'Widgets/bottom_wave_clipper.dart';
 import 'Widgets/delayed_widget.dart';
 import 'intro_main_viewmodel.dart';
 
-class IntroMainView extends StatelessWidget {
-   IntroMainView({super.key});
+class IntroMainView extends GetView<IntroMainViewmodel> {
+   const IntroMainView({super.key});
 
-  final IntroMainViewmodel controller = IntroMainViewmodel();
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +171,7 @@ class IntroMainView extends StatelessWidget {
                               Future.delayed(const Duration(seconds: 3));
                                     if (controller.state.value.status ==
                                         Status.COMPLETED) {
-                                      Get.offAllNamed(AppRoute.registerSwitchMobileView);
+                                      Get.offAll(const RegisterSwitchMobileView());
                                     } else if (controller.state.value.status ==
                                         Status.ERROR) {
                                       if (kDebugMode) {
