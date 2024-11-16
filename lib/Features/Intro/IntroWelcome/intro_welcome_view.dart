@@ -10,8 +10,9 @@ import 'Widgets/intro_page.dart';
 import 'intro_welcome_viewmodel.dart';
 
 class IntroWelcomeView extends GetView<IntroWelcomeViewmodel> {
-  const IntroWelcomeView({super.key});
+   IntroWelcomeView({super.key});
 
+ final IntroWelcomeViewmodel controller = IntroWelcomeViewmodel();
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.sizeOf(context).height;

@@ -48,9 +48,9 @@ class AppRoute {
 
 
     //! intro
-    GetPage(name: introSplashView, page: () => const IntroSplashView()),
+    GetPage(name: introSplashView, page: () =>  IntroSplashView()),
     GetPage(name: introMainView, page: () =>  IntroMainView()),
-    GetPage(name: introWelcomeView, page: () => const IntroWelcomeView()),
+    GetPage(name: introWelcomeView, page: () =>  IntroWelcomeView()),
 
 
 

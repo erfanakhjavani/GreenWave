@@ -35,7 +35,7 @@ class Themes {
 
   //! Function to get text theme based on dark mode setting
   static TextTheme _getTextTheme({required bool isDarkMode}) {
-    Color textColor = isDarkMode ? AppColors.secondary : AppColors.primary;
+    Color textColor = AppColors.primary;
     return TextTheme(
       labelSmall:
           TextStyle(fontSize: 8, fontWeight: FontWeight.w400, color: textColor),

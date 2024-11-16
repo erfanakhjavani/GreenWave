@@ -8,9 +8,10 @@ import '../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Services/response_model.dart';
 import 'intro_splash_viewmodel.dart';
 
-class IntroSplashView extends GetView<IntroSplashViewmodel> {
-  const IntroSplashView({super.key});
+class IntroSplashView extends StatelessWidget {
+   IntroSplashView({super.key});
 
+   IntroSplashViewmodel controller = IntroSplashViewmodel();
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
