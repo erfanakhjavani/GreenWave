@@ -1,4 +1,5 @@
 import 'package:GreenWave/Core/Constants/app_route.dart';
+import 'package:GreenWave/Features/Intro/IntroWelcome/intro_welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -40,7 +41,7 @@ class IntroSplashView extends StatelessWidget {
                 child: Obx(() {
                   if (controller.state.value.status == Status.COMPLETED) {
                     Future.delayed(const Duration(seconds: 1), () {
-                      Get.offAllNamed(AppRoute.introWelcomeView);
+                      Get.offAll(IntroWelcomeView());
                     });
                     return Text(
                       'For better life...',

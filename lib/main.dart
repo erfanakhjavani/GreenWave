@@ -30,7 +30,7 @@ class Main extends GetView<TelegramController> {
       //* Disable debug banner
       theme: Themes.light,
       //* Define light theme
-      initialRoute: AppRoute.introSplashView,
+      home: IntroSplashView(),
     );
   }
 }
