@@ -34,7 +34,7 @@ class Main extends GetView<TelegramController> {
       initialBinding: MyBindings(),
 
       getPages: AppRoute.pages,
-      home:  MainWrapperBottomNavView(),
+      home: const IntroSplashView(),
     );
   }
 }
