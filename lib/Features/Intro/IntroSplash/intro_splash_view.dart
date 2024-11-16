@@ -1,4 +1,3 @@
-import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:GreenWave/Features/Intro/IntroWelcome/intro_welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,10 +8,9 @@ import '../../../Core/Gen/assets.gen.dart';
 import '../../../Core/Services/response_model.dart';
 import 'intro_splash_viewmodel.dart';
 
-class IntroSplashView extends StatelessWidget {
-   IntroSplashView({super.key});
+class IntroSplashView extends GetView<IntroSplashViewmodel> {
+   const IntroSplashView({super.key});
 
-   IntroSplashViewmodel controller = IntroSplashViewmodel();
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
