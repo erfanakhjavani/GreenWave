@@ -13,9 +13,10 @@ import '../../../../Core/Services/response_model.dart';
 import '../Ui_helpers/bottom_sheet_choice_image.dart';
 import 'dialog_send_image_viewmodel.dart';
 
-class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
-  const DialogSendImageView({super.key});
+class DialogSendImageView extends StatelessWidget{
+   DialogSendImageView({super.key});
 
+  final DialogSendImageViewmodel controller = DialogSendImageViewmodel();
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.sizeOf(context).width;

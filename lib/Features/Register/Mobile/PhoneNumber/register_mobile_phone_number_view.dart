@@ -10,9 +10,10 @@ import 'package:lottie/lottie.dart';
 import '../../../../Core/Gen/assets.gen.dart';
 import '../../../../Core/Services/response_model.dart';
 
-class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
+class RegisterMobileView extends StatelessWidget {
   RegisterMobileView({super.key});
 
+  final RegisterMobileViewmodel controller = RegisterMobileViewmodel();
   final TextEditingController number = TextEditingController();
 
   @override

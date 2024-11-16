@@ -24,7 +24,7 @@ class IntroSplashViewmodel extends GetxController {
   //! Method to check internet connection and handle the navigation flow
   Future<void> checkConnection() async {
     state.value = ResponseModel.loading('Loading...');
-    Future.delayed(const Duration(seconds: 2),() async {
+    Future.delayed(const Duration(seconds: 5),() async {
       bool isConnected =
           await splashRepository.checkConnectivity(); //* Check if connected
       if (isConnected == true) {

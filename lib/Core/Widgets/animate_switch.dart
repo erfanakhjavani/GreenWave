@@ -92,10 +92,10 @@ AbstractRegisterSwitchView<WrapperDialogViewmodel> {
   const SwitcherDialog({super.key});
 
   @override
-  Widget widget1() => const DialogChoiceItemView();
+  Widget widget1() =>  DialogChoiceItemView();
 
   @override
-  Widget widget2() => const DialogSendImageView();
+  Widget widget2() =>  DialogSendImageView();
 
   @override
   RxBool change() {

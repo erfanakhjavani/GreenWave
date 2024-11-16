@@ -11,11 +11,11 @@ import '../../../../Core/Gen/assets.gen.dart';
 import '../../../MainWrapper/DialogWrapper/wrapper_dialog_view.dart';
 import '../../SwitchController/register_switch_controller.dart';
 
-class RegisterMobileRegisterPhoneView extends GetView<RegisterMobileRegisterPhoneViewmodel> {
+class RegisterMobileRegisterPhoneView extends StatelessWidget {
    RegisterMobileRegisterPhoneView({super.key});
 
-
-  final TextEditingController password = TextEditingController();
+    final RegisterMobileRegisterPhoneViewmodel controller = RegisterMobileRegisterPhoneViewmodel();
+    final TextEditingController password = TextEditingController();
 
 
   @override
