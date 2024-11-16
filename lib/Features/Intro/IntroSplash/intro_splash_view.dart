@@ -11,7 +11,7 @@ import 'intro_splash_viewmodel.dart';
 class IntroSplashView extends StatelessWidget {
    IntroSplashView({super.key});
 
-   IntroSplashViewmodel controller = Get.put(IntroSplashViewmodel());
+   IntroSplashViewmodel controller = IntroSplashViewmodel();
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
