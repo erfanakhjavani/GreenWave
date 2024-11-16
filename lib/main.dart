@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:GreenWave/Features/Intro/IntroSplash/intro_splash_view.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
+import 'package:GreenWave/Features/MainWrapper/MainWrapperProfile/main_wrapper_profile_view.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperWallet/main_wrapper_wallet_view.dart';
 import 'package:GreenWave/telegram_controller.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class Main extends GetView<TelegramController> {
       initialBinding: MyBindings(),
 
       getPages: AppRoute.pages,
-      home: IntroSplashView(),
+      home:  MainWrapperBottomNavView(),
     );
   }
 }

@@ -78,7 +78,7 @@ class DialogChoiceItemView extends GetView<DialogChoiceItemViewmodel> {
              case Status.ERROR:
                 return SizedBox(
                   width: width,
-                  height: height / 2,
+                  height: height / 3,
                   child: const Center(
                     child: Text('No steps found'),
                   ),

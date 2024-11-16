@@ -3,7 +3,7 @@ import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
 import 'package:get/get.dart';
 
 import '../../../../Core/Services/response_model.dart';
-import '../../../../Core/UI Helper/show_snack_bar.dart';
+import '../../../../Core/UIHelper/show_snack_bar.dart';
 import '../../SwitchController/register_switch_controller.dart';
 import '../Repository/mobile_repository.dart';
 

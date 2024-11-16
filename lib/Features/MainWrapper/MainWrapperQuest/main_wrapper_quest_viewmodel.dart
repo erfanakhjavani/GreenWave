@@ -8,7 +8,6 @@ class MainWrapperQuestViewModel extends GetxController {
     MainWrapperQuestModel(title: 'Second challenge', description: 'Description of the second challenge'),
     MainWrapperQuestModel(title: 'Third challenge', description: 'Description of the third challenge'),
   ].obs;
-
   void toggleQuestCompletion(int index) {
     quests[index].isCompleted = !quests[index].isCompleted;
     update();

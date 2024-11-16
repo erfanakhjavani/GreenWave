@@ -1,11 +1,9 @@
 import 'package:GreenWave/Core/Constants/address_key.dart';
-import 'package:GreenWave/Core/Data/Repositories/model_repository.dart';
 import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
 import 'package:GreenWave/Core/Services/response_model.dart';
-import 'package:GreenWave/Core/UI%20Helper/show_snack_bar.dart';
+import 'package:GreenWave/Core/UIHelper/show_snack_bar.dart';
 
 import '../../../Core/Data/Repositories/base_repository.dart';
-import '../IntroMain/intro_main_model.dart';
 
 class IntroRepository extends BaseRepository {
   Future<ResponseModel> postPlatformData(dynamic platformCode) async {

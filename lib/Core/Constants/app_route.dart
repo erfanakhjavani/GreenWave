@@ -1,3 +1,4 @@
+import 'package:GreenWave/Features/MainWrapper/MainWrapperWallet/Analysis/wallet_analysis_view.dart';
 import 'package:get/get.dart';
 
 import '../../Features/Intro/IntroMain/intro_main_view.dart';
@@ -26,8 +27,13 @@ class AppRoute {
   static const String mainWrapperBottomNavView = '/mainWrapperBottomNav';
   static const String mainWrapperHomeView = '/mainWrapperHome';
   static const String mainWrapperQuestView = '/mainWrapperQuest';
-  static const String mainWrapperWalletView = '/mainWrapperWallet';
   static const String mainWrapperProfileView = '/mainWrapperProfile';
+
+
+
+  //* wallet
+  static const String mainWrapperWalletView = '/mainWrapperWallet';
+  static const String walletAnalysis = '/walletAnalysis';
 
 
 
@@ -53,8 +59,12 @@ class AppRoute {
     GetPage(name: mainWrapperBottomNavView, page: () => MainWrapperBottomNavView()),
     GetPage(name: mainWrapperHomeView, page: () =>  MainWrapperHomeView()),
     GetPage(name: mainWrapperQuestView, page: () => const MainWrapperQuestView()),
-    GetPage(name: mainWrapperWalletView, page: () => MainWrapperWalletView()),
-    GetPage(name: mainWrapperWalletView, page: () => MainWrapperWalletView()),
+
+
+
+    //* wallet
+    GetPage(name: mainWrapperWalletView, page: () => const MainWrapperWalletView()),
+    GetPage(name: walletAnalysis, page: () => const WalletAnalysisView()),
 
 
 

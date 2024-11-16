@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:convert';
 
 import 'package:GreenWave/Core/Constants/app_colors.dart';
 import 'package:GreenWave/Core/Constants/app_route.dart';
@@ -10,7 +10,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../../Core/Gen/assets.gen.dart';
 import '../../../../Core/Services/response_model.dart';
-import '../../../../Core/Widgets/animate_switch.dart';
 import '../Ui_helpers/bottom_sheet_choice_image.dart';
 import 'dialog_send_image_viewmodel.dart';
 
@@ -45,7 +44,7 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
         Column(
           children: List.generate(
             3,
-            (index) => Padding(
+                (index) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: Container(
                 width: 2,
@@ -56,11 +55,13 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
           ),
         ),
         const Gap(10),
-        Obx(()=> Container(
+        Obx(() => Container(
           width: width,
           height: 120,
           decoration: BoxDecoration(
-            color: controller.state.value.status == Status.COMPLETED ? AppColors.monopolyColor1 :Colors.blue,
+            color: controller.state.value.status == Status.COMPLETED
+                ? AppColors.monopolyColor1
+                : Colors.blue,
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Row(
@@ -69,43 +70,51 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
             children: [
               // Image container for the first selected image
               _imageContainer(
-                imageFile: controller.selectedImage1.value,
-                onImageSelectedC: () async => await controller.selectImageFromCamera(1),
-                onImageSelectedG: () async => await controller.selectImageFromGallery(1),
+                imageBase64: controller.selectedImage1.value,
+                onImageSelectedC: () async =>
+                await controller.selectImageFromCamera(1),
+                onImageSelectedG: () async =>
+                await controller.selectImageFromGallery(1),
                 context: context,
               ),
               SizedBox(
                 width: 50,
                 height: 60,
                 child: IconButton(
-                    onPressed: () async {
-                      await controller.sendImagesToServer();
-                    },
-                    style: IconButton.styleFrom(
-                      backgroundColor: AppColors.monopolyColor1,
-                    ),
-                    icon: AnimatedCrossFade(
-                      crossFadeState:
-                      controller.state.value.status == Status.LOADING
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
-                      duration: const Duration(milliseconds: 500),
-                      firstChild:
-                      controller.state.value.status == Status.COMPLETED
-                          ? const Icon(Icons.check_circle_rounded, size: 35)
-                          : const Icon(FontAwesomeIcons.arrowUpFromBracket,size: 30,),
-                      secondChild: LoadingAnimationWidget.bouncingBall(color: AppColors.secondary,
-                          size: 20),
-                      firstCurve: Curves.linearToEaseOut,
-                      secondCurve: Curves.linearToEaseOut,
-                    ),
+                  onPressed: () async {
+                    await controller.sendImagesToServer();
+                  },
+                  style: IconButton.styleFrom(
+                    backgroundColor: AppColors.monopolyColor1,
                   ),
+                  icon: AnimatedCrossFade(
+                    crossFadeState:
+                    controller.state.value.status == Status.LOADING
+                        ? CrossFadeState.showSecond
+                        : CrossFadeState.showFirst,
+                    duration: const Duration(milliseconds: 500),
+                    firstChild: controller.state.value.status ==
+                        Status.COMPLETED
+                        ? const Icon(Icons.check_circle_rounded, size: 35)
+                        : const Icon(
+                      FontAwesomeIcons.arrowUpFromBracket,
+                      size: 30,
+                    ),
+                    secondChild: LoadingAnimationWidget.bouncingBall(
+                      color: AppColors.secondary,
+                      size: 20,
+                    ),
+                    firstCurve: Curves.linearToEaseOut,
+                    secondCurve: Curves.linearToEaseOut,
+                  ),
+                ),
               ),
-
-               _imageContainer(
-                imageFile: controller.selectedImage2.value,
-                 onImageSelectedC: () async => await controller.selectImageFromCamera(2),
-                 onImageSelectedG: () async => await controller.selectImageFromGallery(2),
+              _imageContainer(
+                imageBase64: controller.selectedImage2.value,
+                onImageSelectedC: () async =>
+                await controller.selectImageFromCamera(2),
+                onImageSelectedG: () async =>
+                await controller.selectImageFromGallery(2),
                 context: context,
               ),
             ],
@@ -113,7 +122,7 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
         )),
         const Gap(20),
         Obx(
-          () => SizedBox(
+              () => SizedBox(
             width: 100,
             height: 40,
             child: ElevatedButton(
@@ -125,8 +134,8 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
               ),
               onPressed: controller.state.value.status == Status.COMPLETED
                   ? () {
-                    Get.offAllNamed(AppRoute.mainWrapperBottomNavView);
-                    }
+                Get.offAllNamed(AppRoute.mainWrapperBottomNavView);
+              }
                   : null,
               child: Text(
                 'Done',
@@ -155,7 +164,7 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
 
   Widget _imageContainer({
     required BuildContext context,
-    File? imageFile,
+    String? imageBase64,
     required VoidCallback onImageSelectedG,
     required VoidCallback onImageSelectedC,
   }) {
@@ -170,30 +179,33 @@ class DialogSendImageView extends GetView<DialogSendImageViewmodel> {
         decoration: BoxDecoration(
           color: Colors.black12,
           borderRadius: BorderRadius.circular(10),
-          image: imageFile != null
-              ? DecorationImage(image: FileImage(imageFile), fit: BoxFit.cover)
+          image: imageBase64 != null
+              ? DecorationImage(
+            image: MemoryImage(base64Decode(imageBase64)),
+            fit: BoxFit.cover,
+          )
               : null,
         ),
         width: MediaQuery.sizeOf(context).width / 3 - 50,
         height: MediaQuery.sizeOf(context).width / 3 - 50,
-        child: imageFile == null
+        child: imageBase64 == null
             ? const Stack(
-                children: [
-                  Center(
-                      child: FaIcon(
-                    FontAwesomeIcons.seedling,
-                    size: 35,
-                  )),
-                  Positioned.fill(
-                    top: 20,
-                    left: 25,
-                    child: Icon(
-                      Icons.add,
-                      size: 25,
-                    ),
-                  ),
-                ],
-              )
+          children: [
+            Center(
+                child: FaIcon(
+                  FontAwesomeIcons.seedling,
+                  size: 35,
+                )),
+            Positioned.fill(
+              top: 20,
+              left: 25,
+              child: Icon(
+                Icons.add,
+                size: 25,
+              ),
+            ),
+          ],
+        )
             : null,
       ),
     );

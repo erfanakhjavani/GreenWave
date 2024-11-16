@@ -50,7 +50,6 @@ class RegisterMobileView extends GetView<RegisterMobileViewmodel> {
                     height: 70,
                     child: TextField(
                       maxLength: 15,
-                      controller: number,
                       cursorColor: Colors.grey.shade600,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(

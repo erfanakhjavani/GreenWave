@@ -1,4 +1,4 @@
-import 'package:GreenWave/Core/UI%20Helper/show_snack_bar.dart';
+import 'package:GreenWave/Core/UIHelper/show_snack_bar.dart';
 import 'package:dio/dio.dart';
 
 import '../../Services/response_model.dart';

@@ -1,9 +1,8 @@
 import '../../../../Core/Constants/address_key.dart';
 import '../../../../Core/Data/Repositories/base_repository.dart';
-import '../../../../Core/Data/Repositories/model_repository.dart';
 import '../../../../Core/Data/Repositories/storage_repository.dart';
 import '../../../../Core/Services/response_model.dart';
-import '../../../../Core/UI Helper/show_snack_bar.dart';
+import '../../../../Core/UIHelper/show_snack_bar.dart';
 
 class MobileRepository extends BaseRepository {
 
@@ -15,21 +14,11 @@ class MobileRepository extends BaseRepository {
       return ResponseModel.error('TimeoutException...');
     });
     if (response.status == Status.COMPLETED) {
-      var dataJson = response.data;
-      var dataResponse = ModelRepository(
-        message: dataJson['message'],
-        status: dataJson['statusCode'],
-        data: dataJson['data'],
-      );
-      if (dataResponse.status == 200) {
-        return ResponseModel.completed(dataResponse);
+        return ResponseModel.completed(response.data);
       } else {
-        return ResponseModel.error(dataResponse.message);
+      showCustomSnackBar('Error', response.message);
+      return ResponseModel.error(response.message);
       }
-    } else {
-      showCustomSnackBar('Error', 'Failed to post platform data');
-      return ResponseModel.error('Failed to post platform data');
-    }
 
   }
 
@@ -40,24 +29,16 @@ class MobileRepository extends BaseRepository {
         .timeout(const Duration(seconds: 10), onTimeout: () {
       return ResponseModel.error('TimeoutException...');
     });
-    if (response.status == Status.COMPLETED && response.data != null) {
-      var dataJson = response.data;
-      var dataResponse = ModelRepository(
-        message: dataJson['message'],
-        status: dataJson['statusCode'],
-        data: dataJson['data'],
-      );
-      if (dataResponse.status == 200) {
-        DataRepository().saveData('codeRD', dataResponse.data);
-        return ResponseModel.completed(dataResponse);
+    if (response.status == Status.COMPLETED) {
+      print(response.data);
+        DataRepository().saveData(AddressKeyStorage.codeJWT, response.data);
+        return ResponseModel.completed(response.data);
       } else {
-        showCustomSnackBar('Error', dataResponse.message);
-        return ResponseModel.error(dataResponse.message);
+        showCustomSnackBar('Error', response.message);
+        return ResponseModel.error(response.message);
       }
-    } else {
-      showCustomSnackBar('Error', 'Failed to post platform data');
-      return ResponseModel.error('Failed to post platform data');
-    }
+
+
   }
 
 }

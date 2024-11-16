@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-class BalanceData {
+class MainWrapperWalletModel {
   final double totalBalance;
   final List<double> chartData;
-  BalanceData(this.totalBalance, this.chartData);
+  MainWrapperWalletModel(this.totalBalance, this.chartData);
 }
 
 class Transaction {

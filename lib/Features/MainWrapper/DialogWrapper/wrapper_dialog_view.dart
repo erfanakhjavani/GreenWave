@@ -17,69 +17,68 @@ class WrapperDialogView extends  GetView<WrapperDialogViewmodel>{
     var height = MediaQuery.sizeOf(context).height;
     var width = MediaQuery.sizeOf(context).width;
     var textTheme = Theme.of(context).textTheme;
-    return PopScope(
-      canPop: true,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-        child: Container(
-          color: Colors.black.withOpacity(0.3),
-          child: Dialog(
-              insetPadding: const EdgeInsets.only(top: 30, bottom: 40),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                width: width * 0.9,
-                child: Column(
-                  children: [
-                    Obx(
-                      () => Stack(
-                        children: [
-                          AppBar(
-                            elevation: 0,
-                            toolbarHeight: 30,
-                            leading: controller.showImageDialog.value == false
-                                ? IconButton(
-                                    onPressed: () {
-                                      controller.showImageDialog.value = true;
-                                    },
-                                    icon: const Icon(
-                                        Icons.arrow_back_ios_new_rounded))
-                                : null,
-                            automaticallyImplyLeading: false,
-                          ),
-                          Center(
-                              child: Lottie.asset(Assets.json.env1,
-                                  width: 150, height: 150)),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-                      child: Text(
-                        "Please select to begin",
-                        style: textTheme.headlineSmall,
-                      ),
-                    ),
-                    Center(
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-                        child: Text(
-                          "The first stage of registration is done by sending two photos of what you do to the environment.",
-                          style: textTheme.bodyMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                    const Gap(10),
-                     const SwitcherDialog(),
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+      child: Container(
+        color: Colors.black.withOpacity(0.3),
+        child: Dialog(
+            insetPadding: const EdgeInsets.only(top: 30, bottom: 40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              width: width * 0.9,
+              child: Column(
+                children: [
+                 Stack(
+                      children: [
+                        AppBar(
+                          elevation: 0,
+                          toolbarHeight: 30,
+                          leading:  IconButton(
+                                  onPressed: () {
+                                    controller.showImageDialog.value == false
+                                        ?
+                                    controller.showImageDialog.value = true
+                                    : Get.back();
+                                    ;
+                                  },
+                                  icon: const Icon(
+                                      Icons.arrow_back_ios_new_rounded)),
 
-                  ],
-                ),
-              )),
-        ),
+                          automaticallyImplyLeading: false,
+                        ),
+                        Center(
+                            child: Lottie.asset(Assets.json.env1,
+                                width: 150, height: 150)),
+                      ],
+                    ),
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+                    child: Text(
+                      "Please select to begin",
+                      style: textTheme.headlineSmall,
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+                      child: Text(
+                        "The first stage of registration is done by sending two photos of what you do to the environment.",
+                        style: textTheme.bodyMedium,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  const Gap(10),
+                   const SwitcherDialog(),
+
+                ],
+              ),
+            )),
       ),
     );
   }

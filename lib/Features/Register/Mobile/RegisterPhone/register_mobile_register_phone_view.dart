@@ -84,14 +84,7 @@ class RegisterMobileRegisterPhoneView extends GetView<RegisterMobileRegisterPhon
                           onPressed:  () async{
                              await controller.postPassword(controller.number.value);
                             if(controller.state.value.status == Status.COMPLETED){
-                              Get.toNamed(AppRoute.mainWrapperBottomNavView);
-                              Future.delayed(
-                                  const Duration(milliseconds: 300),
-                                      () {
-                                    if (context.mounted) {
-                                      showWrapperDialog(context);
-                                    }
-                                  });
+                              Get.offAllNamed(AppRoute.mainWrapperBottomNavView);
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -139,7 +132,6 @@ class _TextFieldCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      keyboardType: TextInputType.number,
       textAlign: TextAlign.center,
       cursorColor: Colors.grey.shade600,
       decoration: InputDecoration(

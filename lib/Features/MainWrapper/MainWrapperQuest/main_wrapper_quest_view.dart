@@ -1,8 +1,9 @@
+import 'package:GreenWave/Features/MainWrapper/DialogWrapper/wrapper_dialog_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gap/gap.dart';
 import '../../../Core/Gen/assets.gen.dart';
-import '../../../Core/UI Helper/show_modal_bottom_sheet.dart';
+import '../../../Core/UIHelper/show_modal_bottom_sheet.dart';
 import 'main_wrapper_quest_model.dart';
 import 'main_wrapper_quest_viewmodel.dart';
 
@@ -45,8 +46,9 @@ class MainWrapperQuestView extends StatelessWidget {
                 return QuestCard(
                   quest: quest,
                   onTap: () {
-                    controller.toggleQuestCompletion(index);
-                    showCustomModalBottomSheet(
+                    index == 0
+                        ? showWrapperDialog(context)
+                        : showCustomModalBottomSheet(
                       imagePath: Assets.png.google.path,
                       description: quest.isCompleted
                           ? 'challenge completed!'
@@ -56,6 +58,8 @@ class MainWrapperQuestView extends StatelessWidget {
                         Get.back();
                       },
                     );
+                    controller.toggleQuestCompletion(index);
+
                   },
                 );
               },

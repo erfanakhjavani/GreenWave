@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '../../../Core/Constants/app_colors.dart';
+import '../DialogWrapper/wrapper_dialog_view.dart';
 import 'main_wrapper_home_viewmodel.dart';
 
 class MainWrapperHomeView extends StatelessWidget {
@@ -24,7 +25,9 @@ class MainWrapperHomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(
                 left: 8.0,top: 10),
-            child: IconButton(onPressed: (){}, icon: FaIcon(FontAwesomeIcons.message,color: AppColors.monopolyColor2,)),
+            child: IconButton(onPressed: (){
+              showWrapperDialog(context);
+            }, icon: FaIcon(FontAwesomeIcons.message,color: AppColors.monopolyColor2,)),
           )
         ],
         elevation: 0,

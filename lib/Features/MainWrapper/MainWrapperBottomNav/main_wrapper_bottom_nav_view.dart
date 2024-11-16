@@ -25,7 +25,7 @@ class MainWrapperBottomNavView extends GetView<MainWrapperBottomNavViewmodel> {
     MainWrapperBottomNavModel(
         title: 'Wallet',
         iconPath: FontAwesomeIcons.wallet,
-        pageRoute: MainWrapperWalletView()),
+        pageRoute: const MainWrapperWalletView()),
     MainWrapperBottomNavModel(
         title: 'Profile',
         iconPath: FontAwesomeIcons.userLarge,

@@ -5,7 +5,6 @@ import '../../../../Core/Services/response_model.dart';
 import '../Repository/dialog_repository.dart';
 import 'dialog_choice_item_model.dart';
 
-
 class DialogChoiceItemViewmodel extends GetxController {
   var step = 0.obs;
   var stepsList = <DialogChoiceItemModel>[].obs;
@@ -20,10 +19,8 @@ class DialogChoiceItemViewmodel extends GetxController {
     super.onInit();
   }
 
-
   @override
   void dispose() {
-    getChoicesStep();
     super.dispose();
   }
 
@@ -38,26 +35,17 @@ class DialogChoiceItemViewmodel extends GetxController {
   Future<void> getChoicesStep() async {
     state.value = ResponseModel.loading("Getting choices...");
     final data = {
-      "stepNum": step.value,
+      "stepNum": 1,
     };
-
 
     final response = await _dialogRepository.getChoicesStep(data);
     if (response.status == Status.COMPLETED) {
-      if (response.data['data'] is List) {
-        stepsList.value = (response.data['data'] as List)
-            .map((item) => DialogChoiceItemModel.fromJson(item))
-            .toList();
-        if (kDebugMode) {
-          print(response.data);
-        }
-        state.value = ResponseModel.completed("Data loaded successfully");
-      } else {
-        state.value = ResponseModel.error("Unexpected data format: expected a list.");
-      }
+      stepsList.value = (response.data as List)
+          .map((item) => DialogChoiceItemModel.fromJson(item as Map<String, dynamic>))
+          .toList();
+      state.value = ResponseModel.completed("Data loaded successfully");
     } else {
-      state.value = ResponseModel.error(response.message);
+      state.value = ResponseModel.error("Unexpected data format: expected a list.");
     }
   }
-
 }

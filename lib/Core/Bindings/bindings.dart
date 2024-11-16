@@ -23,9 +23,9 @@ class MyBindings extends Bindings {
     Get.put(TelegramController());
 
     //! Intro
-    Get.put(IntroSplashViewmodel());
-    Get.put(IntroWelcomeViewmodel());
-    Get.lazyPut(() => IntroMainViewmodel());
+    Get.lazyPut(()=> IntroSplashViewmodel());
+    Get.lazyPut(()=> IntroWelcomeViewmodel());
+    Get.lazyPut(()=> IntroMainViewmodel());
 
     //! MainWrapper
     Get.lazyPut(() => WrapperDialogViewmodel());
@@ -36,7 +36,7 @@ class MyBindings extends Bindings {
     Get.lazyPut(() => MainWrapperBottomNavViewmodel());
     Get.lazyPut(() => MainWrapperHomeViewmodel());
     Get.lazyPut(() => MainWrapperProfileViewmodel());
-    Get.lazyPut(() => MainWrapperWalletViewmodel());
+    Get.put(MainWrapperWalletViewmodel());
 
     //! Register
     Get.lazyPut(() => RegisterLoginViewmodel());
