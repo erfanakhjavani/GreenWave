@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:GreenWave/Core/Constants/app_route.dart';
+import 'package:GreenWave/Features/Intro/IntroMain/intro_main_view.dart';
 import 'package:GreenWave/Features/Intro/IntroSplash/intro_splash_view.dart';
 import 'package:GreenWave/Features/Intro/IntroWelcome/intro_welcome_view.dart';
 import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
@@ -29,11 +30,9 @@ class Main extends GetView<TelegramController> {
       //* Disable debug banner
       theme: Themes.light,
       //* Define light theme
-
       initialBinding: MyBindings(),
-
       getPages: AppRoute.pages,
-      home: const IntroWelcomeView(),
+      home: const IntroMainView(),
     );
   }
 }
