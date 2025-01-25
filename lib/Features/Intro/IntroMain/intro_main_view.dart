@@ -167,17 +167,11 @@ class IntroMainView extends GetView<IntroMainViewmodel> {
                           child: ElevatedButton(
                             onPressed: controller.isTermsAccepted.value
                                 ? () async {
-                              await controller.postPlatform();
-                              Future.delayed(const Duration(seconds: 3));
+                              // await controller.postPlatform();
+                              // Future.delayed(const Duration(seconds: 3));
                                     if (controller.state.value.status ==
                                         Status.COMPLETED) {
                                       Get.offAll(const RegisterSwitchMobileView());
-                                    } else if (controller.state.value.status ==
-                                        Status.ERROR) {
-                                      if (kDebugMode) {
-                                        print(
-                                          'Error ${controller.state.value.message}');
-                                      }
                                     }
                                   }
                                 : null,

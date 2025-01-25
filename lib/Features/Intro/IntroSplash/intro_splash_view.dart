@@ -39,7 +39,7 @@ class IntroSplashView extends GetView<IntroSplashViewmodel> {
                 child: Obx(() {
                   if (controller.state.value.status == Status.COMPLETED) {
                     Future.delayed(const Duration(seconds: 1), () {
-                      Get.offAll(IntroWelcomeView());
+                      Get.offAll(const IntroWelcomeView());
                     });
                     return Text(
                       'For better life...',

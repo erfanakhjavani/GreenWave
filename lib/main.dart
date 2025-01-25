@@ -1,13 +1,6 @@
-import 'dart:ui';
 
-import 'package:GreenWave/Core/Constants/app_route.dart';
-import 'package:GreenWave/Features/Intro/IntroMain/intro_main_view.dart';
 import 'package:GreenWave/Features/Intro/IntroSplash/intro_splash_view.dart';
-import 'package:GreenWave/Features/Intro/IntroWelcome/intro_welcome_view.dart';
-import 'package:GreenWave/Features/MainWrapper/MainWrapperBottomNav/main_wrapper_bottom_nav_view.dart';
-import 'package:GreenWave/Features/MainWrapper/MainWrapperProfile/main_wrapper_profile_view.dart';
-import 'package:GreenWave/Features/MainWrapper/MainWrapperWallet/main_wrapper_wallet_view.dart';
-import 'package:GreenWave/telegram_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +13,7 @@ void main() async {
 }
 
 //! Main class for the app, extends StatelessWidget
-class Main extends GetView<TelegramController> {
+class Main extends StatelessWidget {
   const Main({super.key});
 
   @override
@@ -31,7 +24,7 @@ class Main extends GetView<TelegramController> {
       theme: Themes.light,
       //* Define light theme
       initialBinding: MyBindings(),
-      home: IntroSplashView(),
+      home: const IntroSplashView(),
     );
   }
 }

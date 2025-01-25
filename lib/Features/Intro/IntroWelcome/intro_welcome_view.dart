@@ -1,5 +1,4 @@
 import 'package:GreenWave/Core/Constants/address_key.dart';
-import 'package:GreenWave/Core/Constants/app_route.dart';
 import 'package:GreenWave/Core/Data/Repositories/storage_repository.dart';
 import 'package:GreenWave/Features/Intro/IntroMain/intro_main_view.dart';
 import 'package:flutter/material.dart';

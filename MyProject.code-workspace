@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"name": "MyProject",
+			"path": "../django_project/MyProject"
+		},
+		{
+			"name": "worddle",
+			"path": "../worddle"
+		},
+		{
+			"name": "raviarcrypto",
+			"path": "../raviarcrypto"
+		},
+		{
+			"name": "GreenWave",
+			"path": "."
+		},
+		{
+			"name": "Gymeet",
+			"path": "../Gymeet"
+		}
+	],
+	"settings": {
+		"CodeGPT.apiKey": "CodeGPT Plus Beta",
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
+}
